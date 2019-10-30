@@ -4,18 +4,35 @@
 using namespace std;
 
 struct souvenir{
+
+    souvenir(){}
+    souvenir(string name, double price){
+        _name = name;
+        _price = price;
+    }
     //GETTERS
-    string getName();
-    double getPrice();
+    string getName(){
+        return _name;
+    }
+
+    double getPrice(){
+        return _price;
+    }
 
     //SETTERS
-    void setName(string);
-    void setPrice(double);
+    void setName(string name){
+        _name = name;
+    }
 
-    //VARIABLES
+    void setPrice(double price){
+        _price = price;
+    }
+
+private:
     string _name;
     double _price;
 };
+
 
 class souvenirs
 {
@@ -24,6 +41,14 @@ public:
     ~souvenirs();
     souvenirs(const souvenirs& other);
     souvenirs& operator = (const souvenirs& other);
+    souvenir& operator [](int index);
+
+    //GETTERS
+    int getSize();
+
+    //FUNCTIONS
+    void addSouvenir(souvenir);
+    void removeSouvenir(int index);
 
 private:
     souvenir* _s;
