@@ -3,8 +3,10 @@
 #include "list.h"
 #include "stadium.h"
 
-struct stadiumList{
-private:
+struct stadiumNode{
+
+    stadium _s;
+    int _distancetoSrc;
 
 };
 
@@ -13,8 +15,13 @@ class graph
 public:
     graph();
 
+    //GETTERS
+
+
+    //SETTERS
+
 private:
-    List<List<stadium>> stadiumList;
+    List<List<stadiumNode>> stadiumList;
 };
 
 #endif // GRAPH_H
