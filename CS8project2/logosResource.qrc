@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>logos/dodgersLogo.jpg</file>
+        <file>logos/oldschoolDodgers.png</file>
+    </qresource>
+</RCC>
