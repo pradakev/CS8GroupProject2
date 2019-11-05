@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="mainMenu">
      <widget class="QLabel" name="mainMenuLabel">
@@ -251,14 +251,27 @@
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>50</y>
+        <x>300</x>
+        <y>20</y>
         <width>131</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
        <string>Trip Map &amp; Info</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>70</y>
+        <width>631</width>
+        <height>441</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/logos/mlbMap.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>
