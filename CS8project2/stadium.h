@@ -9,6 +9,8 @@ public:
     stadium();
     stadium(string, string, string, string, string, string);
 
+    bool operator == (const stadium& other);
+
     //GETTERS
     string getStadiumName();
     string getTeamName();

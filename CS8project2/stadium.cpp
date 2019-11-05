@@ -11,6 +11,10 @@ stadium::stadium(string name, string teamName, string address,
     _capacity = capacity;
 }
 
+bool stadium::operator == (const stadium& other){
+    return this->_sName == other._sName;
+}
+
 //GETTERS
 string stadium::getStadiumName(){
     return _sName;
