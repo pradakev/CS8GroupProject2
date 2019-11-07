@@ -34,4 +34,5 @@ RESOURCES += \
     logosResource.qrc
 
 DISTFILES += \
-    logos/oldschoolDodgers.png
+    logos/oldschoolDodgers.png \
+
