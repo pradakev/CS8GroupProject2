@@ -2,13 +2,14 @@
 
 stadium::stadium(){}
 stadium::stadium(string name, string teamName, string address,
-                 string phone, string openDate, string capacity){
+                 string phone, string openDate, string capacity, string type){
     _sName = name;
     _teamName = teamName;
     _address = address;
     _phone = phone;
     _openDate = openDate;
     _capacity = capacity;
+    _type = type;
 }
 
 bool stadium::operator == (const stadium& other){
@@ -40,6 +41,9 @@ string stadium::getCapacity(){
     return _capacity;
 }
 
+string stadium::getType(){
+    return _type;
+}
 //SETTERS
 void stadium::setName(string name){
     _sName = name;
@@ -63,4 +67,8 @@ void stadium::setOpenDate(string openDate){
 
 void stadium::setCapacity(string capacity){
     _capacity = capacity;
+}
+
+void stadium::setType(string type){
+    _type = type;
 }

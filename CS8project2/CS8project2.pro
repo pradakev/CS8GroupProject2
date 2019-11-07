@@ -24,8 +24,8 @@ SOURCES += \
 
 HEADERS += \
     graph.h \
+    linked_list_functions.h \
     linkedlist_functions.h \
-    list.h \
     mainwindow.h \
     souvenir.h \
     stadium.h

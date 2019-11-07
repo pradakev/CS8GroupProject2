@@ -7,7 +7,7 @@ class stadium
 {
 public:
     stadium();
-    stadium(string, string, string, string, string, string);
+    stadium(string, string, string, string, string, string, string);
 
     bool operator == (const stadium& other);
 
@@ -18,6 +18,7 @@ public:
     string getPhone();
     string getOpenDate();
     string getCapacity();
+    string getType();
 
     //SETTERS
     void setName(string);
@@ -26,6 +27,12 @@ public:
     void setphone(string);
     void setOpenDate(string);
     void setCapacity(string);
+    void setType(string);
+
+    //test function
+    void print(){
+        cout << _sName <<endl << _teamName << endl<< _address <<endl;
+    }
 
 private:
     string _sName;
@@ -34,6 +41,7 @@ private:
     string _phone;
     string _openDate;
     string _capacity;
+    string _type;
 };
 
 #endif // STADIUM_H
