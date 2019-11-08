@@ -1,6 +1,6 @@
 #ifndef GRAPH_H
 #define GRAPH_H
-#include "linked_list_functions.h"
+#include "list.h"
 #include "stadium.h"
 
 struct stadiumNode{
@@ -32,7 +32,8 @@ public:
     //FUNCTIONS
 
 private:
-    node<node<stadiumNode>*>* stadiumList;
+
+    List<List<stadiumNode>> stadiumList;
 };
 
 #endif // GRAPH_H
