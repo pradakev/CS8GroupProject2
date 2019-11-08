@@ -1,0 +1,65 @@
+Safeco Field, Rogers Center, 2070
+Rogers Center, Fenway Park, 430
+Safeco Field, AT&T Park, 680
+Safeco Field, O.co Coliseum, 680
+AT&T Park, Dodger Stadium, 340
+AT&T Park, Angel Stadium, 340
+O.co Coliseum, Dodger Stadium, 340
+O.co Coliseum, Angel Stadium, 340
+AT&T Park, Chase Field, 650
+O.co Coliseum, Chase Filed, 650
+Dodger Stadium, Target Field, 1500
+Angel Stadium, Target Field, 1500
+Dodger Stadium, PETCO Park, 110
+Angel Stadium, PETCO Park, 110
+PETCO Park, Chase Field, 300
+PETCO Park, Coors Field, 830
+Chase Field, Coors Field, 580
+Chase Field, Rangers Ballpark, 870
+Chase Field, Minute Maid Park, 1115
+Minute Maid Park, Tropicano Field, 790
+Minute Maid Park, Marlins Park, 965
+Minute Maid Park, Rangers Ballpark, 230
+Minute Maid Park, Busch Stadium, 680
+Rangers Ballpark, Coors Field, 650
+Rangers Ballpark, Kauffman Stadium, 460
+Rangers Ballpark, Turner Field, 740
+Kauffman Stadium, Coors Field, 560
+Kauffman Stadium, Busch Stadium, 235
+Kauffman Stadium, US Cellular Stadium, 415
+Kauffman Stadium, Wringley Field, 415
+Marlins Park, Tropicano Field, 210
+Marlins Park, Turner Field, 600
+Marlins Park, Camden Yards, 930
+Marlins Park, Nationals Park, 930
+Marlins Park, Fenway Park, 1255
+Tropicano Field, Great American Ballpark, 790
+Turner Field, Great American Ballpark, 375
+Turner Field, Camden Yards, 560
+Turner Field, Nationals Park, 560
+Great American Ballpark, Busch Stadium, 310
+Great American Ballpark, US Cellular Stadium, 250
+Great American Ballpark, Wrigley Field, 250
+Great American Ballpark, Progressive Field, 225
+Great American Ballpark, PNC Park, 260
+PNC Park, Progressive Field, 115
+PNC Park, Rogers Center, 225
+PNC Park, Yankee Stadium, 315
+PNC Park, Citi Field, 315
+Yankee Stadium, Fenway Park, 195
+Citi Field, Fenway Park, 195
+Yankee Stadium, Citizens Bank Park, 80
+Citi Field, Citizens Bank Park, 80
+Citizens Bank Park, Camden Yards, 90
+Citizens Bank Park, Nationals Park, 90
+PNC Park, Camden Yards, 195
+PNC Park, Nationals Park, 195
+Progressive Field, Comerica Park, 90
+Comerica Park, Wrigley Field, 240
+Comerica Park, US Cellular Field, 240
+Wrigley Field, Miller Park, 80
+US Cellular Field, Miller Park, 80
+Miller Park, Rogers Centers, 430
+Miller Park, Target Field, 300
+Target Field, Busch Stadium, 465
+Comerica Park, Rogers Center, 210
