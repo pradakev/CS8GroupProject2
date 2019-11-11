@@ -6,12 +6,16 @@
 struct stadiumNode{
 
     stadiumNode(){}
-    stadiumNode(stadium s, int dist){
-        _s = s;
+    stadiumNode(string src, string des, int dist){
+        _src = src;
+        _des = des;
         _distancetoSrc = dist;
+        _visited = false;
     }
-    stadium _s;
+    string _src;
+    string _des;
     int _distancetoSrc;
+    bool _visited;
 
 };
 
@@ -22,18 +26,21 @@ public:
     ~graph();
 
     //GETTERS
-    stadium getStadium(string stadiumName);
+    stadium getStadiumInfo(string stadiumName);
     int getedge(string stadiumSrc, string stadiumDes);
+    List<stadiumNode> getedges(string stadiumSrc);
 
     //SETTERS
     void addStadium(stadium s);
-    void addEdge(stadium src, stadium des, int distance);
+    void addEdge(string src, string des, int distance);
 
     //FUNCTIONS
 
 private:
+    bool hasStadium(string name);
 
-    List<List<stadiumNode>> stadiumList;
+    List<stadium> stadiums;
+    List<List<stadiumNode> > adjList;
 };
 
 #endif // GRAPH_H

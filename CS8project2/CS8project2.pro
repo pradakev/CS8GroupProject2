@@ -23,6 +23,7 @@ SOURCES += \
     stadium.cpp
 
 HEADERS += \
+    files.h \
     graph.h \
     linked_list_functions.h \
     linkedlist_functions.h \

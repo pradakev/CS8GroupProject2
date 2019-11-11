@@ -4,12 +4,12 @@ graph::graph(){}
 
 graph::~graph(){}
 
-stadium graph::getStadium(string stadiumName){
+stadium graph::getStadiumInfo(string stadiumName){
 
-    node<List<stadiumNode>>* w = this->stadiumList.Begin();
+    node<stadium>* w = this->stadiums.Begin();
     while (w != nullptr){
-        if (w->_item.Begin()->_item._s.getStadiumName() == stadiumName){
-            return w->_item.Begin()->_item._s;
+        if (w->_item.getStadiumName() == stadiumName){
+            return w->_item;
         }else{
             w = w->next;
         }
@@ -19,13 +19,13 @@ stadium graph::getStadium(string stadiumName){
 
 int graph::getedge(string stadiumSrc, string stadiumDes){
 
-    node<List<stadiumNode>>* w = this->stadiumList.Begin();
+    node<List<stadiumNode>>* w = this->adjList.Begin();
     node<stadiumNode>* w2 = nullptr;
     while (w != nullptr){
-        if (w->_item.Begin()->_item._s.getStadiumName() == stadiumSrc){
+        if (w->_item.Begin()->_item._src == stadiumSrc){
             w2 = w->_item.Begin();
             while (w2 != nullptr){
-                if (w2->_item._s.getStadiumName() == stadiumDes){
+                if (w2->_item._des == stadiumDes){
                     return w2->_item._distancetoSrc;
                 }
                 w2 = w2->next;
@@ -37,20 +37,31 @@ int graph::getedge(string stadiumSrc, string stadiumDes){
 }
 
 void graph::addStadium(stadium s){
+    // avoid double adding
+    assert(getStadiumInfo(s.getStadiumName())==stadium());
+
+    // inserts into stadium list
+    this->stadiums.InsertAfter(s,this->stadiums.End());
+
+    // insert into adjlist
     List<stadiumNode> newList;
-    stadiumNode toAdd = stadiumNode(s,0);
+    stadiumNode toAdd = stadiumNode(s.getStadiumName(), s.getStadiumName(),0);
     newList.InsertHead(toAdd);
-    this->stadiumList.InsertAfter(newList, this->stadiumList.End());
+    this->adjList.InsertAfter(newList, this->adjList.End());
 
 
 }
 
-void graph::addEdge(stadium src, stadium des, int distance){
-    node<List<stadiumNode>>* w = this->stadiumList.Begin();
-    stadiumNode edge =stadiumNode(des, distance);
+void graph::addEdge(string src, string des, int distance){
+    // the stadiums must exist
+    assert(getStadiumInfo(src).getStadiumName() == src);
+    assert(getStadiumInfo(des).getStadiumName() == des);
+
+    node<List<stadiumNode>>* w = this->adjList.Begin();
+    stadiumNode edge =stadiumNode(src, des, distance);
 
     while (w != nullptr){
-        if (w->_item.Begin()->_item._s == src){
+        if (w->_item.Begin()->_item._src == src){
             w->_item.InsertAfter(edge, w->_item.End());
         }
         w =w->next;
