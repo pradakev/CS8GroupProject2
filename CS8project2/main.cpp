@@ -7,11 +7,9 @@ int main(int argc, char *argv[])
 {
 
     graph t;
+    readStadiums(t, "stadiumInfo.txt");
+    readEdges(t, "stadiumDistances.txt");
 
-    string str = "stadiumInfo.txt";
-    readStadiums(t, str);
-
-    stadium temp = t.getStadiumInfo("Comerica Park");
 
 //    temp.print();
 //    QApplication a(argc, argv);
