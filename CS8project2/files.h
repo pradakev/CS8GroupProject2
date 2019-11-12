@@ -2,6 +2,7 @@
 #define FILES_H
 #include <fstream>
 #include "graph.h"
+#include "souvenir.h"
 
 void readStadiums(graph &g, string fileName){
     ifstream infile;
