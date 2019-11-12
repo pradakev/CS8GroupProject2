@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
     readStadiums(t, "stadiumInfo.txt");
     readEdges(t, "stadiumDistances.txt");
 
-
 //    temp.print();
 //    QApplication a(argc, argv);
 //    MainWindow w;
