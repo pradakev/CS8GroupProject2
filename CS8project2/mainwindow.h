@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "graph.h"
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -35,7 +37,13 @@ private slots:
 
     void on_trackSouvenirsButton_clicked();
 
+
+
 private:
     Ui::MainWindow *ui;
+
+    //GRAPH
+    graph g;
+
 };
 #endif // MAINWINDOW_H
