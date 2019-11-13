@@ -44,6 +44,20 @@ string stadium::getCapacity(){
 string stadium::getType(){
     return _type;
 }
+
+string stadium::getAllInfo(){
+    stringstream ss;
+    ss << getStadiumName() <<endl;
+    ss << getTeamName()<<endl;
+    ss << getAddress() <<endl;
+    ss << "Phone: " << getPhone() <<endl;
+    ss << "founded: "<<getOpenDate() <<endl;
+    ss << "capacity: " << getCapacity() <<endl;
+    ss << "League: " << getType() <<endl;
+
+    return string(ss.str());
+}
+
 //SETTERS
 void stadium::setName(string name){
     _sName = name;

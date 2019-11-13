@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "graph.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -16,6 +16,7 @@ public:
     ~MainWindow();
 
 private:
+    graph graph;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
