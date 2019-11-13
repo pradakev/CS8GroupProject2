@@ -69,4 +69,8 @@ void saveStadiums(graph &g, string fileName){
 void saveEdges(graph& g, string fileName){
 
 }
+
+void readSouvenirs();
+
+void saveSouvenirs();
 #endif // FILES_H
