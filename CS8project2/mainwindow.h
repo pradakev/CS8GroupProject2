@@ -44,6 +44,18 @@ private slots:
 
     void on_exitMainButton_clicked();
 
+    void on_pushButton_8_clicked();
+
+    //helper function
+    void setStadiumTextBrowser(string stadiumTemp);
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_stadiumsByNamButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

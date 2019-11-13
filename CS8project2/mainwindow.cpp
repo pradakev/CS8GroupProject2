@@ -98,11 +98,21 @@ void MainWindow::on_souvenirsDoneButton_clicked()
 }
 
 
-
+//STADIUMS
+void MainWindow::setStadiumTextBrowser(string stadiumTemp)
+{
+    gotoPage(2);
+    stadium temp; //temp stadium
+    temp = g.getStadiumInfo(stadiumTemp);
+    string info = temp.getAllInfo();
+    QString a;
+    a = QString::fromStdString(info);
+    ui->stadiumInfoTextBrowser->setText(a);
+}
 void MainWindow::on_pushButton_4_clicked()
 {
     gotoPage(2);
-    stadium LA;
+    stadium LA; //temp stadium
     LA = g.getStadiumInfo("Dodger Stadium");
     string info = LA.getAllInfo();
     QString a;
@@ -118,4 +128,31 @@ void MainWindow::on_stadiumInfoDoneButton_clicked()
 void MainWindow::on_exitMainButton_clicked()
 {
     exit(0);
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    //angels
+    setStadiumTextBrowser("Angels Stadium of Anaheim");
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    setStadiumTextBrowser("Kauffman Stadium");
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    setStadiumTextBrowser("Busch Stadium");
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    setStadiumTextBrowser("Citi Field");
+}
+
+void MainWindow::on_stadiumsByNamButton_clicked()
+{
+    gotoPage(2);
+
 }
