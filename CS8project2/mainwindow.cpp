@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     readStadiums(g, "stadiumInfo.txt");
     readEdges(g, "stadiumDistances.txt");
+    readSouvenirs(s, "SouvenirList.txt");
 
 }
 
@@ -119,4 +120,14 @@ void MainWindow::on_stadiumInfoDoneButton_clicked()
 void MainWindow::on_exitMainButton_clicked()
 {
     this->close();
+}
+
+void MainWindow::on_stadiumInfobutton_clicked()
+{
+    gotoPage(6);
+}
+
+void MainWindow::on_gobacktomainpage_clicked()
+{
+    gotoPage(0);
 }

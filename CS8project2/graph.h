@@ -35,10 +35,22 @@ public:
     void addEdge(string src, string des, int distance);
 
     //FUNCTIONS
+    List<stadiumNode> shortestPath(string src, string des);
+    List<stadiumNode> shortestPath(string type);
+
+
+    List<stadium> sort(string LeagueType = "all",
+                       bool grassSurface = false,
+                       bool byTeamName = false,
+                       bool byDate = false);
+
 
 private:
-    bool hasStadium(string name);
+    // sub-functions
+    List<stadium> getAmericanLeagueStadiums();
+    List<stadium> getNationalLeagueStadiums();
 
+    // variable
     List<stadium> stadiums;
     List<List<stadiumNode> > adjList;
 };

@@ -2,7 +2,8 @@
 
 stadium::stadium(){}
 stadium::stadium(string name, string teamName, string address,
-                 string phone, string openDate, string capacity, string type){
+                 string phone, string openDate, string capacity, string type
+                 ,string surface){
     _sName = name;
     _teamName = teamName;
     _address = address;
@@ -10,6 +11,7 @@ stadium::stadium(string name, string teamName, string address,
     _openDate = openDate;
     _capacity = capacity;
     _type = type;
+    _surface = surface;
 }
 
 bool stadium::operator == (const stadium& other){
@@ -45,6 +47,9 @@ string stadium::getType(){
     return _type;
 }
 
+string stadium::getFieldSurface(){
+    return _surface;
+}
 string stadium::getAllInfo(){
     stringstream ss;
     ss << getStadiumName() <<endl;
@@ -54,6 +59,7 @@ string stadium::getAllInfo(){
     ss << "Founded: "<<getOpenDate() <<endl;
     ss << "Capacity: " << getCapacity() <<endl;
     ss << "League: " << getType() <<endl;
+    ss << "Field surface: " << getFieldSurface() <<endl;
 
     return string(ss.str());
 }
@@ -85,4 +91,8 @@ void stadium::setCapacity(string capacity){
 
 void stadium::setType(string type){
     _type = type;
+}
+
+void stadium::setFieldSurface(string surface){
+    _surface = surface;
 }

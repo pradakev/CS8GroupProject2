@@ -5,7 +5,7 @@ using namespace std;
 
 struct souvenir{
 
-    souvenir(){};
+    souvenir(){}
     souvenir(string name, double price){
         _name = name;
         _price = price;
