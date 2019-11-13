@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include "graph.h"
-
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -38,6 +37,10 @@ private slots:
     void on_trackSouvenirsButton_clicked();
 
 
+
+    void on_pushButton_4_clicked();
+
+    void on_stadiumInfoDoneButton_clicked();
 
 private:
     Ui::MainWindow *ui;
