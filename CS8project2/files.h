@@ -70,7 +70,9 @@ void saveEdges(graph& g, string fileName){
 
 }
 
-void readSouvenirs();
+void readSouvenirs(souvenirs& s, string fileName){
+
+}
 
 void saveSouvenirs();
 #endif // FILES_H

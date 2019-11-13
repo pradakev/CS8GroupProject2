@@ -35,10 +35,25 @@ public:
     void addEdge(string src, string des, int distance);
 
     //FUNCTIONS
+    List<stadiumNode> Algorithm(string src, string des);
+    List<stadiumNode> Algorithm(string type){
+        if (type == "american"){
+//            return Dijktras(AmericanLeague());
+        }
+        if (type == "national"){
+
+        }
+        if (type == "all"){
+
+        }
+
+    }
 
 private:
     // sub-functions
     bool hasStadium(string name);
+    List<stadium> AmericanLeague();
+    List<stadium> NationalLeague();
 
     // variable
     List<stadium> stadiums;

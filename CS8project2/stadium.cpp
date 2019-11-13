@@ -51,8 +51,8 @@ string stadium::getAllInfo(){
     ss << getTeamName()<<endl;
     ss << getAddress() <<endl;
     ss << "Phone: " << getPhone() <<endl;
-    ss << "founded: "<<getOpenDate() <<endl;
-    ss << "capacity: " << getCapacity() <<endl;
+    ss << "Founded: "<<getOpenDate() <<endl;
+    ss << "Capacity: " << getCapacity() <<endl;
     ss << "League: " << getType() <<endl;
 
     return string(ss.str());
