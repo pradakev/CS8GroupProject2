@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
     readStadiums(g, "stadiumInfo.txt");
     readEdges(g, "stadiumDistances.txt");
 
+    ui->pushButton_4->setIcon(QIcon("logos/oldschoolDodger.png"));
+
 }
 
 MainWindow::~MainWindow()
@@ -60,12 +62,12 @@ void MainWindow::on_customerDoneButton_clicked()
 //show map. goes to different tab
 void MainWindow::on_showMapTripButton_clicked()
 {
-    gotoPage(2);
+    gotoPage(3);
 }
 
 void MainWindow::on_trackSouvenirsButton_clicked()
 {
-    gotoPage(3);
+    gotoPage(4);
 }
 
 //MAP Page
@@ -102,16 +104,7 @@ void MainWindow::on_pushButton_4_clicked()
     gotoPage(2);
     stadium LA;
     LA = g.getStadiumInfo("Dodger Stadium");
-    stringstream ss;
-    ss << LA.getTeamName() << endl;
-    ss << LA.getAddress() << endl;
-    ss << LA.getPhone() << endl;
-    ss << LA.getOpenDate() << endl;
-    ss << LA.getCapacity() << endl;
-    ss << LA.getType() << endl;
-
-//    ss << LA.getAllInfo() << endl;
-    string info = ss.str();
+    string info = LA.getAllInfo();
     QString a;
     a = QString::fromStdString(info);
     ui->stadiumInfoTextBrowser->setText(a);

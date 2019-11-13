@@ -43,7 +43,6 @@ private slots:
     void on_stadiumInfoDoneButton_clicked();
 
 private:
-    graph graph;
     Ui::MainWindow *ui;
 
     //GRAPH
