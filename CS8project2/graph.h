@@ -35,8 +35,9 @@ public:
     void addEdge(string src, string des, int distance);
 
     //FUNCTIONS
-    List<stadiumNode> Algorithm(string src, string des);
-    List<stadiumNode> Algorithm(string type);
+    List<stadiumNode> shortestPath(string src, string des);
+    List<stadiumNode> shortestPath(string type);
+
 
     List<stadium> sort(string LeagueType = "all",
                        bool grassSurface = false,
@@ -46,7 +47,6 @@ public:
 
 private:
     // sub-functions
-    bool hasStadium(string name);
     List<stadium> getAmericanLeagueStadiums();
     List<stadium> getNationalLeagueStadiums();
 
