@@ -103,14 +103,8 @@ void MainWindow::on_pushButton_4_clicked()
     stadium LA;
     LA = g.getStadiumInfo("Dodger Stadium");
     stringstream ss;
-    ss << LA.getTeamName() << endl;
-    ss << LA.getAddress() << endl;
-    ss << LA.getPhone() << endl;
-    ss << LA.getOpenDate() << endl;
-    ss << LA.getCapacity() << endl;
-    ss << LA.getType() << endl;
 
-//    ss << LA.getAllInfo() << endl;
+    ss << LA.getAllInfo() << endl;
     string info = ss.str();
     QString a;
     a = QString::fromStdString(info);
@@ -120,4 +114,9 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_stadiumInfoDoneButton_clicked()
 {
     gotoPage(1);
+}
+
+void MainWindow::on_exitMainButton_clicked()
+{
+    this->close();
 }

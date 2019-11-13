@@ -42,6 +42,8 @@ private slots:
 
     void on_stadiumInfoDoneButton_clicked();
 
+    void on_exitMainButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
