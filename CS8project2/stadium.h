@@ -1,6 +1,8 @@
 #ifndef STADIUM_H
 #define STADIUM_H
 #include <iostream>
+#include <sstream>
+
 using namespace std;
 
 class stadium
@@ -19,6 +21,7 @@ public:
     string getOpenDate();
     string getCapacity();
     string getType();
+    string getAllInfo();
 
     //SETTERS
     void setName(string);

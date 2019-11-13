@@ -37,8 +37,10 @@ public:
     //FUNCTIONS
 
 private:
+    // sub-functions
     bool hasStadium(string name);
 
+    // variable
     List<stadium> stadiums;
     List<List<stadiumNode> > adjList;
 };
