@@ -19,6 +19,7 @@ public:
     string getOpenDate();
     string getCapacity();
     string getType();
+//    string getAllInfo();
 
     //SETTERS
     void setName(string);
