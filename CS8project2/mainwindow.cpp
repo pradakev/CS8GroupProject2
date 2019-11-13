@@ -47,7 +47,7 @@ void MainWindow::on_customerPushButtonMenu_clicked()
 //admin button
 void MainWindow::on_adminPushButtonMain_clicked()
 {
-    gotoPage(4);
+    gotoPage(5);
 }
 
 
@@ -113,4 +113,9 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_stadiumInfoDoneButton_clicked()
 {
     gotoPage(1);
+}
+
+void MainWindow::on_exitMainButton_clicked()
+{
+    exit(0);
 }
