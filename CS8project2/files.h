@@ -34,6 +34,9 @@ void readStadiums(graph &g, string fileName){
         toAdd.setType(line);
 
         getline(infile, line);
+        toAdd.setFieldSurface(line);
+
+        getline(infile, line);
 
         g.addStadium(toAdd);
     }
@@ -62,17 +65,26 @@ void readEdges(graph &g, string fileName){
     infile.close();
 }
 
-void saveStadiums(graph &g, string fileName){
-
-}
-
-void saveEdges(graph& g, string fileName){
-
-}
-
 void readSouvenirs(souvenirs& s, string fileName){
+    ifstream infile;
+    infile.open(fileName);
 
+    string line;
+    souvenir toAdd;
+
+    while (!infile.eof()){
+        getline(infile, line);
+        toAdd.setName(line.substr(0, line.find(",")));
+        line = line.substr(line.find(",")+3);
+        toAdd.setPrice(stod(line));
+
+        s.addSouvenir(toAdd);
+    }
 }
 
-void saveSouvenirs();
+void saveStadiums(graph &g, string fileName);
+
+void saveEdges(graph& g, string fileName);
+
+void saveSouvenirs(souvenirs& s, string fileName);
 #endif // FILES_H

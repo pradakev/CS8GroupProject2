@@ -36,24 +36,19 @@ public:
 
     //FUNCTIONS
     List<stadiumNode> Algorithm(string src, string des);
-    List<stadiumNode> Algorithm(string type){
-        if (type == "american"){
-//            return Dijktras(AmericanLeague());
-        }
-        if (type == "national"){
+    List<stadiumNode> Algorithm(string type);
 
-        }
-        if (type == "all"){
+    List<stadium> sort(string LeagueType = "all",
+                       bool grassSurface = false,
+                       bool byTeamName = false,
+                       bool byDate = false);
 
-        }
-
-    }
 
 private:
     // sub-functions
     bool hasStadium(string name);
-    List<stadium> AmericanLeague();
-    List<stadium> NationalLeague();
+    List<stadium> getAmericanLeagueStadiums();
+    List<stadium> getNationalLeagueStadiums();
 
     // variable
     List<stadium> stadiums;

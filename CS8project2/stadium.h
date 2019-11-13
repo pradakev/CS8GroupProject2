@@ -8,7 +8,7 @@ class stadium
 {
 public:
     stadium();
-    stadium(string, string, string, string, string, string, string);
+    stadium(string, string, string, string, string, string, string, string);
 
     bool operator == (const stadium& other);
 
@@ -20,6 +20,7 @@ public:
     string getOpenDate();
     string getCapacity();
     string getType();
+    string getFieldSurface();
     string getAllInfo();
 
     //SETTERS
@@ -30,6 +31,7 @@ public:
     void setOpenDate(string);
     void setCapacity(string);
     void setType(string);
+    void setFieldSurface(string);
 
     //test function
     void print(){
@@ -46,6 +48,7 @@ private:
     string _openDate;
     string _capacity;
     string _type;
+    string _surface;
 };
 
 #endif // STADIUM_H
