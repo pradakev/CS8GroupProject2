@@ -46,7 +46,7 @@ void MainWindow::on_customerPushButtonMenu_clicked()
 //admin button
 void MainWindow::on_adminPushButtonMain_clicked()
 {
-    gotoPage(4);
+    gotoPage(5);
 }
 
 
@@ -61,12 +61,12 @@ void MainWindow::on_customerDoneButton_clicked()
 //show map. goes to different tab
 void MainWindow::on_showMapTripButton_clicked()
 {
-    gotoPage(2);
+    gotoPage(3);
 }
 
 void MainWindow::on_trackSouvenirsButton_clicked()
 {
-    gotoPage(3);
+    gotoPage(4);
 }
 
 //MAP Page
@@ -97,16 +97,23 @@ void MainWindow::on_souvenirsDoneButton_clicked()
 }
 
 
-
+//STADIUMS
+void MainWindow::setStadiumTextBrowser(string stadiumTemp)
+{
+    gotoPage(2);
+    stadium temp; //temp stadium
+    temp = g.getStadiumInfo(stadiumTemp);
+    string info = temp.getAllInfo();
+    QString a;
+    a = QString::fromStdString(info);
+    ui->stadiumInfoTextBrowser->setText(a);
+}
 void MainWindow::on_pushButton_4_clicked()
 {
     gotoPage(2);
-    stadium LA;
+    stadium LA; //temp stadium
     LA = g.getStadiumInfo("Dodger Stadium");
-    stringstream ss;
-
-    ss << LA.getAllInfo() << endl;
-    string info = ss.str();
+    string info = LA.getAllInfo();
     QString a;
     a = QString::fromStdString(info);
     ui->stadiumInfoTextBrowser->setText(a);
@@ -119,15 +126,32 @@ void MainWindow::on_stadiumInfoDoneButton_clicked()
 
 void MainWindow::on_exitMainButton_clicked()
 {
-    this->close();
+    exit(0);
 }
 
-void MainWindow::on_stadiumInfobutton_clicked()
+void MainWindow::on_pushButton_8_clicked()
 {
-    gotoPage(6);
+    //angels
+    setStadiumTextBrowser("Angels Stadium of Anaheim");
 }
 
-void MainWindow::on_gobacktomainpage_clicked()
+void MainWindow::on_pushButton_9_clicked()
 {
-    gotoPage(0);
+    setStadiumTextBrowser("Kauffman Stadium");
+}
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    setStadiumTextBrowser("Busch Stadium");
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    setStadiumTextBrowser("Citi Field");
+}
+
+void MainWindow::on_stadiumsByNamButton_clicked()
+{
+    gotoPage(2);
+
 }
