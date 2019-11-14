@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="mainMenu">
      <widget class="QLabel" name="mainMenuLabel">
@@ -87,6 +87,19 @@
         <width>521</width>
         <height>191</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="stadiumTable">
+      <property name="geometry">
+       <rect>
+        <x>599</x>
+        <y>543</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stadium Information</string>
       </property>
      </widget>
     </widget>

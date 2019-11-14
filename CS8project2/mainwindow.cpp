@@ -155,3 +155,13 @@ void MainWindow::on_stadiumsByNamButton_clicked()
     gotoPage(2);
 
 }
+
+void MainWindow::on_gobacktomainpage_clicked()
+{
+    gotoPage(0);
+}
+
+void MainWindow::on_stadiumTable_clicked()
+{
+    gotoPage(7);
+}

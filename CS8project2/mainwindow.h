@@ -59,6 +59,10 @@ private slots:
     void on_stadiumsByNamButton_clicked();
 
 
+    void on_gobacktomainpage_clicked();
+
+    void on_stadiumTable_clicked();
+
 private:
     Ui::MainWindow *ui;
 
