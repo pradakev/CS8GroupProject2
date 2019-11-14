@@ -39,7 +39,9 @@ int graph::getedge(string stadiumSrc, string stadiumDes){
 void graph::addStadium(stadium s){
     // avoid double adding
 //    assert(getStadiumInfo(s.getStadiumName())==stadium());
-
+    if(!(getStadiumInfo(s.getStadiumName()) == stadium())){
+        return;
+    }
     // inserts into stadium list
     this->stadiums.InsertAfter(s,this->stadiums.End());
 
@@ -48,14 +50,16 @@ void graph::addStadium(stadium s){
     stadiumNode toAdd = stadiumNode(s.getStadiumName(), s.getStadiumName(),0);
     newList.InsertHead(toAdd);
     this->adjList.InsertAfter(newList, this->adjList.End());
-
-
 }
 
 void graph::addEdge(string src, string des, int distance){
     // the stadiums must exist
 //    assert(getStadiumInfo(src).getStadiumName() == src);
 //    assert(getStadiumInfo(des).getStadiumName() == des);
+    if(getStadiumInfo(src).getStadiumName() != src ||
+            getStadiumInfo(des).getStadiumName() != des){
+        return;
+    }
 
     node<List<stadiumNode>>* w = this->adjList.Begin();
     stadiumNode edge =stadiumNode(src, des, distance);
