@@ -36,6 +36,10 @@ int graph::getedge(string stadiumSrc, string stadiumDes){
     return -1;
 }
 
+List<stadium> graph::getStadiumList() const{
+    return this->stadiums;
+}
+
 void graph::addStadium(stadium s){
     // avoid double adding
 //    assert(getStadiumInfo(s.getStadiumName())==stadium());
@@ -44,6 +48,7 @@ void graph::addStadium(stadium s){
     }
     // inserts into stadium list
     this->stadiums.InsertAfter(s,this->stadiums.End());
+    _size++;
 
     // insert into adjlist
     List<stadiumNode> newList;
@@ -71,5 +76,33 @@ void graph::addEdge(string src, string des, int distance){
         w =w->next;
     }
 
+}
+
+int graph::getSize(){
+    return _size;
+}
+
+List<stadiumNode> graph::shortestPath(List<stadium>){
+
+}
+
+List<stadium> graph::getAmericanLeagueStadiums(){
+
+}
+
+List<stadium> graph::getNationalLeagueStadiums(){
+
+}
+
+List<stadium> graph::getStadiumWithGrassField(){
+    List<stadium> returnMe;
+    node<stadium>* walker = this->stadiums.Begin();
+    while (walker){
+        if (walker->_item.getFieldSurface() == "Grass"){
+            returnMe.InsertAfter(walker->_item, returnMe.End());
+        }
+        walker = walker->next;
+    }
+    return returnMe;
 }
 

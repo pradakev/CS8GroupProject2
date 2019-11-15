@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="mainMenu">
      <widget class="QLabel" name="mainMenuLabel">
@@ -87,6 +87,19 @@
         <width>521</width>
         <height>191</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="stadiumTableInfo">
+      <property name="geometry">
+       <rect>
+        <x>619</x>
+        <y>540</y>
+        <width>161</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stadium Information</string>
       </property>
      </widget>
     </widget>
@@ -823,18 +836,95 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
     <widget class="QWidget" name="stadiuminfotable">
-     <widget class="QPushButton" name="gobacktomainpage">
+     <widget class="QPushButton" name="backtoMain">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>520</y>
-        <width>251</width>
+        <x>560</x>
+        <y>510</y>
+        <width>201</width>
         <height>41</height>
        </rect>
       </property>
       <property name="text">
-       <string>Return to Main Menu</string>
+       <string>Back to Main Menu</string>
       </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>80</y>
+        <width>711</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>711</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">alternate-background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>40</y>
+        <width>651</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QComboBox" name="GrassSurface">
+         <item>
+          <property name="text">
+           <string>All</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Grass Surface Only</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="StadiumInfoTableOptions">
+         <item>
+          <property name="text">
+           <string>All</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>American</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>National</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>

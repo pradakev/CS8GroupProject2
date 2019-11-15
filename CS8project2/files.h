@@ -11,6 +11,10 @@ void readStadiums(graph &g, string fileName){
     string line;
     stadium toAdd;
 
+    if (!infile){
+        cout << "file not found. " <<endl;
+    }
+
     while (infile){
         getline(infile, line);
         toAdd.setName(line);

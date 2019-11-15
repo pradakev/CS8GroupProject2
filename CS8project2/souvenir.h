@@ -1,6 +1,7 @@
 #ifndef SOUVENIR_H
 #define SOUVENIR_H
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 struct souvenir{

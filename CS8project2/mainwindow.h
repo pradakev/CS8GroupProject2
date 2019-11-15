@@ -58,6 +58,11 @@ private slots:
 
     void on_stadiumsByNamButton_clicked();
 
+    void on_stadiumTableInfo_clicked();
+
+    void on_backtoMain_clicked();
+
+    void on_GrassSurface_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;
