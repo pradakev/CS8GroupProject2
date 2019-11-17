@@ -223,3 +223,14 @@ void MainWindow::on_GrassSurface_currentIndexChanged(int index)
 {
     on_stadiumTableInfo_clicked();
 }
+
+
+void MainWindow::on_planTripButton_clicked()
+{
+    gotoPage(6);
+}
+
+void MainWindow::on_pushButton_31_clicked()
+{
+    gotoPage(1);
+}

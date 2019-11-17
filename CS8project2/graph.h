@@ -37,7 +37,6 @@ public:
     void addEdge(string src, string des, int distance);
 
     //FUNCTIONS
-    List<stadiumNode> shortestPath_TwoCities(string src, string des);
     List<stadiumNode> shortestPath(List<stadium>);
 
     List<stadium> getAmericanLeagueStadiums();

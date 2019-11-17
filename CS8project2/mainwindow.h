@@ -64,6 +64,11 @@ private slots:
 
     void on_GrassSurface_currentIndexChanged(int index);
 
+
+    void on_planTripButton_clicked();
+
+    void on_pushButton_31_clicked();
+
 private:
     Ui::MainWindow *ui;
 
