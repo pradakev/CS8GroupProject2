@@ -69,6 +69,9 @@ private slots:
 
     void on_pushButton_31_clicked();
 
+
+    void on_allStadiumsButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

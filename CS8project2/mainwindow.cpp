@@ -234,3 +234,14 @@ void MainWindow::on_pushButton_31_clicked()
 {
     gotoPage(1);
 }
+
+void MainWindow::on_allStadiumsButton_clicked()
+{
+//    node<stadium>* all = this->g.getStadiumList().Begin();
+//    while(all){
+
+//        ui->textBrowser_3->setText(QString::fromStdString(all->_item.getStadiumName()));
+//        ui->textBrowser_3->setText(QString::fromStdString("\n"));
+//        all = all->next;
+//    }
+}

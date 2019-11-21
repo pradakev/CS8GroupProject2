@@ -82,16 +82,8 @@ int graph::getSize(){
     return _size;
 }
 
-List<stadiumNode> graph::shortestPath(List<stadium>){
-
-}
-
-List<stadium> graph::getAmericanLeagueStadiums(){
-
-}
-
-List<stadium> graph::getNationalLeagueStadiums(){
-
+List<stadiumNode> graph::shortestPath(List<stadium> s){
+    node<stadium>*w = s.Begin();
 }
 
 List<stadium> graph::getStadiumWithGrassField(){
