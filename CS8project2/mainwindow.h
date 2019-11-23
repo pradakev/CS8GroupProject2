@@ -4,7 +4,7 @@
 #include "graph.h"
 #include "souvenir.h"
 #include <QMainWindow>
-
+#include <QMessageBox>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -31,12 +31,7 @@ private slots:
 
     void on_adminPushButtonMain_clicked();
 
-    void on_showMapTripButton_clicked();
-
     void on_souvenirsDoneButton_clicked();
-
-    void on_trackSouvenirsButton_clicked();
-
 
 
     void on_pushButton_4_clicked();
@@ -71,6 +66,22 @@ private slots:
 
 
     void on_allStadiumsButton_clicked();
+
+    void on_pushButton_38_clicked();
+
+    void on_pushButton_39_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_modDoneButton_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_modAddNewButton_clicked();
+
+    void on_modSDoneButton_clicked();
+
+    void on_modSAddNewButton_clicked();
 
 private:
     Ui::MainWindow *ui;

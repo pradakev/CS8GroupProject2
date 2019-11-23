@@ -76,11 +76,11 @@ void readSouvenirs(souvenirs& s, string fileName){
     string line;
     souvenir toAdd;
 
-    while (infile){
+    while (!infile.eof()){
         getline(infile, line);
         toAdd.setName(line.substr(0, line.find(",")));
         line = line.substr(line.find(",")+3);
-        toAdd.setPrice(stod(line));
+        toAdd.setPrice(line);
 
         s.addSouvenir(toAdd);
     }
