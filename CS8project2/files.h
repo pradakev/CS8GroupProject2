@@ -11,6 +11,10 @@ void readStadiums(graph &g, string fileName){
     string line;
     stadium toAdd;
 
+    if (!infile){
+        cout << "file not found. " <<endl;
+    }
+
     while (infile){
         getline(infile, line);
         toAdd.setName(line);
@@ -52,7 +56,7 @@ void readEdges(graph &g, string fileName){
     string s2;
     int distance;
 
-    while (!infile.eof()){
+    while (infile){
         getline(infile, line);
         s1 = line.substr(0, line.find(","));
         line = line.substr(line.find(",")+2);
@@ -76,7 +80,7 @@ void readSouvenirs(souvenirs& s, string fileName){
         getline(infile, line);
         toAdd.setName(line.substr(0, line.find(",")));
         line = line.substr(line.find(",")+3);
-        toAdd.setPrice(stod(line));
+        toAdd.setPrice(line);
 
         s.addSouvenir(toAdd);
     }

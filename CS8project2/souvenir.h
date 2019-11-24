@@ -1,12 +1,13 @@
 #ifndef SOUVENIR_H
 #define SOUVENIR_H
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 struct souvenir{
 
     souvenir(){}
-    souvenir(string name, double price){
+    souvenir(string name, string price){
         _name = name;
         _price = price;
     }
@@ -15,7 +16,7 @@ struct souvenir{
         return _name;
     }
 
-    double getPrice(){
+    string getPrice(){
         return _price;
     }
 
@@ -24,13 +25,13 @@ struct souvenir{
         _name = name;
     }
 
-    void setPrice(double price){
+    void setPrice(string price){
         _price = price;
     }
 
 private:
     string _name;
-    double _price;
+    string _price;
 };
 
 
