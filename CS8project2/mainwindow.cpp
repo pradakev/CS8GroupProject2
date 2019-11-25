@@ -149,6 +149,7 @@ void MainWindow::on_stadiumsByNamButton_clicked()
 
 }
 
+
 void MainWindow::on_stadiumTableInfo_clicked()
 {
     gotoPage(7);
@@ -210,7 +211,10 @@ void MainWindow::on_stadiumTableInfo_clicked()
     ui->tableWidget_2->setSortingEnabled(true);
 }
 
-void MainWindow::on_backtoMain_clicked()
+
+
+void MainWindow::on_gobacktomainpage_clicked()
+
 {
     gotoPage(0);
 }
@@ -409,3 +413,9 @@ void MainWindow::on_modSAddNewButton_clicked()
     ui->modSouvenirTable->scrollToBottom();
 }
 
+
+void MainWindow::on_stadiumTable_clicked()
+{
+    gotoPage(7);
+
+}
