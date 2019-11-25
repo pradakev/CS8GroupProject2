@@ -55,7 +55,7 @@ private slots:
 
     void on_stadiumTableInfo_clicked();
 
-    void on_backtoMain_clicked();
+//    void on_backtoMain_clicked();
 
     void on_GrassSurface_currentIndexChanged(int index);
 
@@ -82,6 +82,10 @@ private slots:
     void on_modSDoneButton_clicked();
 
     void on_modSAddNewButton_clicked();
+
+    void on_gobacktomainpage_clicked();
+
+    void on_stadiumTable_clicked();
 
 private:
     Ui::MainWindow *ui;

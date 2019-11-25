@@ -37,6 +37,7 @@ public:
     void addEdge(string src, string des, int distance);
 
     //FUNCTIONS
+
     List<stadiumNode> shortestPath(List<stadium>);
 
     List<stadium> getAmericanLeagueStadiums();
@@ -44,6 +45,7 @@ public:
     List<stadium> getStadiumWithGrassField();
     string Dijkstras (stadium);
     string MST (stadium start);
+
 
 
 
@@ -64,6 +66,12 @@ private:
     string DisplayPath(int P[],
                         int C[]);
 
+
+
+    List<stadium> sort(string LeagueType = "all",
+                       bool grassSurface = false,
+                       bool byTeamName = false,
+                       bool byDate = false);
 
     // variable
     List<stadium> stadiums;
