@@ -78,6 +78,7 @@ void graph::addEdge(string src, string des, int distance){
 
 }
 
+
 int graph::getSize(){
     return _size;
 }
@@ -96,5 +97,30 @@ List<stadium> graph::getStadiumWithGrassField(){
         walker = walker->next;
     }
     return returnMe;
+
+List<stadiumNode> graph::shortestPath_TwoCities(string src, string des){
+
+}
+
+List<stadiumNode> graph::shortestPath(List<stadium>){
+
+}
+
+List<stadium> graph::getAmericanLeagueStadiums(){
+
+}
+
+List<stadium> graph::getNationalLeagueStadiums(){
+
+}
+
+List<stadium> graph::getStadiumWithGrassField(){
+
+}
+
+List<stadium> graph::sort(string LeagueType,bool grassSurface,bool byTeamName,
+                   bool byDate){
+
+
 }
 

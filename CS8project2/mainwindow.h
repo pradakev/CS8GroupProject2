@@ -83,6 +83,10 @@ private slots:
 
     void on_modSAddNewButton_clicked();
 
+    void on_gobacktomainpage_clicked();
+
+    void on_stadiumTable_clicked();
+
 private:
     Ui::MainWindow *ui;
 
