@@ -45,11 +45,12 @@ private slots:
 
     //helper function
     void setStadiumTextBrowser(string stadiumTemp);
-    void on_pushButton_9_clicked();
 
-    void on_pushButton_11_clicked();
+    void on_kansasCityButton_clicked();
 
-    void on_pushButton_10_clicked();
+    void on_stLouisButton_clicked();
+
+    void on_nyMetsButton_clicked();
 
     void on_stadiumsByNamButton_clicked();
 
@@ -89,8 +90,16 @@ private slots:
     void on_stadiumTable_clicked();
 
 
+    void on_stadiumInfoCheckBox_stateChanged(int arg1);
+
+    void on_sanDiegoButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+    //dreamStadiumText
+    QString stadiumPathText = "";
+    QString arrow = " --> \n";
 
     //GRAPH
     graph g;
