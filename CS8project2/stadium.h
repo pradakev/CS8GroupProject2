@@ -36,9 +36,7 @@ public:
 
     //test function
     void print(){
-        cout << _sName <<endl << _teamName << endl<< _address <<endl
-             << _phone << endl<< _openDate << endl<<_capacity
-             <<endl<< _type <<endl;
+        cout << _surface <<endl;
     }
 
 private:

@@ -1,5 +1,6 @@
 #ifndef GRAPH_H
 #define GRAPH_H
+#include <cassert>
 #include "list.h"
 #include "stadium.h"
 
@@ -29,33 +30,35 @@ public:
     stadium getStadiumInfo(string stadiumName);
     int getedge(string stadiumSrc, string stadiumDes);
     List<stadiumNode> getedges(string stadiumSrc);
+    List<stadium> getStadiumList() const;
 
     //SETTERS
     void addStadium(stadium s);
     void addEdge(string src, string des, int distance);
 
     //FUNCTIONS
-    // shortest path between two cities
-    List<stadiumNode> shortestPath_TwoCities(string src, string des);
 
-    // takes in a list of stadiums so it will work with customized stadium list
     List<stadiumNode> shortestPath(List<stadium>);
 
-    // making these functions public so that it can be called in the UI,
-    //  for purpose of displaying the table
     List<stadium> getAmericanLeagueStadiums();
     List<stadium> getNationalLeagueStadiums();
     List<stadium> getStadiumWithGrassField();
+
+
+    int getSize();
+
+private:
+
 
     List<stadium> sort(string LeagueType = "all",
                        bool grassSurface = false,
                        bool byTeamName = false,
                        bool byDate = false);
 
-private:
     // variable
     List<stadium> stadiums;
     List<List<stadiumNode> > adjList;
+    int _size;
 };
 
 #endif // GRAPH_H
