@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dodgerButton->setFixedSize(80, 55);
     ui->angelsButton->setFixedSize(80, 55);
     ui->sanDiegoButton->setFixedSize(80, 55);
+    ui->oaklandAButton->setFixedSize(80, 55);
 
 }
 
@@ -103,13 +104,23 @@ void MainWindow::setStadiumTextBrowser(string stadiumTemp)
 }
 void MainWindow::on_dodgerButton_clicked()
 {
-    gotoPage(2);
-    stadium LA; //temp stadium
-    LA = g.getStadiumInfo("Dodger Stadium");
-    string info = LA.getAllInfo();
-    QString a;
-    a = QString::fromStdString(info);
-    ui->stadiumInfoTextBrowser->setText(a);
+    //if stadiumInfo
+    if(ui->stadiumInfoCheckBox->isChecked())
+    {
+        gotoPage(2);
+        stadium LA; //temp stadium
+        LA = g.getStadiumInfo("Dodger Stadium");
+        string info = LA.getAllInfo();
+        QString a;
+        a = QString::fromStdString(info);
+        ui->stadiumInfoTextBrowser->setText(a);
+    }
+    //else add to set of stadiums list browser
+    else
+    {
+        stadiumPathText += "Dodger Stadium" + arrow;
+        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+    }
 }
 
 void MainWindow::on_stadiumInfoDoneButton_clicked()
@@ -124,21 +135,34 @@ void MainWindow::on_exitMainButton_clicked()
 
 void MainWindow::on_angelsButton_clicked()
 {
-    //angels
-    setStadiumTextBrowser("Angels Stadium of Anaheim");
+    //if stadiumInfo Checkbox
+    if(ui->stadiumInfoCheckBox->isChecked())
+        setStadiumTextBrowser("Angels Stadium of Anaheim");
+    else
+    {
+        stadiumPathText += "Angels Stadium of Anaheim" + arrow;
+        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+    }
 }
 
-void MainWindow::on_pushButton_9_clicked()
+void MainWindow::on_kansasCityButton_clicked()
 {
-    setStadiumTextBrowser("Kauffman Stadium");
+    //if stadiumInfo Checkbox
+    if(ui->stadiumInfoCheckBox->isChecked())
+        setStadiumTextBrowser("Kauffman Stadium");
+    else
+    {
+        stadiumPathText += "Kauffman Stadium" + arrow;
+        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+    }
 }
 
-void MainWindow::on_pushButton_11_clicked()
+void MainWindow::on_stLouisButton_clicked()
 {
     setStadiumTextBrowser("Busch Stadium");
 }
 
-void MainWindow::on_pushButton_10_clicked()
+void MainWindow::on_nyMetsButton_clicked()
 {
     setStadiumTextBrowser("Citi Field");
 }
@@ -418,4 +442,28 @@ void MainWindow::on_stadiumTable_clicked()
 {
     gotoPage(7);
 
+}
+
+void MainWindow::on_stadiumInfoCheckBox_stateChanged(int arg1)
+{
+    if(ui->stadiumInfoCheckBox->isChecked())
+    {
+        ui->stadiumCheckBoxBrowser->setText("Select a stadium to see their info!");
+    }
+    else
+    {
+        ui->stadiumCheckBoxBrowser->setText("Check to select a stadiums' info.");
+    }
+}
+
+void MainWindow::on_sanDiegoButton_clicked()
+{
+    //if stadiumInfo Checkbox
+    if(ui->stadiumInfoCheckBox->isChecked())
+        setStadiumTextBrowser("Angels Stadium of Anaheim");
+    else
+    {
+        stadiumPathText += "Angels Stadium of Anaheim" + arrow;
+        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+    }
 }
