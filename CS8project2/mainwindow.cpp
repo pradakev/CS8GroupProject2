@@ -13,6 +13,11 @@ MainWindow::MainWindow(QWidget *parent)
     readEdges(g, "stadiumDistances.txt");
     readSouvenirs(s, "SouvenirList.txt");
 
+    //Setup Push buttons
+    ui->dodgerButton->setFixedSize(80, 55);
+    ui->angelsButton->setFixedSize(80, 55);
+    ui->sanDiegoButton->setFixedSize(80, 55);
+
 }
 
 MainWindow::~MainWindow()
@@ -96,7 +101,7 @@ void MainWindow::setStadiumTextBrowser(string stadiumTemp)
     a = QString::fromStdString(info);
     ui->stadiumInfoTextBrowser->setText(a);
 }
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_dodgerButton_clicked()
 {
     gotoPage(2);
     stadium LA; //temp stadium
@@ -117,7 +122,7 @@ void MainWindow::on_exitMainButton_clicked()
     exit(0);
 }
 
-void MainWindow::on_pushButton_8_clicked()
+void MainWindow::on_angelsButton_clicked()
 {
     //angels
     setStadiumTextBrowser("Angels Stadium of Anaheim");
@@ -403,3 +408,4 @@ void MainWindow::on_modSAddNewButton_clicked()
     ui->modSouvenirTable->setItem(ui->modSouvenirTable->rowCount(), 0, msg);
     ui->modSouvenirTable->scrollToBottom();
 }
+

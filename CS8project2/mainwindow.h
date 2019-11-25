@@ -34,14 +34,14 @@ private slots:
     void on_souvenirsDoneButton_clicked();
 
 
-    void on_pushButton_4_clicked();
+    void on_dodgerButton_clicked();
 
     void on_stadiumInfoDoneButton_clicked();
 
     void on_exitMainButton_clicked();
 
 
-    void on_pushButton_8_clicked();
+    void on_angelsButton_clicked();
 
     //helper function
     void setStadiumTextBrowser(string stadiumTemp);
@@ -82,6 +82,7 @@ private slots:
     void on_modSDoneButton_clicked();
 
     void on_modSAddNewButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;
