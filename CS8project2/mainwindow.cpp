@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     readEdges(g, "stadiumDistances.txt");
     readSouvenirs(s, "SouvenirList.txt");
 
+//    cout << g.Dijkstras(g.getStadiumInfo("Angels Stadium of Anaheim"));
 }
 
 MainWindow::~MainWindow()
@@ -72,9 +73,6 @@ void MainWindow::on_adminPgDoneButton_clicked()
 {
     gotoPage(0);
 }
-
-
-
 
 //SOUVENIRS PAGE
 
@@ -258,14 +256,17 @@ void MainWindow::on_pushButton_clicked()
 
     ui->modificationTable->setColumnCount(0);
 
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < 8; i++){
         ui->modificationTable->insertColumn(i);
     }
     ui->modificationTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Stadium Name"));
     ui->modificationTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Team Name"));
-    ui->modificationTable->setHorizontalHeaderItem(2, new QTableWidgetItem("League"));
-    ui->modificationTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Date Founded"));
-    ui->modificationTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Field Surface"));
+    ui->modificationTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Address"));
+    ui->modificationTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Box Office"));
+    ui->modificationTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Date Founded"));
+    ui->modificationTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Capacity"));
+    ui->modificationTable->setHorizontalHeaderItem(6, new QTableWidgetItem("League"));
+    ui->modificationTable->setHorizontalHeaderItem(7, new QTableWidgetItem("Field Surface"));
 
     int count;
 
@@ -278,22 +279,31 @@ void MainWindow::on_pushButton_clicked()
 
         QTableWidgetItem * stadiumName = new QTableWidgetItem(QString::fromStdString(w->_item.getStadiumName()));
         QTableWidgetItem * teamName = new QTableWidgetItem(QString::fromStdString(w->_item.getTeamName()));
-        QTableWidgetItem * leagueType = new QTableWidgetItem(QString::fromStdString(w->_item.getType()));
+        QTableWidgetItem * Address = new QTableWidgetItem(QString::fromStdString(w->_item.getAddress()));
+        QTableWidgetItem * boxOffice = new QTableWidgetItem(QString::fromStdString(w->_item.getPhone()));
         QTableWidgetItem * openDate = new QTableWidgetItem(QString::fromStdString(w->_item.getOpenDate()));
+        QTableWidgetItem * capacity = new QTableWidgetItem(QString::fromStdString(w->_item.getCapacity()));
+        QTableWidgetItem * leagueType = new QTableWidgetItem(QString::fromStdString(w->_item.getType()));
         QTableWidgetItem * fieldSurface = new QTableWidgetItem(QString::fromStdString(w->_item.getFieldSurface()));
-
 
         stadiumName->setTextAlignment(Qt::AlignCenter);
         teamName->setTextAlignment(Qt::AlignCenter);
-        leagueType->setTextAlignment(Qt::AlignCenter);
+        Address->setTextAlignment(Qt::AlignCenter);
+        boxOffice->setTextAlignment(Qt::AlignCenter);
         openDate->setTextAlignment(Qt::AlignCenter);
+        capacity->setTextAlignment(Qt::AlignCenter);
+        leagueType->setTextAlignment(Qt::AlignCenter);
         fieldSurface->setTextAlignment(Qt::AlignCenter);
 
         ui->modificationTable->setItem(count, 0, stadiumName);
         ui->modificationTable->setItem(count, 1, teamName);
-        ui->modificationTable->setItem(count, 2, leagueType);
-        ui->modificationTable->setItem(count, 3, openDate);
-        ui->modificationTable->setItem(count, 4, fieldSurface);
+        ui->modificationTable->setItem(count, 2, Address);
+        ui->modificationTable->setItem(count, 3, boxOffice);
+        ui->modificationTable->setItem(count, 4, openDate);
+        ui->modificationTable->setItem(count, 5, capacity);
+        ui->modificationTable->setItem(count, 6, leagueType);
+        ui->modificationTable->setItem(count, 7, fieldSurface);
+
 
         w = w->next;
     }
@@ -301,39 +311,63 @@ void MainWindow::on_pushButton_clicked()
     ui->modificationTable->horizontalHeader()->
             setSectionResizeMode(QHeaderView::ResizeToContents);
 
+    ui->modificationTable->sortItems(0);
+}
+
+void MainWindow::on_modAddNewButton_clicked()
+{
+    ui->modificationTable->insertRow(ui->modificationTable->rowCount());
+    ui->modificationTable->scrollToBottom();
+
 }
 
 void MainWindow::on_modDoneButton_clicked()
 {
     QMessageBox message;
+
+    List<stadium> newList;
+    stadium toAdd;
+
+    for (int i = 0; i < ui->modificationTable->rowCount(); i++){
+        if (ui->modificationTable->item(i,0)->text() == QString("")){
+            message.setWindowTitle("Error!");
+            message.setText("Error occur. Cannot remove stadium.");
+            message.setStandardButtons(QMessageBox::Ok);
+            message.setIcon(QMessageBox::Icon::Warning);
+            if (message.exec()){
+                message.close();
+                gotoPage(5);
+                return;
+            }
+        }else{
+            toAdd.setName(ui->modificationTable->item(i,0)->text().toStdString());
+            toAdd.setTeamName(ui->modificationTable->item(i,1)->text().toStdString());
+            toAdd.setAddress(ui->modificationTable->item(i,2)->text().toStdString());
+            toAdd.setphone(ui->modificationTable->item(i,3)->text().toStdString());
+            toAdd.setOpenDate(ui->modificationTable->item(i,4)->text().toStdString());
+            toAdd.setCapacity(ui->modificationTable->item(i,5)->text().toStdString());
+            toAdd.setType(ui->modificationTable->item(i,6)->text().toStdString());
+            toAdd.setFieldSurface(ui->modificationTable->item(i,7)->text().toStdString());
+            newList.InsertAfter(toAdd,newList.End());
+        }
+    }
+
     message.setWindowTitle("Confirmation");
     message.setText("Are you sure you want to make these changes?");
-
     message.setStandardButtons(QMessageBox::Yes);
     message.addButton(QMessageBox::No);
     message.setDefaultButton(QMessageBox::No);
+    message.setIcon(QMessageBox::Icon::Question);
 
-    message.setIcon(QMessageBox::Icon::Warning);
     if(message.exec() == QMessageBox::Yes){
-        //SAVE CHANGES!
-
-
+        this->g.stadiums = newList;
+        ui->textBrowser_2->setText(QString("Stadium list modified"));
         message.close();
         gotoPage(5);
     }else {
         message.close();
         gotoPage(5);
     }
-
-
-}
-
-void MainWindow::on_modAddNewButton_clicked()
-{
-    QTableWidgetItem * msg = new QTableWidgetItem(QString::fromStdString(""));
-    ui->modificationTable->insertRow(ui->modificationTable->rowCount());
-    ui->modificationTable->setItem(ui->modificationTable->rowCount(), 0, msg);
-    ui->modificationTable->scrollToBottom();
 }
 
 //MODIFICATION FOR SOUVENIRS
@@ -371,10 +405,22 @@ void MainWindow::on_pushButton_3_clicked()
 
     ui->modSouvenirTable->horizontalHeader()->
             setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->modSouvenirTable->sortItems(0);
 }
 
 void MainWindow::on_modSDoneButton_clicked()
 {
+    souvenirs newList;
+    souvenir toAdd;
+
+    for (int i = 0; i < ui->modSouvenirTable->rowCount(); i++){
+        if (ui->modSouvenirTable->item(i,0)->text() != QString("")){
+            toAdd.setName(ui->modSouvenirTable->item(i,0)->text().toStdString());
+            toAdd.setPrice(ui->modSouvenirTable->item(i,1)->text().toStdString());
+            newList.addSouvenir(toAdd);
+        }
+    }
     QMessageBox message;
     message.setWindowTitle("Confirmation");
     message.setText("Are you sure you want to make these changes?");
@@ -383,11 +429,10 @@ void MainWindow::on_modSDoneButton_clicked()
     message.addButton(QMessageBox::No);
     message.setDefaultButton(QMessageBox::No);
 
-    message.setIcon(QMessageBox::Icon::Warning);
+    message.setIcon(QMessageBox::Icon::Question);
     if(message.exec() == QMessageBox::Yes){
-        //SAVE CHANGES!
-
-
+        this->s = newList;
+        ui->textBrowser_2->setText(QString("Souvenir list modified"));
         message.close();
         gotoPage(5);
     }else {
@@ -398,8 +443,7 @@ void MainWindow::on_modSDoneButton_clicked()
 
 void MainWindow::on_modSAddNewButton_clicked()
 {
-    QTableWidgetItem * msg = new QTableWidgetItem(QString::fromStdString(""));
     ui->modSouvenirTable->insertRow(ui->modSouvenirTable->rowCount());
-    ui->modSouvenirTable->setItem(ui->modSouvenirTable->rowCount(), 0, msg);
     ui->modSouvenirTable->scrollToBottom();
 }
+

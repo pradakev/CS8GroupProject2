@@ -73,8 +73,6 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_modDoneButton_clicked();
-
     void on_pushButton_3_clicked();
 
     void on_modAddNewButton_clicked();
@@ -82,6 +80,8 @@ private slots:
     void on_modSDoneButton_clicked();
 
     void on_modSAddNewButton_clicked();
+
+    void on_modDoneButton_clicked();
 
 private:
     Ui::MainWindow *ui;
