@@ -9,16 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    readStadiums(g, "stadiumInfo.txt");
-    readEdges(g, "stadiumDistances.txt");
-    readSouvenirs(s, "SouvenirList.txt");
-
-//    cout << g.Dijkstras(g.getStadiumInfo("Angels Stadium of Anaheim"));
+    readStadiums(g, "../CS8Project2/textFiles/stadiumInfo.txt");
+    readEdges(g, "../CS8Project2/textFiles/stadiumDistances.txt");
+    readSouvenirs(s, "../CS8Project2/textFiles/SouvenirList.txt");
 }
 
 MainWindow::~MainWindow()
 {
-
     delete ui;
 }
 
@@ -71,6 +68,7 @@ void MainWindow::on_mapPgDoneButton_clicked()
 //donebutton
 void MainWindow::on_adminPgDoneButton_clicked()
 {
+    ui->textBrowser_2->clear();
     gotoPage(0);
 }
 
@@ -112,7 +110,9 @@ void MainWindow::on_stadiumInfoDoneButton_clicked()
 
 void MainWindow::on_exitMainButton_clicked()
 {
-    exit(0);
+    saveStadiums(g, "../CS8Project2/textFiles/stadiumInfo.txt");
+    saveSouvenirs(s, "../CS8Project2/textFiles/SouvenirList.txt");
+    exit(-1);
 }
 
 void MainWindow::on_pushButton_8_clicked()
@@ -361,7 +361,7 @@ void MainWindow::on_modDoneButton_clicked()
 
     if(message.exec() == QMessageBox::Yes){
         this->g.stadiums = newList;
-        ui->textBrowser_2->setText(QString("Stadium list modified"));
+        ui->textBrowser_2->append(QString("Stadium list modified"));
         message.close();
         gotoPage(5);
     }else {
@@ -432,7 +432,7 @@ void MainWindow::on_modSDoneButton_clicked()
     message.setIcon(QMessageBox::Icon::Question);
     if(message.exec() == QMessageBox::Yes){
         this->s = newList;
-        ui->textBrowser_2->setText(QString("Souvenir list modified"));
+        ui->textBrowser_2->append(QString("Souvenir list modified"));
         message.close();
         gotoPage(5);
     }else {

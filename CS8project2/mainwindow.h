@@ -21,6 +21,8 @@ public:
     void gotoPage(int pg);
 
 private slots:
+    void on_exitMainButton_clicked();
+
     void on_customerPushButtonMenu_clicked();
 
     void on_customerDoneButton_clicked();
@@ -38,7 +40,6 @@ private slots:
 
     void on_stadiumInfoDoneButton_clicked();
 
-    void on_exitMainButton_clicked();
 
 
     void on_pushButton_8_clicked();

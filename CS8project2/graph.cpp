@@ -68,10 +68,14 @@ void graph::addEdge(string src, string des, int distance){
 
     node<List<stadiumNode>>* w = this->adjList.Begin();
     stadiumNode edge =stadiumNode(src, des, distance);
+    stadiumNode edge2 = stadiumNode(des, src, distance);
 
     while (w != nullptr){
         if (w->_item.Begin()->_item._src == src){
             w->_item.InsertAfter(edge, w->_item.End());
+        }
+        if (w->_item.Begin()->_item._src == des){
+            w->_item.InsertAfter(edge2, w->_item.End());
         }
         w =w->next;
     }

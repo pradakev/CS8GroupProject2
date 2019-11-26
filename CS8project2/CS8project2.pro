@@ -41,7 +41,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    logosResource.qrc
+    logosResource.qrc \
+    textResources.qrc
 
 DISTFILES += \
     logos/oldschoolDodgers.png \
