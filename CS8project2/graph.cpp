@@ -1,4 +1,5 @@
 #include "graph.h"
+#include <vector>
 
 graph::graph(){}
 
@@ -42,7 +43,7 @@ List<stadium> graph::getStadiumList() const{
 
 void graph::addStadium(stadium s){
     // avoid double adding
-//    assert(getStadiumInfo(s.getStadiumName())==stadium());
+    //    assert(getStadiumInfo(s.getStadiumName())==stadium());
     if(!(getStadiumInfo(s.getStadiumName()) == stadium())){
         return;
     }
@@ -59,8 +60,8 @@ void graph::addStadium(stadium s){
 
 void graph::addEdge(string src, string des, int distance){
     // the stadiums must exist
-//    assert(getStadiumInfo(src).getStadiumName() == src);
-//    assert(getStadiumInfo(des).getStadiumName() == des);
+    //    assert(getStadiumInfo(src).getStadiumName() == src);
+    //    assert(getStadiumInfo(des).getStadiumName() == des);
     if(getStadiumInfo(src).getStadiumName() != src ||
             getStadiumInfo(des).getStadiumName() != des){
         return;
@@ -82,6 +83,7 @@ void graph::addEdge(string src, string des, int distance){
 
 }
 
+
 int graph::getSize(){
     return _size;
 }
@@ -100,6 +102,7 @@ List<stadium> graph::getStadiumWithGrassField(){
 
 string graph::Dijkstras (stadium start)
 {
+
     int C[this->getSize()];
     int P[this->getSize()];
     bool S[this->getSize()];
@@ -109,14 +112,18 @@ string graph::Dijkstras (stadium start)
     initArr(S, 0);
 
 
+
     C[indexConversion(start.getStadiumName())] = 0;
 
+
     for (int count = 0; count < this->getSize() - 1; count++) {
+
         int k = smallestIndex(C, S);
 
         S[k] = true;
 
         for (int i = 0; i <  getLength(adjList[i]); i++)
+
         {
             int true_index = indexConversion(adjList[k][i]._des);
             if (!S[true_index]
@@ -146,14 +153,17 @@ string graph::MST (stadium start)
     initArr(S, 0);
 
 
+
     C[indexConversion(start.getStadiumName())] = 0;
 
     for (int count = 0; count < this->getSize() - 1; count++) {
+
         int k = smallestIndex(C, S);
 
         S[k] = true;
 
         for (int i = 0; i <  getLength(adjList[i]); i++)
+
         {
             int true_index = indexConversion(adjList[k][i]._des);
             if (!S[true_index]
@@ -177,6 +187,7 @@ string graph::MST (stadium start)
 void graph::initArr(int arr[], int val)
 {
     for(int i = 0; i < this->getSize(); i++)
+
     {
         arr[i] = val;
     }
@@ -184,6 +195,7 @@ void graph::initArr(int arr[], int val)
 void graph::initArr(bool arr[], bool val)
 {
     for(int i = 0; i < this->getSize(); i++)
+
     {
         arr[i] = val;
     }
@@ -197,6 +209,7 @@ int graph::smallestIndex(int C[],   // IN - array to find smallest
     int smallest_index = 0;
 
     for (int i = 0; i < this->getSize(); i++)
+
     {
         if (C[i] < smallest && !S[i])
         {
@@ -209,6 +222,7 @@ int graph::smallestIndex(int C[],   // IN - array to find smallest
 int graph::indexConversion(string val)
 {
     for(int i = 0; i < this->getSize(); i++)
+
     {
         if(adjList[i].Begin()->_item._src == val)
         {
@@ -228,6 +242,7 @@ string graph::DisplayMST(int P[], // IN - link to previous
     total = 0;
 
     for (int i = 1; i < this->getSize(); i++)
+
     {
 
         final +=  to_string(i) + ". " + "( " + stadiumName(i)
@@ -246,6 +261,7 @@ string graph::DisplayPath(int P[],   // IN - links to previous
 {
     string final = "";
     for (int i = 0; i < this->getSize(); i++)
+
     {
         final += stadiumName(i) + ":" + to_string(C[i]);
 
@@ -260,6 +276,7 @@ string graph::displayLinks(int previous[],  // IN - links to previous
                          int stadium)        // IN - starting index
 {
     vector<string> temp;
+
     string final = "";
 
     while (stadium != -1)
@@ -274,6 +291,7 @@ string graph::displayLinks(int previous[],  // IN - links to previous
     final += "{ ";
 
     for(vector<string>::iterator it = temp.end()-1;
+
         it >= temp.begin(); it--)
     {
         final += *it + "  ";
@@ -297,4 +315,5 @@ int graph::getLength(List<stadiumNode> l){
     }
     return returnMe;
 }
+
 

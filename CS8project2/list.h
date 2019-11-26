@@ -51,6 +51,7 @@ public:
     node<T>* Prev(node<T>* iMarker);    //get the previous node to iMarker
 
 
+    int getLength();
     T& operator[](int index);                   //return the item at index
 
     node<T>* Begin() const;                     //return the head of the list
@@ -66,6 +67,19 @@ private:
     node<T>* head;
 
 };
+template <class T>
+int List<T>::getLength()
+{
+    int counter = 0;
+    node<T> *temp = head;
+    while(temp)
+    {
+        temp = temp->next;
+        counter++;
+    }
+    return counter;
+}
+
 template <class T>
 List<T>::List(){
     head = NULL;

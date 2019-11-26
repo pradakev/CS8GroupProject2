@@ -36,27 +36,28 @@ private slots:
     void on_souvenirsDoneButton_clicked();
 
 
-    void on_pushButton_4_clicked();
+    void on_dodgerButton_clicked();
 
     void on_stadiumInfoDoneButton_clicked();
 
 
 
-    void on_pushButton_8_clicked();
+    void on_angelsButton_clicked();
 
     //helper function
     void setStadiumTextBrowser(string stadiumTemp);
-    void on_pushButton_9_clicked();
 
-    void on_pushButton_11_clicked();
+    void on_kansasCityButton_clicked();
 
-    void on_pushButton_10_clicked();
+    void on_stLouisButton_clicked();
+
+    void on_nyMetsButton_clicked();
 
     void on_stadiumsByNamButton_clicked();
 
     void on_stadiumTableInfo_clicked();
 
-    void on_backtoMain_clicked();
+//    void on_backtoMain_clicked();
 
     void on_GrassSurface_currentIndexChanged(int index);
 
@@ -82,10 +83,81 @@ private slots:
 
     void on_modSAddNewButton_clicked();
 
+
     void on_modDoneButton_clicked();
+
+    void on_gobacktomainpage_clicked();
+
+    void on_stadiumTable_clicked();
+
+
+    void on_stadiumInfoCheckBox_stateChanged(int arg1);
+
+    void on_sanDiegoButton_clicked();
+
+    void on_sanFranciscoButton_clicked();
+
+    void on_oaklandAButton_clicked();
+
+    void on_seattleButton_clicked();
+
+    void on_coloradoButton_clicked();
+
+    void on_arizonaButton_clicked();
+
+    void planTeamButtons(string stadiumName);
+    void on_minnesotaButton_clicked();
+
+    void on_texasRangersButton_clicked();
+
+    void on_houstonButton_clicked();
+
+    void on_milwaukeeButton_clicked();
+
+    void on_chicagoButton_clicked();
+
+    void on_chicagoWhiteSoxButton_clicked();
+
+    void on_cincinattiButton_clicked();
+
+    void on_atlantaButton_clicked();
+
+    void on_clevelandButton_clicked();
+
+    void on_tampaBayButton_clicked();
+
+    void on_floridaButton_clicked();
+
+    void on_pittsburghButton_clicked();
+
+    void on_washingtonButton_clicked();
+
+    void on_torontoButton_clicked();
+
+    void on_detroitButton_2_clicked();
+
+    void on_bostonButton_clicked();
+
+    void on_baltimoreButton_clicked();
+
+    void on_phillyButton_clicked();
+
+    void on_nyYankeesButton_clicked();
+
+    void on_restartDreamList_clicked();
 
 private:
     Ui::MainWindow *ui;
+
+    //dreamStadiumText
+    QString stadiumPathText = "";
+    QString arrow = " --> \n";
+
+    //User Dream Stadium List
+    //When planning vacation, user will insert stadium names
+    //into this array
+    string dreamList[40];
+    int sizeDreamList = 0;
 
     //GRAPH
     graph g;

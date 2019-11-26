@@ -162,10 +162,10 @@
      <widget class="QWidget" name="horizontalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>20</x>
         <y>530</y>
-        <width>741</width>
-        <height>51</height>
+        <width>551</width>
+        <height>41</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -211,57 +211,213 @@
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>20</x>
         <y>190</y>
-        <width>513</width>
-        <height>332</height>
+        <width>551</width>
+        <height>331</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <property name="sizeConstraint">
         <enum>QLayout::SetNoConstraint</enum>
        </property>
-       <item row="4" column="1">
-        <widget class="QPushButton" name="pushButton_28">
+       <item row="0" column="4">
+        <widget class="QPushButton" name="floridaButton">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>80</width>
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/miamiMarlinsLogo.jpg);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
          </property>
         </widget>
        </item>
-       <item row="5" column="3">
-        <widget class="QPushButton" name="pushButton_36">
+       <item row="4" column="0">
+        <widget class="QPushButton" name="oaklandAButton">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>80</width>
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/oaklandALogoNew.png);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
          </property>
         </widget>
        </item>
-       <item row="3" column="4">
-        <widget class="QPushButton" name="pushButton_26">
+       <item row="3" column="2">
+        <widget class="QPushButton" name="chicagoButton">
          <property name="maximumSize">
           <size>
            <width>80</width>
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/chicagoCubsLogo.jpg);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QPushButton" name="pittsburghButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/PittsPiratesLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="coloradoButton">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/coloradoRockiesLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="texasRangersButton">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/texasRangersLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="sanDiegoButton">
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/sanDiegoLogo.jpg);
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QPushButton" name="washingtonButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/washingtonnationalsLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="minnesotaButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/minnesotaTwinsLogo.jpg);
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="chicagoWhiteSoxButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/whiteSoxLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="dodgerButton">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="minimumSize">
           <size>
            <width>80</width>
@@ -294,227 +450,8 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="pushButton_14">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QPushButton" name="pushButton_19">
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="pushButton_22">
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
        <item row="3" column="3">
-        <widget class="QPushButton" name="pushButton_25">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="QPushButton" name="pushButton_24">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="pushButton_17">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QPushButton" name="pushButton_33">
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QPushButton" name="pushButton_34">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="2">
-        <widget class="QPushButton" name="pushButton_29">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="QPushButton" name="pushButton_20">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QPushButton" name="pushButton_18">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="pushButton_15">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="pushButton_16">
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="4">
-        <widget class="QPushButton" name="pushButton_32">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QPushButton" name="pushButton_23">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="pushButton_11">
+        <widget class="QPushButton" name="clevelandButton">
          <property name="maximumSize">
           <size>
            <width>80</width>
@@ -522,60 +459,63 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/logos/stLouisCardinals.jpg);</string>
+          <string notr="true">background-image: url(:/logos/clevelandIndiansLogo.jpg);</string>
          </property>
          <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="5" column="4">
-        <widget class="QPushButton" name="pushButton_37">
+       <item row="4" column="1">
+        <widget class="QPushButton" name="kansasCityButton">
          <property name="maximumSize">
           <size>
            <width>80</width>
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/kcRoyalsLogo.jpg);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
-        <widget class="QPushButton" name="pushButton_35">
+       <item row="2" column="2">
+        <widget class="QPushButton" name="milwaukeeButton">
          <property name="maximumSize">
           <size>
            <width>80</width>
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/milwaukeeBrwersLogo.jpg);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="pushButton_13">
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="seattleButton">
          <property name="maximumSize">
           <size>
            <width>80</width>
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/seattleMarinersLogo.jpg);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="pushButton_8">
+        <widget class="QPushButton" name="angelsButton">
          <property name="minimumSize">
           <size>
            <width>80</width>
@@ -596,8 +536,73 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QPushButton" name="pushButton_27">
+       <item row="2" column="1">
+        <widget class="QPushButton" name="arizonaButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/arizonaDiamondBacksLogo.jpg);
+</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="cincinattiButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/cinciLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="4">
+        <widget class="QPushButton" name="torontoButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/torontoBlueJayslogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="atlantaButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/atlantaBravesLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="sanFranciscoButton">
          <property name="minimumSize">
           <size>
            <width>80</width>
@@ -610,13 +615,32 @@
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/sanFranGiantsLogo.jpg);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton_10">
+       <item row="4" column="2">
+        <widget class="QPushButton" name="stLouisButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/stLouisCardinals.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QPushButton" name="nyMetsButton">
          <property name="minimumSize">
           <size>
            <width>80</width>
@@ -637,21 +661,8 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="4">
-        <widget class="QPushButton" name="pushButton_21">
-         <property name="maximumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pushButton_9">
+       <item row="4" column="3">
+        <widget class="QPushButton" name="tampaBayButton">
          <property name="maximumSize">
           <size>
            <width>80</width>
@@ -659,56 +670,187 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/logos/kcRoyalsLogo.jpg);</string>
+          <string notr="true">background-image: url(:/logos/tampaBayLogo.jpg);</string>
          </property>
          <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="pushButton_12">
-         <property name="minimumSize">
-          <size>
-           <width>80</width>
-           <height>50</height>
-          </size>
-         </property>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="houstonButton">
          <property name="maximumSize">
           <size>
            <width>80</width>
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/astrosLogo.jpg);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
          </property>
         </widget>
        </item>
-       <item row="4" column="3">
-        <widget class="QPushButton" name="pushButton_30">
+       <item row="4" column="4">
+        <widget class="QPushButton" name="detroitButton_2">
          <property name="maximumSize">
           <size>
            <width>80</width>
            <height>50</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/detroitTigersLogo.jpg);</string>
+         </property>
          <property name="text">
-          <string>PushButton</string>
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QPushButton" name="bostonButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/bostonRedSoxLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QPushButton" name="baltimoreButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/baltimoreOriolesLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QPushButton" name="phillyButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/philliesLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="5">
+        <widget class="QPushButton" name="nyYankeesButton">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-image: url(:/logos/nyYankeesLogo.jpg);</string>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QTextBrowser" name="textBrowser_3">
+     <widget class="QTextBrowser" name="plannedTripStadiumBrowser">
       <property name="geometry">
        <rect>
-        <x>570</x>
+        <x>590</x>
         <y>150</y>
-        <width>221</width>
+        <width>211</width>
         <height>371</height>
        </rect>
       </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-weight:600;&quot;&gt;Choose your dream vacation. Your selected stadiums will show up here in the order you choose. Should you want to start again and plan a new trip, simply click the 'Clear List' button. Try it out!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.SF NS Text'; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-weight:600;&quot;&gt;Remember to make sure that your starting point is a stadium in California:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'.SF NS Text'; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-weight:600; font-style:italic; color:#0f80ff;&quot;&gt;Dodger Stadium&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-weight:600; font-style:italic; color:#fc0107;&quot;&gt;Angel Stadium&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-weight:600; font-style:italic; color:#66ffcc;&quot;&gt;San Diego Stadium&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-weight:600; font-style:italic; color:#fd8008;&quot;&gt;San Francisco Stadium&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text'; font-weight:600; font-style:italic; color:#408002;&quot;&gt;Oakland A's Stadium&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="stadiumInfoCheckBox">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>110</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Stadium Info</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="stadiumCheckBoxBrowser">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>40</y>
+        <width>211</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.SF NS Text'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Text';&quot;&gt;Select the button below to see a stadium's info when you click on them! &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>530</y>
+        <width>211</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QPushButton" name="restartDreamList">
+         <property name="text">
+          <string>Clear List</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="stadiumInfoPage">
@@ -742,7 +884,7 @@ p, li { white-space: pre-wrap; }
        <string>Done</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="mlbLogo">
       <property name="geometry">
        <rect>
         <x>320</x>
@@ -757,11 +899,11 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
     <widget class="QWidget" name="mapPlanPg">
-     <widget class="QLabel" name="label_13">
+     <widget class="QLabel" name="mapLogo">
       <property name="geometry">
        <rect>
         <x>320</x>
-        <y>10</y>
+        <y>0</y>
         <width>141</width>
         <height>71</height>
        </rect>
@@ -770,7 +912,7 @@ p, li { white-space: pre-wrap; }
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/logos/planVacayLogo.jpg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_14">
+     <widget class="QLabel" name="dreamMap">
       <property name="geometry">
        <rect>
         <x>90</x>
@@ -786,9 +928,9 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="mapPgDoneButton">
       <property name="geometry">
        <rect>
-        <x>690</x>
+        <x>340</x>
         <y>540</y>
-        <width>113</width>
+        <width>161</width>
         <height>31</height>
        </rect>
       </property>
@@ -798,7 +940,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
     <widget class="QWidget" name="custSouvenirsPg">
-     <widget class="QLabel" name="label_12">
+     <widget class="QLabel" name="souvenirsLogo">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -863,7 +1005,7 @@ p, li { white-space: pre-wrap; }
        <string>Delete Souvenirs</string>
       </property>
      </widget>
-     <widget class="QTextBrowser" name="textBrowser">
+     <widget class="QTextBrowser" name="souvenirsTxtBrowser">
       <property name="geometry">
        <rect>
         <x>90</x>
@@ -937,7 +1079,7 @@ p, li { white-space: pre-wrap; }
        <string>Modify Souvenirs</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_9">
+     <widget class="QLabel" name="adminLogo">
       <property name="geometry">
        <rect>
         <x>270</x>
