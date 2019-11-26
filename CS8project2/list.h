@@ -14,6 +14,19 @@ public:
         head = _CopyList(RHS.head);
         return *this;
     }
+    bool operator ==(const List& rhs){
+        node<T>* w = this->head;
+        node<T>* w2 = rhs.head;
+
+        while(w || w2){
+            if (!(w->_item == w2->_item)){
+                return false;
+            }
+            w = w->next;
+            w2 = w2->next;
+        }
+        return true;
+    }
 
     node<T>* InsertHead(T i);           //inset i at the head of list
 

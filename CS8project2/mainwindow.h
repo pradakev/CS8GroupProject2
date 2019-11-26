@@ -21,6 +21,8 @@ public:
     void gotoPage(int pg);
 
 private slots:
+    void on_exitMainButton_clicked();
+
     void on_customerPushButtonMenu_clicked();
 
     void on_customerDoneButton_clicked();
@@ -38,7 +40,6 @@ private slots:
 
     void on_stadiumInfoDoneButton_clicked();
 
-    void on_exitMainButton_clicked();
 
 
     void on_angelsButton_clicked();
@@ -74,8 +75,6 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_modDoneButton_clicked();
-
     void on_pushButton_3_clicked();
 
     void on_modAddNewButton_clicked();
@@ -84,6 +83,8 @@ private slots:
 
     void on_modSAddNewButton_clicked();
 
+
+    void on_modDoneButton_clicked();
 
     void on_gobacktomainpage_clicked();
 

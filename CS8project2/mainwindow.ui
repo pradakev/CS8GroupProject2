@@ -1394,6 +1394,19 @@ p, li { white-space: pre-wrap; }
        <string>Done</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>460</y>
+        <width>341</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>to remove an item: clear off the name of the item</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
