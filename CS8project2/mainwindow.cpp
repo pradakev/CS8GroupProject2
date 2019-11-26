@@ -79,9 +79,6 @@ void MainWindow::on_adminPgDoneButton_clicked()
     gotoPage(0);
 }
 
-
-
-
 //SOUVENIRS PAGE
 
 //done button
@@ -104,23 +101,7 @@ void MainWindow::setStadiumTextBrowser(string stadiumTemp)
 }
 void MainWindow::on_dodgerButton_clicked()
 {
-    //if stadiumInfo
-    if(ui->stadiumInfoCheckBox->isChecked())
-    {
-        gotoPage(2);
-        stadium LA; //temp stadium
-        LA = g.getStadiumInfo("Dodger Stadium");
-        string info = LA.getAllInfo();
-        QString a;
-        a = QString::fromStdString(info);
-        ui->stadiumInfoTextBrowser->setText(a);
-    }
-    //else add to set of stadiums list browser
-    else
-    {
-        stadiumPathText += "Dodger Stadium" + arrow;
-        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
-    }
+    planTeamButtons("Dodger Stadium");
 }
 
 void MainWindow::on_stadiumInfoDoneButton_clicked()
@@ -135,36 +116,22 @@ void MainWindow::on_exitMainButton_clicked()
 
 void MainWindow::on_angelsButton_clicked()
 {
-    //if stadiumInfo Checkbox
-    if(ui->stadiumInfoCheckBox->isChecked())
-        setStadiumTextBrowser("Angels Stadium of Anaheim");
-    else
-    {
-        stadiumPathText += "Angels Stadium of Anaheim" + arrow;
-        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
-    }
+    planTeamButtons("Angels Stadium of Anaheim");
 }
 
 void MainWindow::on_kansasCityButton_clicked()
 {
-    //if stadiumInfo Checkbox
-    if(ui->stadiumInfoCheckBox->isChecked())
-        setStadiumTextBrowser("Kauffman Stadium");
-    else
-    {
-        stadiumPathText += "Kauffman Stadium" + arrow;
-        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
-    }
+    planTeamButtons("Kauffman Stadium");
 }
 
 void MainWindow::on_stLouisButton_clicked()
 {
-    setStadiumTextBrowser("Busch Stadium");
+    planTeamButtons("Busch Stadium");
 }
 
 void MainWindow::on_nyMetsButton_clicked()
 {
-    setStadiumTextBrowser("Citi Field");
+    planTeamButtons("Citi Field");
 }
 
 void MainWindow::on_stadiumsByNamButton_clicked()
@@ -252,6 +219,8 @@ void MainWindow::on_GrassSurface_currentIndexChanged(int index)
 void MainWindow::on_planTripButton_clicked()
 {
     gotoPage(6);
+    //Send-Convert string array of stadium names to stadium list
+
 }
 
 void MainWindow::on_pushButton_31_clicked()
@@ -456,14 +425,190 @@ void MainWindow::on_stadiumInfoCheckBox_stateChanged(int arg1)
     }
 }
 
+//ORIGIN STADIUMS
 void MainWindow::on_sanDiegoButton_clicked()
 {
     //if stadiumInfo Checkbox
     if(ui->stadiumInfoCheckBox->isChecked())
-        setStadiumTextBrowser("Angels Stadium of Anaheim");
+        setStadiumTextBrowser("Petco Park");
     else
     {
-        stadiumPathText += "Angels Stadium of Anaheim" + arrow;
+        stadiumPathText += "Petco Park" + arrow;
         ui->plannedTripStadiumBrowser->setText(stadiumPathText);
     }
+}
+
+void MainWindow::on_sanFranciscoButton_clicked()
+{
+    //if stadiumInfo Checkbox
+    if(ui->stadiumInfoCheckBox->isChecked())
+        setStadiumTextBrowser("AT&T Park");
+    else
+    {
+        stadiumPathText += "AT&T Park" + arrow;
+        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+    }
+}
+
+void MainWindow::on_oaklandAButton_clicked()
+{
+    //if stadiumInfo Checkbox
+    if(ui->stadiumInfoCheckBox->isChecked())
+        setStadiumTextBrowser("O.co Coliseum");
+    else
+    {
+        stadiumPathText += "O.co Coliseum" + arrow;
+        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+    }
+}
+
+void MainWindow::on_seattleButton_clicked()
+{
+    planTeamButtons("SafeCo Field");
+}
+
+void MainWindow::on_coloradoButton_clicked()
+{
+    planTeamButtons("Coors Field");
+}
+
+void MainWindow::on_arizonaButton_clicked()
+{
+    planTeamButtons("Chase Field");
+}
+
+void MainWindow::planTeamButtons(string stadiumName)
+{
+    QString QStadiumName = QString::fromStdString(stadiumName);
+
+    //If Stadium Info Checkbox checked, show INFO
+    if(ui->stadiumInfoCheckBox->isChecked())
+        setStadiumTextBrowser(stadiumName);
+
+    else
+    {
+        //Makes sure to make client choose origin in CA
+        if(sizeDreamList == 0 &&
+                stadiumName != "Dodger Stadium" &&
+                stadiumName != "Angels Stadium of Anaheim" &&
+                stadiumName != "Petco Park" &&
+                stadiumName != "AT&T Park" &&
+                stadiumName != "O.co Coliseum")
+        {
+            ui->plannedTripStadiumBrowser->setText("Please choose a CA stadium"
+                                                   "as your origin!");
+            return;
+        }
+        //Add stadium name to array of stadiums for later
+        dreamList[sizeDreamList] = stadiumName;
+        sizeDreamList++;
+
+        //Set Text Browser
+        stadiumPathText += QStadiumName + arrow;
+        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+    }
+}
+
+void MainWindow::on_minnesotaButton_clicked()
+{
+    planTeamButtons("Target Field");
+}
+
+void MainWindow::on_texasRangersButton_clicked()
+{
+    planTeamButtons("Globe Life Park in Arlington");
+}
+
+
+void MainWindow::on_houstonButton_clicked()
+{
+    planTeamButtons("Minute Maid Park");
+}
+
+void MainWindow::on_milwaukeeButton_clicked()
+{
+    planTeamButtons("Miller Park");
+}
+
+void MainWindow::on_chicagoButton_clicked()
+{
+    planTeamButtons("Wrigley Field");
+}
+
+void MainWindow::on_chicagoWhiteSoxButton_clicked()
+{
+    planTeamButtons("US Cellular Field");
+}
+
+void MainWindow::on_cincinattiButton_clicked()
+{
+    planTeamButtons("Great America Ball Park");
+}
+
+void MainWindow::on_atlantaButton_clicked()
+{
+    planTeamButtons("Turner Field");
+}
+
+void MainWindow::on_clevelandButton_clicked()
+{
+    planTeamButtons("Progressive Field");
+}
+
+void MainWindow::on_tampaBayButton_clicked()
+{
+    planTeamButtons("Tropicana Field");
+}
+
+void MainWindow::on_floridaButton_clicked()
+{
+    planTeamButtons("Marlins Park");
+}
+
+void MainWindow::on_pittsburghButton_clicked()
+{
+    planTeamButtons("PNC Park");
+}
+
+void MainWindow::on_washingtonButton_clicked()
+{
+    planTeamButtons("Nationals Park");
+}
+
+void MainWindow::on_torontoButton_clicked()
+{
+    planTeamButtons("Rogers Centre");
+}
+
+void MainWindow::on_detroitButton_2_clicked()
+{
+    planTeamButtons("Comerica Park");
+}
+
+void MainWindow::on_bostonButton_clicked()
+{
+    planTeamButtons("Fenway Park");
+}
+
+void MainWindow::on_baltimoreButton_clicked()
+{
+    planTeamButtons("Oriole Park at Camden Yards");
+}
+
+void MainWindow::on_phillyButton_clicked()
+{
+    planTeamButtons("Citizens Bank Park");
+}
+
+void MainWindow::on_nyYankeesButton_clicked()
+{
+    planTeamButtons("Yankee Stadium");
+}
+
+void MainWindow::on_restartDreamList_clicked()
+{
+    QString restartTxt = "List Cleared. Go ahead and start planning your new"
+                         "dream vacation!";
+    ui->plannedTripStadiumBrowser->setText(restartTxt);
+    sizeDreamList = 0;
 }
