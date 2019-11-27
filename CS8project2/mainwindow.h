@@ -5,6 +5,9 @@
 #include "souvenir.h"
 #include <QMainWindow>
 #include <QMessageBox>
+
+#include <string>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -145,18 +148,27 @@ private slots:
 
     void on_restartDreamList_clicked();
 
+    void on_allNLStadiumsButton_clicked();
+
+    void on_allALStadiumsButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     //dreamStadiumText
+    QString getDreamStrArray();
     QString stadiumPathText = "";
     QString arrow = " --> \n";
+    string strArrow = " --> \n";
 
     //User Dream Stadium List
     //When planning vacation, user will insert stadium names
     //into this array
     string dreamList[40];
     int sizeDreamList = 0;
+    //Checks if stadium is already in string array
+    bool alreadyInList(string stadiumName);
+    void deleteDreamStadium(string stadiumName);
 
     //GRAPH
     graph g;

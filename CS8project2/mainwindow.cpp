@@ -230,13 +230,17 @@ void MainWindow::on_pushButton_31_clicked()
 
 void MainWindow::on_allStadiumsButton_clicked()
 {
-//    node<stadium>* all = this->g.getStadiumList().Begin();
-//    while(all){
+    node<stadium> *allStadiums = g.getStadiumList().Begin();
+    sizeDreamList = 0;
 
-//        ui->textBrowser_3->setText(QString::fromStdString(all->_item.getStadiumName()));
-//        ui->textBrowser_3->setText(QString::fromStdString("\n"));
-//        all = all->next;
-//    }
+    while(allStadiums)
+    {
+        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
+        sizeDreamList++;
+        allStadiums = allStadiums->next;
+    }
+    stadiumPathText = getDreamStrArray();
+    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 }
 
 void MainWindow::on_pushButton_38_clicked()
@@ -428,38 +432,17 @@ void MainWindow::on_stadiumInfoCheckBox_stateChanged(int arg1)
 //ORIGIN STADIUMS
 void MainWindow::on_sanDiegoButton_clicked()
 {
-    //if stadiumInfo Checkbox
-    if(ui->stadiumInfoCheckBox->isChecked())
-        setStadiumTextBrowser("Petco Park");
-    else
-    {
-        stadiumPathText += "Petco Park" + arrow;
-        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
-    }
+    planTeamButtons("Petco Park");
 }
 
 void MainWindow::on_sanFranciscoButton_clicked()
 {
-    //if stadiumInfo Checkbox
-    if(ui->stadiumInfoCheckBox->isChecked())
-        setStadiumTextBrowser("AT&T Park");
-    else
-    {
-        stadiumPathText += "AT&T Park" + arrow;
-        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
-    }
+    planTeamButtons("AT&T Park");
 }
 
 void MainWindow::on_oaklandAButton_clicked()
 {
-    //if stadiumInfo Checkbox
-    if(ui->stadiumInfoCheckBox->isChecked())
-        setStadiumTextBrowser("O.co Coliseum");
-    else
-    {
-        stadiumPathText += "O.co Coliseum" + arrow;
-        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
-    }
+    planTeamButtons("O.co Coliseum");
 }
 
 void MainWindow::on_seattleButton_clicked()
@@ -496,18 +479,44 @@ void MainWindow::planTeamButtons(string stadiumName)
                 stadiumName != "O.co Coliseum")
         {
             ui->plannedTripStadiumBrowser->setText("Please choose a CA stadium"
-                                                   "as your origin!");
+                                                   " as your origin!");
             return;
         }
-        //Add stadium name to array of stadiums for later
+        //First check if stadium not already in list
+        if(alreadyInList(stadiumName) == true)
+        {
+            //If origin wants to be deleted, user must clear list
+            if(stadiumName == dreamList[0])
+            {
+                ui->plannedTripStadiumBrowser->setText(stadiumPathText +
+                                                        "\nCannot delete origin. "
+                                                       "Please clear list to try"
+                                                       " a new origin!");
+                return;
+            }
+            else
+            {
+                deleteDreamStadium(stadiumName);
+                stadiumPathText = getDreamStrArray();
+                ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+                return;
+            }
+//            ui->plannedTripStadiumBrowser->setText(stadiumPathText +
+//                                                   "\nStadium already in list! "
+//                                                   "Please choose a different stadium.");
+//            return;
+        }
+        //Else, add stadium name to array of stadiums for later
         dreamList[sizeDreamList] = stadiumName;
         sizeDreamList++;
 
         //Set Text Browser
-        stadiumPathText += QStadiumName + arrow;
+        stadiumPathText = getDreamStrArray();
         ui->plannedTripStadiumBrowser->setText(stadiumPathText);
     }
 }
+
+
 
 void MainWindow::on_minnesotaButton_clicked()
 {
@@ -610,5 +619,89 @@ void MainWindow::on_restartDreamList_clicked()
     QString restartTxt = "List Cleared. Go ahead and start planning your new"
                          "dream vacation!";
     ui->plannedTripStadiumBrowser->setText(restartTxt);
+    for(int i = 0; i < sizeDreamList; i++)
+    {
+        dreamList[i] = "";
+    }
     sizeDreamList = 0;
+
+}
+
+bool MainWindow::alreadyInList(string stadiumName)
+{
+    //if list empty.
+    if(sizeDreamList == 0)
+        return false;
+    //else check through string array
+    for(int i = 0; i < sizeDreamList; i++)
+    {
+        //if matched, return true
+        if(dreamList[i] == stadiumName)
+            return true;
+    }
+
+    //if not found, return false
+    return false;
+
+}
+
+void MainWindow::deleteDreamStadium(string stadiumName)
+{
+    for(int i = 0; i < sizeDreamList; i++)
+    {
+        if(dreamList[i] == stadiumName)
+        {
+            for(int j = i; j < sizeDreamList - 1; j++)
+            {
+                dreamList[j] = dreamList[j + 1];
+                //1 3 4 5
+            }
+            sizeDreamList--;
+            return;
+        }
+    }
+}
+
+QString MainWindow::getDreamStrArray()
+{
+    stringstream ss;
+
+    for(int i = 0; i < sizeDreamList; i++)
+    {
+        ss << dreamList[i] + strArrow;
+    }
+    string rdyQString = ss.str();
+    QString dreamArray;
+    dreamArray = QString::fromStdString(rdyQString);
+    return dreamArray;
+}
+
+void MainWindow::on_allNLStadiumsButton_clicked()
+{
+//    node<stadium> *allStadiums = g.getNationalLeagueStadiums().Begin();
+//    sizeDreamList = 0;
+
+//    while(allStadiums)
+//    {
+//        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
+//        sizeDreamList++;
+//        allStadiums = allStadiums->next;
+//    }
+//    stadiumPathText = getDreamStrArray();
+//    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+}
+
+void MainWindow::on_allALStadiumsButton_clicked()
+{
+//    node<stadium> *allStadiums = g.getAmericanLeagueStadiums().Begin();
+//    sizeDreamList = 0;
+
+//    while(allStadiums)
+//    {
+//        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
+//        sizeDreamList++;
+//        allStadiums = allStadiums->next;
+//    }
+//    stadiumPathText = getDreamStrArray();
+//    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 }
