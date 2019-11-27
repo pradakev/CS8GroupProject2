@@ -9,20 +9,21 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    readStadiums(g, "stadiumInfo.txt");
-    readEdges(g, "stadiumDistances.txt");
-    readSouvenirs(s, "SouvenirList.txt");
+    readStadiums(g, "../CS8Project2/textFiles/stadiumInfo.txt");
+    readEdges(g, "../CS8Project2/textFiles/stadiumDistances.txt");
+    readSouvenirs(s, "../CS8Project2/textFiles/SouvenirList.txt");
+
 
     //Setup Push buttons
     ui->dodgerButton->setFixedSize(80, 55);
     ui->angelsButton->setFixedSize(80, 55);
     ui->sanDiegoButton->setFixedSize(80, 55);
+    ui->oaklandAButton->setFixedSize(80, 55);
 
 }
 
 MainWindow::~MainWindow()
 {
-
     delete ui;
 }
 
@@ -75,11 +76,9 @@ void MainWindow::on_mapPgDoneButton_clicked()
 //donebutton
 void MainWindow::on_adminPgDoneButton_clicked()
 {
+    ui->textBrowser_2->clear();
     gotoPage(0);
 }
-
-
-
 
 //SOUVENIRS PAGE
 
@@ -103,13 +102,7 @@ void MainWindow::setStadiumTextBrowser(string stadiumTemp)
 }
 void MainWindow::on_dodgerButton_clicked()
 {
-    gotoPage(2);
-    stadium LA; //temp stadium
-    LA = g.getStadiumInfo("Dodger Stadium");
-    string info = LA.getAllInfo();
-    QString a;
-    a = QString::fromStdString(info);
-    ui->stadiumInfoTextBrowser->setText(a);
+    planTeamButtons("Dodger Stadium");
 }
 
 void MainWindow::on_stadiumInfoDoneButton_clicked()
@@ -119,28 +112,29 @@ void MainWindow::on_stadiumInfoDoneButton_clicked()
 
 void MainWindow::on_exitMainButton_clicked()
 {
-    exit(0);
+    saveStadiums(g, "../CS8Project2/textFiles/stadiumInfo.txt");
+    saveSouvenirs(s, "../CS8Project2/textFiles/SouvenirList.txt");
+    exit(-1);
 }
 
 void MainWindow::on_angelsButton_clicked()
 {
-    //angels
-    setStadiumTextBrowser("Angels Stadium of Anaheim");
+    planTeamButtons("Angels Stadium of Anaheim");
 }
 
-void MainWindow::on_pushButton_9_clicked()
+void MainWindow::on_kansasCityButton_clicked()
 {
-    setStadiumTextBrowser("Kauffman Stadium");
+    planTeamButtons("Kauffman Stadium");
 }
 
-void MainWindow::on_pushButton_11_clicked()
+void MainWindow::on_stLouisButton_clicked()
 {
-    setStadiumTextBrowser("Busch Stadium");
+    planTeamButtons("Busch Stadium");
 }
 
-void MainWindow::on_pushButton_10_clicked()
+void MainWindow::on_nyMetsButton_clicked()
 {
-    setStadiumTextBrowser("Citi Field");
+    planTeamButtons("Citi Field");
 }
 
 void MainWindow::on_stadiumsByNamButton_clicked()
@@ -228,6 +222,8 @@ void MainWindow::on_GrassSurface_currentIndexChanged(int index)
 void MainWindow::on_planTripButton_clicked()
 {
     gotoPage(6);
+    //Send-Convert string array of stadium names to stadium list
+
 }
 
 void MainWindow::on_pushButton_31_clicked()
@@ -237,13 +233,17 @@ void MainWindow::on_pushButton_31_clicked()
 
 void MainWindow::on_allStadiumsButton_clicked()
 {
-//    node<stadium>* all = this->g.getStadiumList().Begin();
-//    while(all){
+    node<stadium> *allStadiums = g.getStadiumList().Begin();
+    sizeDreamList = 0;
 
-//        ui->textBrowser_3->setText(QString::fromStdString(all->_item.getStadiumName()));
-//        ui->textBrowser_3->setText(QString::fromStdString("\n"));
-//        all = all->next;
-//    }
+    while(allStadiums)
+    {
+        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
+        sizeDreamList++;
+        allStadiums = allStadiums->next;
+    }
+    stadiumPathText = getDreamStrArray();
+    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 }
 
 void MainWindow::on_pushButton_38_clicked()
@@ -267,14 +267,17 @@ void MainWindow::on_pushButton_clicked()
 
     ui->modificationTable->setColumnCount(0);
 
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < 8; i++){
         ui->modificationTable->insertColumn(i);
     }
     ui->modificationTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Stadium Name"));
     ui->modificationTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Team Name"));
-    ui->modificationTable->setHorizontalHeaderItem(2, new QTableWidgetItem("League"));
-    ui->modificationTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Date Founded"));
-    ui->modificationTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Field Surface"));
+    ui->modificationTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Address"));
+    ui->modificationTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Box Office"));
+    ui->modificationTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Date Founded"));
+    ui->modificationTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Capacity"));
+    ui->modificationTable->setHorizontalHeaderItem(6, new QTableWidgetItem("League"));
+    ui->modificationTable->setHorizontalHeaderItem(7, new QTableWidgetItem("Field Surface"));
 
     int count;
 
@@ -287,22 +290,31 @@ void MainWindow::on_pushButton_clicked()
 
         QTableWidgetItem * stadiumName = new QTableWidgetItem(QString::fromStdString(w->_item.getStadiumName()));
         QTableWidgetItem * teamName = new QTableWidgetItem(QString::fromStdString(w->_item.getTeamName()));
-        QTableWidgetItem * leagueType = new QTableWidgetItem(QString::fromStdString(w->_item.getType()));
+        QTableWidgetItem * Address = new QTableWidgetItem(QString::fromStdString(w->_item.getAddress()));
+        QTableWidgetItem * boxOffice = new QTableWidgetItem(QString::fromStdString(w->_item.getPhone()));
         QTableWidgetItem * openDate = new QTableWidgetItem(QString::fromStdString(w->_item.getOpenDate()));
+        QTableWidgetItem * capacity = new QTableWidgetItem(QString::fromStdString(w->_item.getCapacity()));
+        QTableWidgetItem * leagueType = new QTableWidgetItem(QString::fromStdString(w->_item.getType()));
         QTableWidgetItem * fieldSurface = new QTableWidgetItem(QString::fromStdString(w->_item.getFieldSurface()));
-
 
         stadiumName->setTextAlignment(Qt::AlignCenter);
         teamName->setTextAlignment(Qt::AlignCenter);
-        leagueType->setTextAlignment(Qt::AlignCenter);
+        Address->setTextAlignment(Qt::AlignCenter);
+        boxOffice->setTextAlignment(Qt::AlignCenter);
         openDate->setTextAlignment(Qt::AlignCenter);
+        capacity->setTextAlignment(Qt::AlignCenter);
+        leagueType->setTextAlignment(Qt::AlignCenter);
         fieldSurface->setTextAlignment(Qt::AlignCenter);
 
         ui->modificationTable->setItem(count, 0, stadiumName);
         ui->modificationTable->setItem(count, 1, teamName);
-        ui->modificationTable->setItem(count, 2, leagueType);
-        ui->modificationTable->setItem(count, 3, openDate);
-        ui->modificationTable->setItem(count, 4, fieldSurface);
+        ui->modificationTable->setItem(count, 2, Address);
+        ui->modificationTable->setItem(count, 3, boxOffice);
+        ui->modificationTable->setItem(count, 4, openDate);
+        ui->modificationTable->setItem(count, 5, capacity);
+        ui->modificationTable->setItem(count, 6, leagueType);
+        ui->modificationTable->setItem(count, 7, fieldSurface);
+
 
         w = w->next;
     }
@@ -310,39 +322,63 @@ void MainWindow::on_pushButton_clicked()
     ui->modificationTable->horizontalHeader()->
             setSectionResizeMode(QHeaderView::ResizeToContents);
 
+    ui->modificationTable->sortItems(0);
+}
+
+void MainWindow::on_modAddNewButton_clicked()
+{
+    ui->modificationTable->insertRow(ui->modificationTable->rowCount());
+    ui->modificationTable->scrollToBottom();
+
 }
 
 void MainWindow::on_modDoneButton_clicked()
 {
     QMessageBox message;
+
+    List<stadium> newList;
+    stadium toAdd;
+
+    for (int i = 0; i < ui->modificationTable->rowCount(); i++){
+        if (ui->modificationTable->item(i,0)->text() ==  QString("")){
+            message.setWindowTitle("Error!");
+            message.setText("Error occur. Cannot remove stadium.");
+            message.setStandardButtons(QMessageBox::Ok);
+            message.setIcon(QMessageBox::Icon::Warning);
+            if (message.exec()){
+                message.close();
+                gotoPage(5);
+                return;
+            }
+        }else{
+            toAdd.setName(ui->modificationTable->item(i,0)->text().toStdString());
+            toAdd.setTeamName(ui->modificationTable->item(i,1)->text().toStdString());
+            toAdd.setAddress(ui->modificationTable->item(i,2)->text().toStdString());
+            toAdd.setphone(ui->modificationTable->item(i,3)->text().toStdString());
+            toAdd.setOpenDate(ui->modificationTable->item(i,4)->text().toStdString());
+            toAdd.setCapacity(ui->modificationTable->item(i,5)->text().toStdString());
+            toAdd.setType(ui->modificationTable->item(i,6)->text().toStdString());
+            toAdd.setFieldSurface(ui->modificationTable->item(i,7)->text().toStdString());
+            newList.InsertAfter(toAdd,newList.End());
+        }
+    }
+
     message.setWindowTitle("Confirmation");
     message.setText("Are you sure you want to make these changes?");
-
     message.setStandardButtons(QMessageBox::Yes);
     message.addButton(QMessageBox::No);
     message.setDefaultButton(QMessageBox::No);
+    message.setIcon(QMessageBox::Icon::Question);
 
-    message.setIcon(QMessageBox::Icon::Warning);
     if(message.exec() == QMessageBox::Yes){
-        //SAVE CHANGES!
-
-
+        this->g.stadiums = newList;
+        ui->textBrowser_2->append(QString("Stadium list modified"));
         message.close();
         gotoPage(5);
     }else {
         message.close();
         gotoPage(5);
     }
-
-
-}
-
-void MainWindow::on_modAddNewButton_clicked()
-{
-    QTableWidgetItem * msg = new QTableWidgetItem(QString::fromStdString(""));
-    ui->modificationTable->insertRow(ui->modificationTable->rowCount());
-    ui->modificationTable->setItem(ui->modificationTable->rowCount(), 0, msg);
-    ui->modificationTable->scrollToBottom();
 }
 
 //MODIFICATION FOR SOUVENIRS
@@ -380,10 +416,22 @@ void MainWindow::on_pushButton_3_clicked()
 
     ui->modSouvenirTable->horizontalHeader()->
             setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->modSouvenirTable->sortItems(0);
 }
 
 void MainWindow::on_modSDoneButton_clicked()
 {
+    souvenirs newList;
+    souvenir toAdd;
+
+    for (int i = 0; i < ui->modSouvenirTable->rowCount(); i++){
+        if (ui->modSouvenirTable->item(i,0)->text() != QString("")){
+            toAdd.setName(ui->modSouvenirTable->item(i,0)->text().toStdString());
+            toAdd.setPrice(ui->modSouvenirTable->item(i,1)->text().toStdString());
+            newList.addSouvenir(toAdd);
+        }
+    }
     QMessageBox message;
     message.setWindowTitle("Confirmation");
     message.setText("Are you sure you want to make these changes?");
@@ -392,11 +440,10 @@ void MainWindow::on_modSDoneButton_clicked()
     message.addButton(QMessageBox::No);
     message.setDefaultButton(QMessageBox::No);
 
-    message.setIcon(QMessageBox::Icon::Warning);
+    message.setIcon(QMessageBox::Icon::Question);
     if(message.exec() == QMessageBox::Yes){
-        //SAVE CHANGES!
-
-
+        this->s = newList;
+        ui->textBrowser_2->append(QString("Souvenir list modified"));
         message.close();
         gotoPage(5);
     }else {
@@ -407,15 +454,303 @@ void MainWindow::on_modSDoneButton_clicked()
 
 void MainWindow::on_modSAddNewButton_clicked()
 {
-    QTableWidgetItem * msg = new QTableWidgetItem(QString::fromStdString(""));
     ui->modSouvenirTable->insertRow(ui->modSouvenirTable->rowCount());
-    ui->modSouvenirTable->setItem(ui->modSouvenirTable->rowCount(), 0, msg);
     ui->modSouvenirTable->scrollToBottom();
 }
+
 
 
 void MainWindow::on_stadiumTable_clicked()
 {
     gotoPage(7);
 
+}
+
+void MainWindow::on_stadiumInfoCheckBox_stateChanged(int arg1)
+{
+    if(ui->stadiumInfoCheckBox->isChecked())
+    {
+        ui->stadiumCheckBoxBrowser->setText("Select a stadium to see their info!");
+    }
+    else
+    {
+        ui->stadiumCheckBoxBrowser->setText("Check to select a stadiums' info.");
+    }
+}
+
+//ORIGIN STADIUMS
+void MainWindow::on_sanDiegoButton_clicked()
+{
+    planTeamButtons("Petco Park");
+}
+
+void MainWindow::on_sanFranciscoButton_clicked()
+{
+    planTeamButtons("AT&T Park");
+}
+
+void MainWindow::on_oaklandAButton_clicked()
+{
+    planTeamButtons("O.co Coliseum");
+}
+
+void MainWindow::on_seattleButton_clicked()
+{
+    planTeamButtons("SafeCo Field");
+}
+
+void MainWindow::on_coloradoButton_clicked()
+{
+    planTeamButtons("Coors Field");
+}
+
+void MainWindow::on_arizonaButton_clicked()
+{
+    planTeamButtons("Chase Field");
+}
+
+void MainWindow::planTeamButtons(string stadiumName)
+{
+    QString QStadiumName = QString::fromStdString(stadiumName);
+
+    //If Stadium Info Checkbox checked, show INFO
+    if(ui->stadiumInfoCheckBox->isChecked())
+        setStadiumTextBrowser(stadiumName);
+
+    else
+    {
+        //Makes sure to make client choose origin in CA
+        if(sizeDreamList == 0 &&
+                stadiumName != "Dodger Stadium" &&
+                stadiumName != "Angels Stadium of Anaheim" &&
+                stadiumName != "Petco Park" &&
+                stadiumName != "AT&T Park" &&
+                stadiumName != "O.co Coliseum")
+        {
+            ui->plannedTripStadiumBrowser->setText("Please choose a CA stadium"
+                                                   " as your origin!");
+            return;
+        }
+        //First check if stadium not already in list
+        if(alreadyInList(stadiumName) == true)
+        {
+            //If origin wants to be deleted, user must clear list
+            if(stadiumName == dreamList[0])
+            {
+                ui->plannedTripStadiumBrowser->setText(stadiumPathText +
+                                                        "\nCannot delete origin. "
+                                                       "Please clear list to try"
+                                                       " a new origin!");
+                return;
+            }
+            else
+            {
+                deleteDreamStadium(stadiumName);
+                stadiumPathText = getDreamStrArray();
+                ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+                return;
+            }
+//            ui->plannedTripStadiumBrowser->setText(stadiumPathText +
+//                                                   "\nStadium already in list! "
+//                                                   "Please choose a different stadium.");
+//            return;
+        }
+        //Else, add stadium name to array of stadiums for later
+        dreamList[sizeDreamList] = stadiumName;
+        sizeDreamList++;
+
+        //Set Text Browser
+        stadiumPathText = getDreamStrArray();
+        ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+    }
+}
+
+
+
+void MainWindow::on_minnesotaButton_clicked()
+{
+    planTeamButtons("Target Field");
+}
+
+void MainWindow::on_texasRangersButton_clicked()
+{
+    planTeamButtons("Globe Life Park in Arlington");
+}
+
+
+void MainWindow::on_houstonButton_clicked()
+{
+    planTeamButtons("Minute Maid Park");
+}
+
+void MainWindow::on_milwaukeeButton_clicked()
+{
+    planTeamButtons("Miller Park");
+}
+
+void MainWindow::on_chicagoButton_clicked()
+{
+    planTeamButtons("Wrigley Field");
+}
+
+void MainWindow::on_chicagoWhiteSoxButton_clicked()
+{
+    planTeamButtons("US Cellular Field");
+}
+
+void MainWindow::on_cincinattiButton_clicked()
+{
+    planTeamButtons("Great America Ball Park");
+}
+
+void MainWindow::on_atlantaButton_clicked()
+{
+    planTeamButtons("Turner Field");
+}
+
+void MainWindow::on_clevelandButton_clicked()
+{
+    planTeamButtons("Progressive Field");
+}
+
+void MainWindow::on_tampaBayButton_clicked()
+{
+    planTeamButtons("Tropicana Field");
+}
+
+void MainWindow::on_floridaButton_clicked()
+{
+    planTeamButtons("Marlins Park");
+}
+
+void MainWindow::on_pittsburghButton_clicked()
+{
+    planTeamButtons("PNC Park");
+}
+
+void MainWindow::on_washingtonButton_clicked()
+{
+    planTeamButtons("Nationals Park");
+}
+
+void MainWindow::on_torontoButton_clicked()
+{
+    planTeamButtons("Rogers Centre");
+}
+
+void MainWindow::on_detroitButton_2_clicked()
+{
+    planTeamButtons("Comerica Park");
+}
+
+void MainWindow::on_bostonButton_clicked()
+{
+    planTeamButtons("Fenway Park");
+}
+
+void MainWindow::on_baltimoreButton_clicked()
+{
+    planTeamButtons("Oriole Park at Camden Yards");
+}
+
+void MainWindow::on_phillyButton_clicked()
+{
+    planTeamButtons("Citizens Bank Park");
+}
+
+void MainWindow::on_nyYankeesButton_clicked()
+{
+    planTeamButtons("Yankee Stadium");
+}
+
+void MainWindow::on_restartDreamList_clicked()
+{
+    QString restartTxt = "List Cleared. Go ahead and start planning your new"
+                         "dream vacation!";
+    ui->plannedTripStadiumBrowser->setText(restartTxt);
+    for(int i = 0; i < sizeDreamList; i++)
+    {
+        dreamList[i] = "";
+    }
+    sizeDreamList = 0;
+
+}
+
+bool MainWindow::alreadyInList(string stadiumName)
+{
+    //if list empty.
+    if(sizeDreamList == 0)
+        return false;
+    //else check through string array
+    for(int i = 0; i < sizeDreamList; i++)
+    {
+        //if matched, return true
+        if(dreamList[i] == stadiumName)
+            return true;
+    }
+
+    //if not found, return false
+    return false;
+
+}
+
+void MainWindow::deleteDreamStadium(string stadiumName)
+{
+    for(int i = 0; i < sizeDreamList; i++)
+    {
+        if(dreamList[i] == stadiumName)
+        {
+            for(int j = i; j < sizeDreamList - 1; j++)
+            {
+                dreamList[j] = dreamList[j + 1];
+                //1 3 4 5
+            }
+            sizeDreamList--;
+            return;
+        }
+    }
+}
+
+QString MainWindow::getDreamStrArray()
+{
+    stringstream ss;
+
+    for(int i = 0; i < sizeDreamList; i++)
+    {
+        ss << dreamList[i] + strArrow;
+    }
+    string rdyQString = ss.str();
+    QString dreamArray;
+    dreamArray = QString::fromStdString(rdyQString);
+    return dreamArray;
+}
+
+void MainWindow::on_allNLStadiumsButton_clicked()
+{
+//    node<stadium> *allStadiums = g.getNationalLeagueStadiums().Begin();
+//    sizeDreamList = 0;
+
+//    while(allStadiums)
+//    {
+//        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
+//        sizeDreamList++;
+//        allStadiums = allStadiums->next;
+//    }
+//    stadiumPathText = getDreamStrArray();
+//    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+}
+
+void MainWindow::on_allALStadiumsButton_clicked()
+{
+//    node<stadium> *allStadiums = g.getAmericanLeagueStadiums().Begin();
+//    sizeDreamList = 0;
+
+//    while(allStadiums)
+//    {
+//        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
+//        sizeDreamList++;
+//        allStadiums = allStadiums->next;
+//    }
+//    stadiumPathText = getDreamStrArray();
+//    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 }
