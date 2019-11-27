@@ -1,3 +1,4 @@
+
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -26,7 +27,6 @@ HEADERS += \
     files.h \
     graph.h \
     linked_list_functions.h \
-    linkedlist_functions.h \
     list.h \
     mainwindow.h \
     souvenir.h \
@@ -45,4 +45,3 @@ RESOURCES += \
 
 DISTFILES += \
     logos/oldschoolDodgers.png \
-
