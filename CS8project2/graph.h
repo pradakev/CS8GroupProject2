@@ -52,9 +52,6 @@ public:
 
     void updateStadiumList(List<stadium>);
 
-    string Dijkstras (stadium);
-    string MST (stadium start);
-
     int getSize();
 
 
@@ -80,20 +77,6 @@ private:
                        bool grassSurface = false,
                        bool byTeamName = false,
                        bool byDate = false);
-
-    void initArr(int arr[], int val);
-    void initArr(bool arr[], bool val);
-    int smallestIndex(int C[],
-                     bool S[]);
-    string DisplayMST(int P[],
-                    int C[]);
-
-    int indexConversion(string val);
-    string stadiumName(int num);
-    string displayLinks(int previous[],
-                            int stadium);
-    string DisplayPath(int P[],
-                        int C[]);
 
     int getLength(List<stadiumNode>);
     // variable
