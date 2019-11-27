@@ -100,6 +100,29 @@ List<stadium> graph::getStadiumWithGrassField(){
     return returnMe;
 }
 
+List<stadium> graph::getAmericanLeagueStadiums(){
+    List<stadium> returnMe;
+    node<stadium>* walker = this->stadiums.Begin();
+    while (walker){
+        if (walker->_item.getType() == "American"){
+            returnMe.InsertAfter(walker->_item, returnMe.End());
+        }
+        walker = walker->next;
+    }
+    return returnMe;
+}
+List<stadium> graph::getNationalLeagueStadiums(){
+    List<stadium> returnMe;
+    node<stadium>* walker = this->stadiums.Begin();
+    while (walker){
+        if (walker->_item.getType() == "National"){
+            returnMe.InsertAfter(walker->_item, returnMe.End());
+        }
+        walker = walker->next;
+    }
+    return returnMe;
+}
+
 string graph::Dijkstras (stadium start)
 {
 
@@ -110,7 +133,6 @@ string graph::Dijkstras (stadium start)
     initArr(C,INT_MAX);
     initArr(P,-1);
     initArr(S, 0);
-
 
 
     C[indexConversion(start.getStadiumName())] = 0;

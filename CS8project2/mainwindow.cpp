@@ -340,7 +340,7 @@ void MainWindow::on_modDoneButton_clicked()
     stadium toAdd;
 
     for (int i = 0; i < ui->modificationTable->rowCount(); i++){
-        if (ui->modificationTable->item(i,0)->text() == QString("")){
+        if (ui->modificationTable->item(i,0)->text() ==  QString("")){
             message.setWindowTitle("Error!");
             message.setText("Error occur. Cannot remove stadium.");
             message.setStandardButtons(QMessageBox::Ok);
