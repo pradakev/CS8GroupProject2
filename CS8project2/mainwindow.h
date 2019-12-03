@@ -153,6 +153,8 @@ private slots:
 
     void on_allALStadiumsButton_clicked();
 
+    void on_showMapButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
