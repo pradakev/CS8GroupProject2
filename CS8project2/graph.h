@@ -79,7 +79,6 @@ private:
                        bool byTeamName = false,
                        bool byDate = false);
 
-
     int getLength(List<stadiumNode>);
     // variable
     List<stadium> stadiums;
