@@ -12,6 +12,12 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+struct userInfo
+{
+    List<stadiumNode> plannedTrips;
+    souvenirs souvenirList;
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -157,6 +163,7 @@ private slots:
 
     void on_showMapButton_clicked();
 
+    void plannedTripTable();
 
 private:
     Ui::MainWindow *ui;
@@ -171,7 +178,8 @@ private:
     //When planning vacation, user will insert stadium names
     //into this array
     string dreamList[40];
-    int sizeDreamList = 0;
+//    int dreamList->size() = 0;
+    void clearDreamList();
     //Checks if stadium is already in string array
     bool alreadyInList(string stadiumName);
     void deleteDreamStadium(string stadiumName);
@@ -181,6 +189,8 @@ private:
 
     //SOUVENIR
     souvenirs s;
+
+    userInfo client;
 
 
 };

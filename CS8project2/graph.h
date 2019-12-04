@@ -21,12 +21,13 @@ struct stadiumNode{
 
 
     friend ostream& operator << (ostream& out, const stadiumNode& l){
-        out << "(" << l._src << ", " << l._des << ") " << l._distancetoSrc;
+        out << l._src << ", " << l._des << ", " << l._distancetoSrc;
         return out;
     }
 
 
 };
+
 
 class graph
 {

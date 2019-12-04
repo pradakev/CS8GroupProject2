@@ -62,7 +62,14 @@ public:
                                                         //  your program.
     template <class U>
     friend ostream& operator <<(ostream& outs,          //insertion operator for list
-                                const List<U>& l);
+                                const List<U>& l){
+        node<U>* w = l.Begin();
+        while (w){
+            outs << w->_item <<endl;
+            w = w->next;
+        }
+        return outs;
+    }
 private:
     node<T>* head;
 
@@ -86,16 +93,6 @@ List<T>::~List(){
 template<class T>
 List<T>::List(const List<T> &copyThis){
     this->head= _CopyList(copyThis.head);
-}
-
-template <class U>
-ostream& operator <<(ostream& outs, const List<U>& l){
-    node<U>* w = l.head;
-    while (w != NULL){
-        outs << *w;
-        w = w->next;
-    }
-    return outs;
 }
 
 template<class T>
@@ -158,5 +155,6 @@ template<class T>
 node<T>* List<T>::End() const{
     return LastNode(head);
 }
+
 
 #endif // LIST_H
