@@ -28,6 +28,8 @@ public:
         return true;
     }
 
+    bool isEmpty() const;
+
     node<T>* InsertHead(T i);           //inset i at the head of list
 
     node<T>* InsertAfter(T i,           //insert i after iMarker
@@ -67,6 +69,11 @@ private:
     node<T>* head;
 
 };
+
+template<class T>
+bool List<T>::isEmpty() const{
+    return this->head == nullptr;
+}
 template <class T>
 int List<T>::getLength()
 {

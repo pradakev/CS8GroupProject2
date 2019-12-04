@@ -25,6 +25,9 @@ public:
     string getFieldSurface();
     string getAllInfo();
 
+    int getXCoor();
+    int getYCoor();
+
     //SETTERS
     void setName(string);
     void setTeamName(string);
@@ -34,6 +37,9 @@ public:
     void setCapacity(string);
     void setType(string);
     void setFieldSurface(string);
+
+    void setXCoor(int);
+    void setYCoor(int);
 
     //test function
     void print(){
@@ -51,8 +57,8 @@ private:
     string _surface;
 
     //Pixel Coordinates
-    int x;
-    int y;
+    int xPixel;
+    int yPixel;
 };
 
 #endif // STADIUM_H

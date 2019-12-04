@@ -8,11 +8,11 @@
 struct stadiumNode{
 
     stadiumNode(){}
-    stadiumNode(string src, string des, int dist){
+    stadiumNode(string src, string des, int dist, bool visited = false){
         _src = src;
         _des = des;
         _distancetoSrc = dist;
-        _visited = false;
+        _visited = visited;
     }
     string _src;
     string _des;
@@ -31,7 +31,7 @@ public:
 
     //GETTERS
     stadium getStadiumInfo(string stadiumName);
-    int getedge(string stadiumSrc, string stadiumDes);
+    stadiumNode getedge(string stadiumSrc, string stadiumDes);
     List<stadiumNode> getedges(string stadiumSrc);
     List<stadium> getStadiumList() const;
 
@@ -47,17 +47,32 @@ public:
     string Dijkstras (stadium);
     string MST (stadium start);
 
-
-
-
     void updateStadiumList(List<stadium>);
-
-
     int getSize();
 
-
+    //From Anna copy-paste
+    List<stadiumNode> shortestPath(string src, string des, const List<stadium>& = List<stadium>());
+    List<stadiumNode> shortestPath(const List<stadium>&, string src);
 
 private:
+
+    //From Anna copy-paste
+    stadiumNode getDistance(string des, const List<stadiumNode>&);
+    void checkSingleVertex(List<stadiumNode>& getsReturned, string src);
+    void dijkstras(List<stadiumNode>& getsReturned, List<stadiumNode> edges);
+    bool allVisited(const List<stadiumNode>&);
+    bool allVisited(const List<stadiumNode>&, const List<stadium>&);
+    bool checkVisited(const List<stadiumNode>& me, string des);
+    stadiumNode shortestTotalDistance(const List<stadiumNode>&);
+    stadiumNode shortestTotalDistance(const List<stadiumNode>& result_dijkstras,
+                                      const List<stadium>& toVisit,
+                                      const List<stadiumNode>& visited);
+    void initForShortestPath(const List<stadium>&, List<stadiumNode>&, string src);
+    bool checkExist(const List<stadiumNode>&, string toCheck);
+    void removeStadium(List<stadiumNode>&, string toRemove);
+    void removeStadium(List<stadium>&, string toRemove);
+
+//
     void initArr(int arr[], int val);
     void initArr(bool arr[], bool val);
     int smallestIndex(int C[],
