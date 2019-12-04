@@ -193,18 +193,32 @@ template <typename ITEM_TYPE>
 node<ITEM_TYPE>* _CopyList(node<ITEM_TYPE>* head){
     // set a walker walking through the old list, set a walker to the new list,
     // walker through each element in the old list and append it to the new list
-    node<ITEM_TYPE> *temp = NULL;
-    node<ITEM_TYPE> *tw;
+    node<ITEM_TYPE> *result = NULL;
+    node<ITEM_TYPE> *result_walker;
     node<ITEM_TYPE> *walker = head;
     while (walker != NULL){
-        if (temp == NULL){
-            tw = _InsertHead(temp, walker->_item);
+
+        if (result == NULL){
+            result_walker = _InsertHead(result, walker->_item);
         }else{
-            tw = _InsertAfter(tw, walker->_item);
+            result_walker = _InsertAfter(result_walker, walker->_item);
         }
         walker = walker->next;
     }
-    return temp;
+    return result;
+//    if(head == nullptr) return nullptr;
+
+//    node<ITEM_TYPE>* result = nullptr;
+//    result = _InsertHead(result, head->_item);
+//    node<ITEM_TYPE>* result_walker = result;
+
+//    while(head->next != nullptr){
+//        head = head->next;
+//        result_walker = _InsertAfter(result_walker, head->_item);
+//    }
+
+//    return result;
+
 }
 
 template <typename ITEM_TYPE>

@@ -35,9 +35,9 @@ public:
     void setType(string);
     void setFieldSurface(string);
 
-    //test function
-    void print(){
-        cout << _surface <<endl;
+    friend ostream& operator << (ostream& outs, const stadium& s){
+        outs << s._sName;
+        return outs;
     }
 
 private:

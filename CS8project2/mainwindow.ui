@@ -27,7 +27,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="mainMenu">
      <widget class="QLabel" name="mainMenuLabel">
@@ -1125,51 +1125,6 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
     <widget class="QWidget" name="planYourTripPage">
-     <widget class="QTableWidget" name="tableWidget">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>130</y>
-        <width>541</width>
-        <height>351</height>
-       </rect>
-      </property>
-      <row>
-       <property name="text">
-        <string>Dodgers</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Texans</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Angels</string>
-       </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>Team</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Order</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Visit</string>
-       </property>
-      </column>
-      <item row="0" column="0">
-       <property name="text">
-        <string/>
-       </property>
-      </item>
-     </widget>
      <widget class="QPushButton" name="pushButton_31">
       <property name="geometry">
        <rect>
@@ -1186,8 +1141,8 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="pushButton_38">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>320</y>
+        <x>630</x>
+        <y>340</y>
         <width>131</width>
         <height>51</height>
        </rect>
@@ -1199,14 +1154,24 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="showMapButton">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>390</y>
+        <x>630</x>
+        <y>410</y>
         <width>131</width>
         <height>51</height>
        </rect>
       </property>
       <property name="text">
        <string>Show Map</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="dijkstrasTable">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>561</width>
+        <height>551</height>
+       </rect>
       </property>
      </widget>
     </widget>
