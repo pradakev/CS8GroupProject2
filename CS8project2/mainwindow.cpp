@@ -112,7 +112,7 @@ void MainWindow::on_stadiumInfoDoneButton_clicked()
 
 void MainWindow::on_exitMainButton_clicked()
 {
-    saveStadiums(g, "../CS8Project2/textFiles/stadiumInfo.txt");
+//    saveStadiums(g, "../CS8Project2/textFiles/stadiumInfo.txt");
     saveSouvenirs(s, "../CS8Project2/textFiles/SouvenirList.txt");
     exit(-1);
 }
@@ -148,7 +148,7 @@ void MainWindow::on_stadiumTableInfo_clicked()
 {
     gotoPage(7);
 
-    List <stadium> printThis = g.getStadiumList();
+    List <stadium> printThis = g.getStadumList();
 
     if (ui->GrassSurface->currentIndex() == 1){
         printThis = g.getStadiumWithGrassField();
@@ -233,7 +233,7 @@ void MainWindow::on_pushButton_31_clicked()
 
 void MainWindow::on_allStadiumsButton_clicked()
 {
-    node<stadium> *allStadiums = g.getStadiumList().Begin();
+    node<stadium> *allStadiums = g.getStadumList().Begin();
     sizeDreamList = 0;
 
     while(allStadiums)
@@ -261,7 +261,7 @@ void MainWindow::on_pushButton_clicked()
 {
     gotoPage(8);
 
-    List <stadium> printThis = g.getStadiumList();
+    List <stadium> printThis = g.getStadumList();
 
     node<stadium>* w = printThis.Begin();
 
@@ -753,4 +753,9 @@ void MainWindow::on_allALStadiumsButton_clicked()
 //    }
 //    stadiumPathText = getDreamStrArray();
 //    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+}
+
+void MainWindow::on_backtoMain_clicked()
+{
+    gotoPage(0);
 }

@@ -96,8 +96,8 @@ void readSouvenirs(souvenirs& s, string fileName){
 
 void saveStadiums(graph &g, string fileName){
 
-    cout << "HI " <<endl;
-    node<stadium>* w = g.getStadiumList().Begin();
+    List<stadium> list = g.getStadumList();
+    node<stadium>* w = list.Begin();
 
     ofstream outfile;
     outfile.open(fileName);
