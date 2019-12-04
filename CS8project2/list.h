@@ -10,7 +10,6 @@ public:
     ~List();
     List(const List<T> &copyThis);
     List& operator =(const List& RHS){
-        _ClearList(head);
         head = _CopyList(RHS.head);
         return *this;
     }
@@ -27,6 +26,8 @@ public:
         }
         return true;
     }
+
+    bool isEmpty() const;
 
     node<T>* InsertHead(T i);           //inset i at the head of list
 
@@ -51,7 +52,6 @@ public:
     node<T>* Prev(node<T>* iMarker);    //get the previous node to iMarker
 
 
-    int getLength();
     T& operator[](int index);                   //return the item at index
 
     node<T>* Begin() const;                     //return the head of the list
@@ -67,17 +67,10 @@ private:
     node<T>* head;
 
 };
-template <class T>
-int List<T>::getLength()
-{
-    int counter = 0;
-    node<T> *temp = head;
-    while(temp)
-    {
-        temp = temp->next;
-        counter++;
-    }
-    return counter;
+
+template<class T>
+bool List<T>::isEmpty() const{
+    return (this->head == nullptr);
 }
 
 template <class T>
@@ -92,7 +85,7 @@ List<T>::~List(){
 
 template<class T>
 List<T>::List(const List<T> &copyThis){
-    head = _CopyList(copyThis.head);
+    this->head= _CopyList(copyThis.head);
 }
 
 template <class U>

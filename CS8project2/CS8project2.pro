@@ -24,6 +24,7 @@ SOURCES += \
     stadium.cpp
 
 HEADERS += \
+    StadiumCoordinates.h \
     files.h \
     graph.h \
     linked_list_functions.h \
