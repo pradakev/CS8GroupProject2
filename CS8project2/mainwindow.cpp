@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "files.h"
 #include <sstream>
+#include <QPainter>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -221,8 +222,23 @@ void MainWindow::on_GrassSurface_currentIndexChanged(int index)
 
 void MainWindow::on_planTripButton_clicked()
 {
+    List<stadium> stadiumDream;
+
     gotoPage(6);
-    //Send-Convert string array of stadium names to stadium list
+    //Send-Converted string array of stadium names to stadium list
+    if(dreamlist.sz ==0 || 1)
+    {
+
+    }
+    else
+    {
+        for(int i = 0; i < dreamList->size(); i++)
+        {
+            stadiumDream.InsertAfter(g.getStadiumInfo(dreamList[i]), stadiumDream.End());
+        }
+        stadiumDream.shortestPath(stadiumDream, dreamList[0]);
+    }
+
 
 }
 
@@ -755,7 +771,35 @@ void MainWindow::on_allALStadiumsButton_clicked()
 //    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 }
 
+
 void MainWindow::on_backtoMain_clicked()
 {
     gotoPage(0);
+
+void MainWindow::on_showMapButton_clicked()
+{
+    QPixmap pixmap(":/logos/mlbMap.png");
+    QPainter painter(&pixmap);
+//    painter.setPen(red);
+    int x1, y1, x2, y2;
+    //
+    x1 = 67;
+    y1 = 46;
+    x2 = 25;
+    y2 = 175;
+    painter.drawLine(x1, y1, x2, y2);
+    x1 = x2;
+    y1 = y2;
+    x2 = 58;
+    y2 = 245;
+    painter.drawLine(x1, y1, x2, y2);
+    x1 = x2;
+    y1 = y2;
+    x2 = 221;
+    y2 = 183;
+    painter.drawLine(x1, y1, x2, y2);
+
+    ui->dreamMap->setPixmap(pixmap);
+    gotoPage(3);
+
 }

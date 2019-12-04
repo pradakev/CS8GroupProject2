@@ -155,6 +155,9 @@ private slots:
 
     void on_backtoMain_clicked();
 
+    void on_showMapButton_clicked();
+
+
 private:
     Ui::MainWindow *ui;
 

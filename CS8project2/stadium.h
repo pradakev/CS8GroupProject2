@@ -49,6 +49,10 @@ private:
     string _capacity;
     string _type;
     string _surface;
+
+    //Pixel Coordinates
+    int x;
+    int y;
 };
 
 #endif // STADIUM_H
