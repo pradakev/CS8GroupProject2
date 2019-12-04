@@ -339,10 +339,42 @@ int graph::getLength(List<stadiumNode> l){
 //////////////////////////////////////////////////////////
 // new updates::
 /////////////////////////////////////////////////////////
+List<stadiumNode> graph::shortestPath(const List<stadium>& stadiumList, string src){
+    List<stadiumNode> result_dijkstras;
+    List<stadiumNode> returnMe;
+
+    stadiumNode shortest;
+
+    node<stadiumNode>* walker_for_shortestpath;
+    List<stadiumNode> path;
+
+    returnMe.InsertHead(stadiumNode(src, src, 0));
+
+    while(!allVisited(returnMe, stadiumList)){
+        initForShortestPath(this->stadiums,result_dijkstras,src);
+        dijkstras(result_dijkstras, getedges(src));
+
+        shortest = shortestTotalDistance(result_dijkstras, stadiumList, returnMe);
+
+        path = shortestPath(src, shortest._des);
+
+        walker_for_shortestpath = path.Begin();
+
+        while (walker_for_shortestpath){
+            returnMe.InsertAfter(walker_for_shortestpath->_item, returnMe.End());
+            walker_for_shortestpath = walker_for_shortestpath->next;
+        }
+        src = shortest._des;
+
+    }
+    return returnMe;
+}
+
+
 List<stadiumNode> graph::shortestPath(string src, string des, const List<stadium>& s){
     //initializing the result list
     List<stadiumNode> result_dijkstras;
-    node<stadiumNode>* walker_result = nullptr;
+    node<stadiumNode>* walker_result =nullptr;
     List<stadiumNode> returnMe;
 
     if (s.isEmpty()){
@@ -361,18 +393,21 @@ List<stadiumNode> graph::shortestPath(string src, string des, const List<stadium
         returnMe.InsertHead(getedge(src,des));
         return returnMe;
     }
-
     do {
+
         if (walker_result->_item._des == des){
             returnMe.InsertHead(getedge(walker_result->_item._src, des));
             des = getDistance(walker_result->_item._src, result_dijkstras)._des;
             walker_result = result_dijkstras.Begin();
+
         }
         walker_result = walker_result->next;
+        if (walker_result == nullptr){
+            walker_result = result_dijkstras.Begin();
+        }
     }while (des != src);
 
     return returnMe;
-
 }
 
 void graph::initForShortestPath(const List<stadium>& list, List<stadiumNode>& result_dijkstras, string src){
@@ -408,9 +443,6 @@ void graph::checkSingleVertex(List<stadiumNode>& returnMe, string src){
     while (walker_adjlist_list){
         while (walker_returnMe){
             if (walker_returnMe->_item._des == walker_adjlist_list->_item._des){
-                if (!checkExist(returnMe, walker_adjlist_list->_item._src)){
-                    break;
-                }
                 if (walker_adjlist_list->_item._distancetoSrc +
                         getDistance(walker_adjlist_list->_item._src, returnMe)._distancetoSrc
                         < walker_returnMe->_item._distancetoSrc){
@@ -455,6 +487,7 @@ bool graph::allVisited(const List<stadiumNode>& toCheck, const List<stadium>& st
     while(walker_stadiumList){
         if (!checkExist(toCheck, walker_stadiumList->_item.getStadiumName()))
             return false;
+
         walker_stadiumList = walker_stadiumList->next;
     }
     return true;
@@ -483,9 +516,6 @@ stadiumNode graph::getDistance(string des, const List<stadiumNode>& l){
 
 void graph::dijkstras(List<stadiumNode>& getsReturned, List<stadiumNode> edges){
 
-    if (!checkExist(getsReturned, edges.Begin()->_item._src)){
-        return;
-    }
     if (checkVisited(getsReturned, edges.Begin()->_item._src)){
         return;
     }
@@ -522,37 +552,30 @@ stadiumNode graph::shortestTotalDistance(const List<stadiumNode>& result_dijkstr
 
 
     // list for check exist: toVisit - visited
-    List<stadiumNode> list_for_checkExist;
+    List<stadiumNode> toVisitFinal;
 
     node<stadium>* walker_for_toVisit = toVisit.Begin();
     while (walker_for_toVisit){
         if (!checkExist(visited, walker_for_toVisit->_item.getStadiumName())){
-            list_for_checkExist.InsertAfter(stadiumNode("", walker_for_toVisit->_item.getStadiumName(), 0),
-                                            list_for_checkExist.End());
+            toVisitFinal.InsertAfter(stadiumNode("", walker_for_toVisit->_item.getStadiumName(), 0),
+                                            toVisitFinal.End());
+
         }
         walker_for_toVisit = walker_for_toVisit->next;
     }
 
-
-    if (visited.isEmpty()){
-        while (walker_result){
-            if (walker_result->_item._src == walker_result->_item._des){
-                returnMe = walker_result->_item;
-                break;
-            }
-            walker_result = walker_result->next;
-        }
-    }else{
-        while (walker_result){
-            if (checkExist(list_for_checkExist, walker_result->_item._des) &&
-                    walker_result->_item._distancetoSrc < shortest &&
+    while (walker_result){
+        if (checkExist(toVisitFinal, walker_result->_item._des) &&
+                walker_result->_item._distancetoSrc < shortest &&
                     walker_result->_item._src != walker_result->_item._des){
                 shortest = walker_result->_item._distancetoSrc;
                 returnMe = walker_result->_item;
-            }
-            walker_result = walker_result->next;
+
         }
+        walker_result = walker_result->next;
+
     }
+
     return returnMe;
 }
 

@@ -256,10 +256,13 @@ void MainWindow::on_planTripButton_clicked()
         gotoPage(6);
         //setup Table Data. Will use client's plannedTrip (assuming plannedtrip
         //is the stadiumList already processed through Dijkstras)
+        client.plannedTrips = g.shortestPath(stadiumDream, stadiumDream.Begin()->_item.getStadiumName());
+        cout << "List stadiums: " << stadiumDream <<endl;
+        cout << "src: " << stadiumDream.Begin()->_item.getStadiumName() <<endl;
+        cout << "PLANNED TRIP: " << client.plannedTrips <<endl;
         plannedTripTable();
 
     }
-//    client.plannedTrips = g.shortestPath(stadiumDream, stadiumDream.Begin()._item._src);
 
 
 
@@ -358,52 +361,58 @@ void MainWindow::on_allStadiumsButton_clicked()
     clearDreamList();
 
     //Set dreamList to all nodes, starting at Dodger Stadium
-    int src = 0;
-    dreamList[src] = "Dodger Stadium";
+//    int src = 0;
+//    dreamList[src] = "Dodger Stadium";
     //Add to size of dreamList
-    sizeDreamList++;
+//    sizeDreamList++;
 
     //Get All stadiums in lists
-    List<stadium> AL = g.getAmericanLeagueStadiums();
-    List<stadium> NL = g.getNationalLeagueStadiums();
+//    List<stadium> AL = g.getAmericanLeagueStadiums();
+//    List<stadium> NL = g.getNationalLeagueStadiums();
+    List<stadium> all(g.getStadumList());
     node<stadium> *traverse;
 
     //First ADD AL Stadiums
-    traverse = AL.Begin();
-    int i = 1;
+    traverse = all.Begin();
+    int i = 0;
     while(traverse)
     {
-        if(traverse->_item.getTeamName() == dreamList[src])
-        {
-            //Don't add to dreamList
-        }
-        else
-        {
-            dreamList[i] = traverse->_item.getTeamName();
-            cout << "Stadium: " << dreamList[i] << endl;
-        }
+//        int j = 0;
+//        if(traverse->_item.getStadiumName() == dreamList[src])
+//        {
+//            //Don't add to dreamList
+//            cout << "CHECK" << endl;
+//        }
+//        else
+//        {
+            dreamList[i] = traverse->_item.getStadiumName();
+
+//        }
         i++;
-        sizeDreamList++;
+//        sizeDreamList++;
+//        cout << j <<endl;
         traverse = traverse->next;
     }
 
+    cout << "size" << dreamList->size() << endl;
+
     // Then add NL Stadiums
-    traverse = NL.Begin();
-    while(traverse)
-    {
-        if(traverse->_item.getTeamName() == dreamList[src])
-        {
-            //Don't add to dreamList
-        }
-        else
-        {
-            dreamList[i] = traverse->_item.getTeamName();
-            cout << "Stadium: " << dreamList[i] << endl;
-        }
-        i++;
-        sizeDreamList++;
-        traverse = traverse->next;
-    }
+//    traverse = NL.Begin();
+//    while(traverse)
+//    {
+//        if(traverse->_item.getTeamName() == dreamList[src])
+//        {
+//            //Don't add to dreamList
+//        }
+//        else
+//        {
+//            dreamList[i] = traverse->_item.getTeamName();
+//            cout << "Stadium: " << dreamList[i] << endl;
+//        }
+//        i++;
+//        sizeDreamList++;
+//        traverse = traverse->next;
+//    }
     stadiumPathText = getDreamStrArray();
     ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 
@@ -706,7 +715,7 @@ void MainWindow::planTeamButtons(string stadiumName)
     else
     {
         //Makes sure to make client choose origin in CA
-        if(sizeDreamList == 0 &&
+        if(dreamList->size() == 0 &&
                 stadiumName != "Dodger Stadium" &&
                 stadiumName != "Angels Stadium of Anaheim" &&
                 stadiumName != "Petco Park" &&
@@ -742,8 +751,8 @@ void MainWindow::planTeamButtons(string stadiumName)
 //            return;
         }
         //Else, add stadium name to array of stadiums for later
-        dreamList[sizeDreamList] = stadiumName;
-        sizeDreamList++;
+        dreamList[dreamList->size()] = stadiumName;
+//        dreamList->size()++;
 
         //Set Text Browser
         stadiumPathText = getDreamStrArray();
@@ -860,21 +869,21 @@ void MainWindow::on_restartDreamList_clicked()
 
 void MainWindow::clearDreamList()
 {
-    for(int i = 0; i < sizeDreamList; i++)
+    for(int i = 0; i < dreamList->size(); i++)
     {
         dreamList[i] = "";
     }
-    sizeDreamList = 0;
+//    dreamList->size() = 0;
 
 }
 
 bool MainWindow::alreadyInList(string stadiumName)
 {
     //if list empty.
-    if(sizeDreamList == 0)
+    if(dreamList->size() == 0)
         return false;
     //else check through string array
-    for(int i = 0; i < sizeDreamList; i++)
+    for(int i = 0; i < dreamList->size(); i++)
     {
         //if matched, return true
         if(dreamList[i] == stadiumName)
@@ -888,16 +897,16 @@ bool MainWindow::alreadyInList(string stadiumName)
 
 void MainWindow::deleteDreamStadium(string stadiumName)
 {
-    for(int i = 0; i < sizeDreamList; i++)
+    for(int i = 0; i < dreamList->size(); i++)
     {
         if(dreamList[i] == stadiumName)
         {
-            for(int j = i; j < sizeDreamList - 1; j++)
+            for(int j = i; j < dreamList->size() - 1; j++)
             {
                 dreamList[j] = dreamList[j + 1];
                 //1 3 4 5
             }
-            sizeDreamList--;
+//            dreamList->size()--;
             return;
         }
     }
@@ -907,7 +916,7 @@ QString MainWindow::getDreamStrArray()
 {
     stringstream ss;
 
-    for(int i = 0; i < sizeDreamList; i++)
+    for(int i = 0; i < dreamList->size(); i++)
     {
         ss << dreamList[i] + strArrow;
     }
@@ -926,7 +935,7 @@ void MainWindow::on_allNLStadiumsButton_clicked()
     int src = 0;
     dreamList[src] = "Dodger Stadium";
     //Add to size of dreamList
-    sizeDreamList++;
+//    dreamList->size()++;
 
     //Get All stadiums in lists
     List<stadium> NL = g.getNationalLeagueStadiums();
@@ -947,7 +956,7 @@ void MainWindow::on_allNLStadiumsButton_clicked()
             cout << "Stadium: " << dreamList[i] << endl;
         }
         i++;
-        sizeDreamList++;
+//        dreamList->size()++;
         traverse = traverse->next;
     }
 
@@ -977,7 +986,7 @@ void MainWindow::on_allALStadiumsButton_clicked()
     int src = 0;
     dreamList[src] = "Dodger Stadium";
     //Add to size of dreamList
-    sizeDreamList++;
+//    dreamList->size()++;
 
     //Get All stadiums in lists
     List<stadium> AL = g.getAmericanLeagueStadiums();
@@ -998,7 +1007,7 @@ void MainWindow::on_allALStadiumsButton_clicked()
             cout << "Stadium: " << dreamList[i] << endl;
         }
         i++;
-        sizeDreamList++;
+//        dreamList->size()++;
         traverse = traverse->next;
     }
 
@@ -1030,27 +1039,38 @@ void MainWindow::on_backtoMain_clicked()
 
 void MainWindow::on_showMapButton_clicked()
 {
-    int x1, y1, x2, y2;
-    QPixmap pixmap(":/logos/mlbMap.png");
-    QPainter painter(&pixmap);
-
-    //List of Processed Dijkstra's Stadiums
-    node<stadiumNode> *myNode = client.plannedTrips.Begin();
-    while(myNode)
+    if(dreamList->size() == 0 || dreamList->size() == 1)
     {
-        int srcX = g.getStadiumInfo(myNode->_item._src).getXCoor();
-        int srcY = g.getStadiumInfo(myNode->_item._src).getYCoor();
-        x1 = srcX;
-        y1 = srcY;
-        int desX = g.getStadiumInfo(myNode->_item._des).getXCoor();
-        int desY = g.getStadiumInfo(myNode->_item._des).getYCoor();
-        x2 = desX;
-        y2 = desY;
-        painter.drawLine(x1, y1, x2, y2);
-
-        myNode = myNode->next;
+        //Nothing to paint
     }
-    ui->dreamMap->setPixmap(pixmap);
+    else
+    {
+        int x1, y1, x2, y2;
+        QPixmap pixmap(":/logos/mlbMap.png");
+        QPainter painter(&pixmap);
+        QFont font = painter.font();
+        font.setBold(true);
+        painter.setFont(font);
+        painter.setPen(QPen(Qt::blue));
+
+        //List of Processed Dijkstra's Stadiums
+        node<stadiumNode> *myNode = client.plannedTrips.Begin();
+        while(myNode)
+        {
+            int srcX = g.getStadiumInfo(myNode->_item._src).getXCoor();
+            int srcY = g.getStadiumInfo(myNode->_item._src).getYCoor();
+            x1 = srcX;
+            y1 = srcY;
+            int desX = g.getStadiumInfo(myNode->_item._des).getXCoor();
+            int desY = g.getStadiumInfo(myNode->_item._des).getYCoor();
+            x2 = desX;
+            y2 = desY;
+            painter.drawLine(x1, y1, x2, y2);
+
+            myNode = myNode->next;
+        }
+        ui->dreamMap->setPixmap(pixmap);
+    }
     gotoPage(3);
 
 }

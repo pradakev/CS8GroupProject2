@@ -24,12 +24,6 @@ public:
 };
 
 template <typename ITEM_TYPE>
-void PrintList(node<ITEM_TYPE>* head,ostream& outs=cout);
-
-template <typename ITEM_TYPE>
-void PrintList_backwards(node<ITEM_TYPE> *head,ostream& outs=cout);            //recursive fun! :)
-
-template <typename ITEM_TYPE>
 node<ITEM_TYPE>* SearchList(node<ITEM_TYPE>* head,          //return ptr to key or NULL
                             ITEM_TYPE key);
 
@@ -83,27 +77,6 @@ node<ITEM_TYPE>* WhereThisGoes(node<ITEM_TYPE>* head,         //node after which
 template <typename ITEM_TYPE>
 node<ITEM_TYPE>* LastNode(node<ITEM_TYPE>* head);            //Last Node in the list
 
-template <typename ITEM_TYPE>
-void PrintList(node<ITEM_TYPE>* head, ostream& outs){
-    node<ITEM_TYPE> * walker = head;
-    outs << "H->";
-    while (walker != NULL){
-        outs << *walker;
-        walker = walker->next;
-    }
-    outs << "|||"<<endl;
-}
-
-template <typename ITEM_TYPE>
-void PrintList_backwards(node<ITEM_TYPE> *head,ostream& outs){
-    node<ITEM_TYPE> * walker = LastNode(head);
-    outs << "H->";
-    while (walker != NULL){
-        outs << *walker;
-        walker = _PreviousNode(head,walker);
-    }
-    outs << "|||";
-}
 
 template <typename ITEM_TYPE>
 node<ITEM_TYPE>* SearchList(node<ITEM_TYPE>* head, ITEM_TYPE key){
@@ -206,18 +179,6 @@ node<ITEM_TYPE>* _CopyList(node<ITEM_TYPE>* head){
         walker = walker->next;
     }
     return result;
-//    if(head == nullptr) return nullptr;
-
-//    node<ITEM_TYPE>* result = nullptr;
-//    result = _InsertHead(result, head->_item);
-//    node<ITEM_TYPE>* result_walker = result;
-
-//    while(head->next != nullptr){
-//        head = head->next;
-//        result_walker = _InsertAfter(result_walker, head->_item);
-//    }
-
-//    return result;
 
 }
 
@@ -317,13 +278,13 @@ node<ITEM_TYPE>* WhereThisGoes(node<ITEM_TYPE>* head, ITEM_TYPE item,
 template <typename ITEM_TYPE>
 node<ITEM_TYPE>* LastNode(node<ITEM_TYPE>* head){
     node<ITEM_TYPE>* w = head;
-    if (w == head){
-        return w;
+    if (head == NULL){
+        return head;
     }
-    while (w != NULL){
+    while (w->next != NULL){
         w = w->next;
     }
-    return _PreviousNode(head, w);
+    return w;
 }
 
 #endif // LINKED_LIST_FUNCTIONS_H

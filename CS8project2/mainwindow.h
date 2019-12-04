@@ -178,7 +178,7 @@ private:
     //When planning vacation, user will insert stadium names
     //into this array
     string dreamList[40];
-    int sizeDreamList = 0;
+//    int dreamList->size() = 0;
     void clearDreamList();
     //Checks if stadium is already in string array
     bool alreadyInList(string stadiumName);
