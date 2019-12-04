@@ -41,6 +41,12 @@ void readStadiums(graph &g, string fileName){
         getline(infile, line);
         toAdd.setFieldSurface(line);
 
+        //x and y coordinates of pixels
+        getline(infile, line);
+        toAdd.setXCoor(stoi(line));
+        getline(infile, line);
+        toAdd.setYCoor(stoi(line));
+
         getline(infile, line);
 
         g.addStadium(toAdd);
