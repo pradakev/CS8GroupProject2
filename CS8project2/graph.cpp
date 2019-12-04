@@ -274,6 +274,8 @@ string graph::DisplayMST(int P[], // IN - link to previous
     final += "Total: " + to_string(total) + "\n";
     return final;
 }
+
+
 string graph::DisplayPath(int P[],   // IN - links to previous
                         int C[])   // IN - node distances
 {
@@ -340,6 +342,9 @@ int graph::getLength(List<stadiumNode> l){
 List<stadiumNode> graph::shortestPath(string src, string des, const List<stadium>& s){
     //initializing the result list
     List<stadiumNode> result_dijkstras;
+    node<stadiumNode>* walker_result = nullptr;
+    List<stadiumNode> returnMe;
+
     if (s.isEmpty()){
         List<stadium>list(this->stadiums);
         initForShortestPath(list, result_dijkstras, src);
@@ -350,9 +355,13 @@ List<stadiumNode> graph::shortestPath(string src, string des, const List<stadium
 
     // loop through the adjlist to visit all vertex
     dijkstras(result_dijkstras, getedges(src));
+    walker_result = result_dijkstras.Begin();
 
-    node<stadiumNode>* walker_result = result_dijkstras.Begin();
-    List<stadiumNode> returnMe;
+    if (des == src){
+        returnMe.InsertHead(getedge(src,des));
+        return returnMe;
+    }
+
     do {
         if (walker_result->_item._des == des){
             returnMe.InsertHead(getedge(walker_result->_item._src, des));
@@ -363,6 +372,7 @@ List<stadiumNode> graph::shortestPath(string src, string des, const List<stadium
     }while (des != src);
 
     return returnMe;
+
 }
 
 void graph::initForShortestPath(const List<stadium>& list, List<stadiumNode>& result_dijkstras, string src){
