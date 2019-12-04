@@ -226,18 +226,18 @@ void MainWindow::on_planTripButton_clicked()
 
     gotoPage(6);
     //Send-Converted string array of stadium names to stadium list
-    if(dreamlist.sz ==0 || 1)
-    {
+//    if(dreamlist.sz ==0 || 1)
+//    {
 
-    }
-    else
-    {
-        for(int i = 0; i < dreamList->size(); i++)
-        {
-            stadiumDream.InsertAfter(g.getStadiumInfo(dreamList[i]), stadiumDream.End());
-        }
-        stadiumDream.shortestPath(stadiumDream, dreamList[0]);
-    }
+//    }
+//    else
+//    {
+//        for(int i = 0; i < dreamList->size(); i++)
+//        {
+//            stadiumDream.InsertAfter(g.getStadiumInfo(dreamList[i]), stadiumDream.End());
+//        }
+//        stadiumDream.shortestPath(stadiumDream, dreamList[0]);
+//    }
 
 
 }
@@ -775,6 +775,7 @@ void MainWindow::on_allALStadiumsButton_clicked()
 void MainWindow::on_backtoMain_clicked()
 {
     gotoPage(0);
+}
 
 void MainWindow::on_showMapButton_clicked()
 {
