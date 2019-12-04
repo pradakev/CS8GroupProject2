@@ -69,7 +69,7 @@ void MainWindow::on_customerDoneButton_clicked()
 //Done button on Map
 void MainWindow::on_mapPgDoneButton_clicked()
 {
-    gotoPage(1);
+    gotoPage(6);
 }
 
 //ADMIN PG
@@ -883,9 +883,9 @@ void MainWindow::on_allNLStadiumsButton_clicked()
     traverse = NL.Begin();
     while(traverse)
     {
-        if(traverse->_item.getTeamName() != dreamList[0])
+        if(traverse->_item.getStadiumName() != dreamList[0])
         {
-            dreamList.push_back(traverse->_item.getTeamName());
+            dreamList.push_back(traverse->_item.getStadiumName());
 
         }
         traverse = traverse->next;
@@ -931,9 +931,9 @@ void MainWindow::on_allALStadiumsButton_clicked()
     traverse = AL.Begin();
     while(traverse)
     {
-        if(traverse->_item.getTeamName() != dreamList[0])
+        if(traverse->_item.getStadiumName() != dreamList[0])
         {
-            dreamList.push_back(traverse->_item.getTeamName());
+            dreamList.push_back(traverse->_item.getStadiumName());
 
         }
         traverse = traverse->next;
