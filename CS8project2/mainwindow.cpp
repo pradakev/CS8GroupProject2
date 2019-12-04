@@ -154,6 +154,12 @@ void MainWindow::on_stadiumTableInfo_clicked()
     if (ui->GrassSurface->currentIndex() == 1){
         printThis = g.getStadiumWithGrassField();
     }
+    if (ui->GrassSurface->currentIndex() == 2){
+        printThis = g.getNationalLeagueStadiums();
+    }
+    if (ui->GrassSurface->currentIndex() == 3){
+        printThis = g.getAmericanLeagueStadiums();
+    }
     node<stadium>* w = printThis.Begin();
 
     ui->tableWidget_2->setColumnCount(0);
