@@ -789,21 +789,11 @@ void MainWindow::on_showMapButton_clicked()
     QPainter painter(&pixmap);
 //    painter.setPen(red);
     int x1, y1, x2, y2;
-    //
-    x1 = 67;
-    y1 = 46;
-    x2 = 25;
-    y2 = 175;
-    painter.drawLine(x1, y1, x2, y2);
-    x1 = x2;
-    y1 = y2;
-    x2 = 58;
-    y2 = 245;
-    painter.drawLine(x1, y1, x2, y2);
-    x1 = x2;
-    y1 = y2;
-    x2 = 221;
-    y2 = 183;
+
+    x1 = g.getStadiumInfo("Dodger Stadium").getXCoor();
+    y1 = g.getStadiumInfo("Dodger Stadium").getYCoor();
+    x2 = g.getStadiumInfo("Comerica Park").getXCoor();
+    y2 = g.getStadiumInfo("Comerica Park").getYCoor();
     painter.drawLine(x1, y1, x2, y2);
 
     ui->dreamMap->setPixmap(pixmap);

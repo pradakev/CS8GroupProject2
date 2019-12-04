@@ -96,3 +96,23 @@ void stadium::setType(string type){
 void stadium::setFieldSurface(string surface){
     _surface = surface;
 }
+
+void stadium::setXCoor(int xpos)
+{
+    xPixel = xpos;
+}
+
+void stadium::setYCoor(int ypos)
+{
+    yPixel = ypos;
+}
+
+int stadium::getXCoor()
+{
+    return xPixel;
+}
+
+int stadium::getYCoor()
+{
+    return yPixel;
+}
