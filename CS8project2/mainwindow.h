@@ -5,7 +5,7 @@
 #include "souvenir.h"
 #include <QMainWindow>
 #include <QMessageBox>
-
+#include <vector>
 #include <string>
 
 QT_BEGIN_NAMESPACE
@@ -68,7 +68,7 @@ private slots:
 
 //    void on_backtoMain_clicked();
 
-    void on_GrassSurface_currentIndexChanged(int index);
+    void on_GrassSurface_currentIndexChanged();
 
 
     void on_planTripButton_clicked();
@@ -177,8 +177,7 @@ private:
     //User Dream Stadium List
     //When planning vacation, user will insert stadium names
     //into this array
-    string dreamList[40];
-//    int dreamList->size() = 0;
+    vector<string> dreamList;
     void clearDreamList();
     //Checks if stadium is already in string array
     bool alreadyInList(string stadiumName);

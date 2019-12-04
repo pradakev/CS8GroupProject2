@@ -1,0 +1,65 @@
+SafeCo Field, Rogers Centre, 2070
+Rogers Centre, Fenway Park, 430
+SafeCo Field, AT&T Park, 680
+SafeCo Field, O.co Coliseum, 680
+AT&T Park, Dodger Stadium, 340
+AT&T Park, Angels Stadium of Anaheim, 340
+O.co Coliseum, Dodger Stadium, 340
+O.co Coliseum, Angels Stadium of Anaheim, 340
+AT&T Park, Chase Field, 650
+O.co Coliseum, Chase Field, 650
+Dodger Stadium, Target Field, 1500
+Angels Stadium of Anaheim, Target Field, 1500
+Dodger Stadium, Petco Park, 110
+Angels Stadium of Anaheim, Petco Park, 110
+Petco Park, Chase Field, 300
+Petco Park, Coors Field, 830
+Chase Field, Coors Field, 580
+Chase Field, Globe Life Park in Arlington, 870
+Chase Field, Minute Maid Park, 1115
+Minute Maid Park, Tropicana Field, 790
+Minute Maid Park, Marlins Park, 965
+Minute Maid Park, Globe Life Park in Arlington, 230
+Minute Maid Park, Busch Stadium, 680
+Globe Life Park in Arlington, Coors Field, 650
+Globe Life Park in Arlington, Kauffman Stadium, 460
+Globe Life Park in Arlington, Turner Field, 740
+Kauffman Stadium, Coors Field, 560
+Kauffman Stadium, Busch Stadium, 235
+Kauffman Stadium, US Cellular Field, 415
+Kauffman Stadium, Wrigley Field, 415
+Marlins Park, Tropicana Field, 210
+Marlins Park, Turner Field, 600
+Marlins Park, Oriole Park at Camden Yards, 930
+Marlins Park, Nationals Park, 930
+Marlins Park, Fenway Park, 1255
+Tropicana Field, Great America Ball Park, 790
+Turner Field, Great America Ball Park, 375
+Turner Field, Oriole Park at Camden Yards, 560
+Turner Field, Nationals Park, 560
+Great America Ball Park, Busch Stadium, 310
+Great America Ball Park, US Cellular Field, 250
+Great America Ball Park, Wrigley Field, 250
+Great America Ball Park, Progressive Field, 225
+Great America Ball Park, PNC Park, 260
+PNC Park, Progressive Field, 115
+PNC Park, Rogers Centre, 225
+PNC Park, Yankee Stadium, 315
+PNC Park, Citi Field, 315
+Yankee Stadium, Fenway Park, 195
+Citi Field, Fenway Park, 195
+Yankee Stadium, Citizens Bank Park, 80
+Citi Field, Citizens Bank Park, 80
+Citizens Bank Park, Oriole Park at Camden Yards, 90
+Citizens Bank Park, Nationals Park, 90
+PNC Park, Oriole Park at Camden Yards, 195
+PNC Park, Nationals Park, 195
+Progressive Field, Comerica Park, 90
+Comerica Park, Wrigley Field, 240
+Comerica Park, US Cellular Field, 240
+Wrigley Field, Miller Park, 80
+US Cellular Field, Miller Park, 80
+Miller Park, Rogers Centre, 430
+Miller Park, Target Field, 300
+Target Field, Busch Stadium, 465
+Comerica Park, Rogers Centre, 210
