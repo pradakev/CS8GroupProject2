@@ -230,21 +230,119 @@ void MainWindow::on_planTripButton_clicked()
 {
     List<stadium> stadiumDream;
 
-    gotoPage(6);
+
     //Send-Converted string array of stadium names to stadium list
-//    if(dreamlist.sz ==0 || 1)
-//    {
+    if(dreamList->size() == 0 || dreamList->size() == 1)
+    {
+        //input validation
+        QString errorMsg;
+        errorMsg = "Not Enough Stadiums for a trip. Please choose more"
+                   "stadiums!";
+        ui->plannedTripStadiumBrowser->setText(errorMsg);
+    }
+    else
+    {
+        //Create stadiumList "stadiumDream"
+        for(unsigned int i = 0; i < dreamList->size(); i++)
+        {
+            stadiumDream.InsertAfter(g.getStadiumInfo(dreamList[i]), stadiumDream.End());
+        }
 
-//    }
-//    else
-//    {
-//        for(int i = 0; i < dreamList->size(); i++)
-//        {
-//            stadiumDream.InsertAfter(g.getStadiumInfo(dreamList[i]), stadiumDream.End());
-//        }
-//        stadiumDream.shortestPath(stadiumDream, dreamList[0]);
-//    }
+        //Pass stadiumList to shortestPath function
+        //This will update client's plannedTrip
 
+
+        //Go to Processed List Table Page
+        gotoPage(6);
+        //setup Table Data. Will use client's plannedTrip (assuming plannedtrip
+        //is the stadiumList already processed through Dijkstras)
+        plannedTripTable();
+
+    }
+//    client.plannedTrips = g.shortestPath(stadiumDream, stadiumDream.Begin()._item._src);
+
+
+
+
+
+        gotoPage(6);
+}
+
+void MainWindow::plannedTripTable()
+{
+    ui->dijkstrasTable->setColumnCount(0);
+
+    for (int i = 0; i < 5; i++)
+    {
+        ui->dijkstrasTable->insertColumn(i);
+    }
+
+    ui->dijkstrasTable->setHorizontalHeaderItem(0, new QTableWidgetItem("#"));
+    ui->dijkstrasTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Source"));
+    ui->dijkstrasTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Destination"));
+    ui->dijkstrasTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Distance"));
+    ui->dijkstrasTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Chosen Stadium"));
+
+    int count;
+    count = 0;
+
+    int totalDistance = 0;
+
+    ui->dijkstrasTable->setRowCount(0);
+    node<stadiumNode> *start = client.plannedTrips.Begin();
+
+    while(start)
+    {
+        count = ui->dijkstrasTable->rowCount();
+        ui->dijkstrasTable->insertRow(ui->dijkstrasTable->rowCount());
+
+        //Only put count if it's in dreamlist
+        string strCount = to_string(count);
+        QTableWidgetItem * qCount = new QTableWidgetItem(QString::fromStdString(strCount));
+        QTableWidgetItem * qSrc = new QTableWidgetItem(QString::fromStdString(start->_item._src));
+        QTableWidgetItem * qDest = new QTableWidgetItem(QString::fromStdString(start->_item._des));
+
+        //Total Distance
+        int srcDist = start->_item._distancetoSrc;
+        totalDistance += srcDist;
+        string distance = to_string(srcDist);
+        QTableWidgetItem * qDistance = new QTableWidgetItem(QString::fromStdString(distance));
+        QTableWidgetItem * chosenDest = new QTableWidgetItem("Chosen!");
+
+
+        qCount->setTextAlignment(Qt::AlignCenter);
+        qSrc->setTextAlignment(Qt::AlignCenter);
+        qDest->setTextAlignment(Qt::AlignCenter);
+        qDistance->setTextAlignment(Qt::AlignCenter);
+        chosenDest->setTextAlignment(Qt::AlignCenter);
+
+        ui->dijkstrasTable->setItem(count, 0, qCount);
+        ui->dijkstrasTable->setItem(count, 1, qSrc);
+        ui->dijkstrasTable->setItem(count, 2, qDest);
+        ui->dijkstrasTable->setItem(count, 3, qDistance);
+        ui->dijkstrasTable->setItem(count, 4, chosenDest);
+
+        start = start->next;
+    }
+
+    //TOTAL STADIUMS VISITED
+    int visited = count + 1;
+    string strVis = to_string(visited);
+    QString tS = "Total # of Stadiums Visited: ";
+    tS += QString::fromStdString(strVis);
+    ui->totalStadiumsVisitedBrowser->setText(tS);
+    //TOTAL DISTANCE TRAVELED
+    string strTD = to_string(totalDistance);
+    QString tD = "Total Distance Traveled: ";
+    tD += QString::fromStdString(strTD);
+    ui->totalDistanceBrowser->setText(tD);
+
+    ui->dijkstrasTable->horizontalHeader()->
+            setSectionResizeMode(QHeaderView::ResizeToContents);
+
+    ui->dijkstrasTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    ui->dijkstrasTable->setSortingEnabled(true);
 
 }
 
@@ -255,17 +353,83 @@ void MainWindow::on_pushButton_31_clicked()
 
 void MainWindow::on_allStadiumsButton_clicked()
 {
-    node<stadium> *allStadiums = g.getStadumList().Begin();
-    sizeDreamList = 0;
 
-    while(allStadiums)
+    //Clear dreamList
+    clearDreamList();
+
+    //Set dreamList to all nodes, starting at Dodger Stadium
+    int src = 0;
+    dreamList[src] = "Dodger Stadium";
+    //Add to size of dreamList
+    sizeDreamList++;
+
+    //Get All stadiums in lists
+    List<stadium> AL = g.getAmericanLeagueStadiums();
+    List<stadium> NL = g.getNationalLeagueStadiums();
+    node<stadium> *traverse;
+
+    //First ADD AL Stadiums
+    traverse = AL.Begin();
+    int i = 1;
+    while(traverse)
     {
-        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
+        if(traverse->_item.getTeamName() == dreamList[src])
+        {
+            //Don't add to dreamList
+        }
+        else
+        {
+            dreamList[i] = traverse->_item.getTeamName();
+            cout << "Stadium: " << dreamList[i] << endl;
+        }
+        i++;
         sizeDreamList++;
-        allStadiums = allStadiums->next;
+        traverse = traverse->next;
+    }
+
+    // Then add NL Stadiums
+    traverse = NL.Begin();
+    while(traverse)
+    {
+        if(traverse->_item.getTeamName() == dreamList[src])
+        {
+            //Don't add to dreamList
+        }
+        else
+        {
+            dreamList[i] = traverse->_item.getTeamName();
+            cout << "Stadium: " << dreamList[i] << endl;
+        }
+        i++;
+        sizeDreamList++;
+        traverse = traverse->next;
     }
     stadiumPathText = getDreamStrArray();
     ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+
+//    List<stadiumNode> myList = g.shortestPath("Dodger Stadium", "Comerica Park");
+//    client.plannedTrips = myList;
+//    node<stadiumNode> *myNode = myList.Begin();
+//    stringstream ss;
+//    while(myNode)
+//    {
+//        ss << myNode->_item._src << " -->  " << myNode->_item._des << endl <<"DISTANCE: " <<
+//              myNode->_item._distancetoSrc << endl;
+//        myNode = myNode->next;
+//    }
+//    QString myQST;
+//    string mySS = ss.str();
+//    myQST = QString::fromStdString(mySS);
+//    ui->plannedTripStadiumBrowser->setText(myQST);
+
+//    node<stadiumNode> w = shortestPath(src ,des).Begin();
+//    while (w){
+//        QString::tostdstring(w._item._src);
+//        w._item._des;
+//        w._item._distance;
+
+//        w = w.next;
+//    }
 }
 
 void MainWindow::on_pushButton_38_clicked()
@@ -690,6 +854,12 @@ void MainWindow::on_restartDreamList_clicked()
     QString restartTxt = "List Cleared. Go ahead and start planning your new"
                          "dream vacation!";
     ui->plannedTripStadiumBrowser->setText(restartTxt);
+    clearDreamList();
+
+}
+
+void MainWindow::clearDreamList()
+{
     for(int i = 0; i < sizeDreamList; i++)
     {
         dreamList[i] = "";
@@ -749,6 +919,42 @@ QString MainWindow::getDreamStrArray()
 
 void MainWindow::on_allNLStadiumsButton_clicked()
 {
+    //Clear dreamList
+    clearDreamList();
+
+    //Set dreamList to all nodes, starting at Dodger Stadium
+    int src = 0;
+    dreamList[src] = "Dodger Stadium";
+    //Add to size of dreamList
+    sizeDreamList++;
+
+    //Get All stadiums in lists
+    List<stadium> NL = g.getNationalLeagueStadiums();
+    node<stadium> *traverse;
+
+    //First ADD AL Stadiums
+    traverse = NL.Begin();
+    int i = 1;
+    while(traverse)
+    {
+        if(traverse->_item.getTeamName() == dreamList[src])
+        {
+            //Don't add to dreamList
+        }
+        else
+        {
+            dreamList[i] = traverse->_item.getTeamName();
+            cout << "Stadium: " << dreamList[i] << endl;
+        }
+        i++;
+        sizeDreamList++;
+        traverse = traverse->next;
+    }
+
+    stadiumPathText = getDreamStrArray();
+    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+
+
 //    node<stadium> *allStadiums = g.getNationalLeagueStadiums().Begin();
 //    sizeDreamList = 0;
 
@@ -764,6 +970,45 @@ void MainWindow::on_allNLStadiumsButton_clicked()
 
 void MainWindow::on_allALStadiumsButton_clicked()
 {
+    //Clear dreamList
+    clearDreamList();
+
+    //Set dreamList to all nodes, starting at Dodger Stadium
+    int src = 0;
+    dreamList[src] = "Dodger Stadium";
+    //Add to size of dreamList
+    sizeDreamList++;
+
+    //Get All stadiums in lists
+    List<stadium> AL = g.getAmericanLeagueStadiums();
+    node<stadium> *traverse;
+
+    //First ADD AL Stadiums
+    traverse = AL.Begin();
+    int i = 1;
+    while(traverse)
+    {
+        if(traverse->_item.getTeamName() == dreamList[src])
+        {
+            //Don't add to dreamList
+        }
+        else
+        {
+            dreamList[i] = traverse->_item.getTeamName();
+            cout << "Stadium: " << dreamList[i] << endl;
+        }
+        i++;
+        sizeDreamList++;
+        traverse = traverse->next;
+    }
+
+    stadiumPathText = getDreamStrArray();
+    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
+
+
+    //Need to convert string array to stadium List!
+
+
 //    node<stadium> *allStadiums = g.getAmericanLeagueStadiums().Begin();
 //    sizeDreamList = 0;
 
@@ -785,17 +1030,26 @@ void MainWindow::on_backtoMain_clicked()
 
 void MainWindow::on_showMapButton_clicked()
 {
+    int x1, y1, x2, y2;
     QPixmap pixmap(":/logos/mlbMap.png");
     QPainter painter(&pixmap);
-//    painter.setPen(red);
-    int x1, y1, x2, y2;
 
-    x1 = g.getStadiumInfo("Dodger Stadium").getXCoor();
-    y1 = g.getStadiumInfo("Dodger Stadium").getYCoor();
-    x2 = g.getStadiumInfo("Comerica Park").getXCoor();
-    y2 = g.getStadiumInfo("Comerica Park").getYCoor();
-    painter.drawLine(x1, y1, x2, y2);
+    //List of Processed Dijkstra's Stadiums
+    node<stadiumNode> *myNode = client.plannedTrips.Begin();
+    while(myNode)
+    {
+        int srcX = g.getStadiumInfo(myNode->_item._src).getXCoor();
+        int srcY = g.getStadiumInfo(myNode->_item._src).getYCoor();
+        x1 = srcX;
+        y1 = srcY;
+        int desX = g.getStadiumInfo(myNode->_item._des).getXCoor();
+        int desY = g.getStadiumInfo(myNode->_item._des).getYCoor();
+        x2 = desX;
+        y2 = desY;
+        painter.drawLine(x1, y1, x2, y2);
 
+        myNode = myNode->next;
+    }
     ui->dreamMap->setPixmap(pixmap);
     gotoPage(3);
 
