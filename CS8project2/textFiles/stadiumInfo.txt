@@ -281,8 +281,8 @@ Washington Nationals
 41,418
 National
 Grass
-26
-179
+534
+181
 
 Petco Park
 San Diego Padres

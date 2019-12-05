@@ -27,7 +27,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="mainMenu">
      <widget class="QLabel" name="mainMenuLabel">
@@ -1110,7 +1110,7 @@ p, li { white-space: pre-wrap; }
         <x>600</x>
         <y>210</y>
         <width>161</width>
-        <height>251</height>
+        <height>263</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -1380,7 +1380,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text">
-       <string>to remove an item: clear off the name of the item</string>
+       <string>To remove an item: Clear off the name of the item.</string>
       </property>
      </widget>
     </widget>
