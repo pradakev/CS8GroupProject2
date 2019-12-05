@@ -1003,10 +1003,13 @@ void MainWindow::on_showMapButton_clicked()
         //List of Processed Dijkstra's Stadiums
         node<stadiumNode> *myNode = client.plannedTrips.Begin();
 
+        //Check for lines. If Line already drawn there, return true
+        bool duplicate = false;
         //counter for lines
         int count = 1;
         while(myNode)
         {
+            node<stadiumNode> *startNode = client.plannedTrips.Begin();
 
             //DEBUG
             cout << "DRAWING LINE FROM SOURCE: " << g.getStadiumInfo(myNode->_item._src)
@@ -1031,11 +1034,26 @@ void MainWindow::on_showMapButton_clicked()
             //Trying to draw a number
             string counter = to_string(count);
             QString qCount = QString::fromStdString(counter);
+
             //Check if not already placed a number there. If so,
             //have the new number be placed other place.
-            painter.drawText(x2, y2 - 10, qCount);
-            count++;
+            while(startNode != myNode)
+            {
+                if(startNode->_item._des == myNode->_item._des ||
+                        startNode->_item._src == myNode->_item._des)
+                {
+                    duplicate = true;
+                    cout << "DUPLICATED FOUND" << endl;
+                }
+                startNode = startNode->next;
+            }
+            if(duplicate)
+                painter.drawText(x2, y2 - 30, qCount);
 
+            else
+                painter.drawText(x2, y2 - 10, qCount);
+            count++;
+            duplicate = false;
             myNode = myNode->next;
         }
         ui->dreamMap->setPixmap(pixmap);

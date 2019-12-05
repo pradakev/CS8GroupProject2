@@ -83,7 +83,7 @@ Baltimore Orioles
 48,187
 American
 Grass
-534
+542
 181
 
 Progressive Field
@@ -160,7 +160,7 @@ New York Yankees
 50,291
 American
 Grass
-563
+550
 147
 
 AT&T Park
@@ -171,7 +171,7 @@ San Francisco Giants
 41,915
 National
 Grass
-26
+15
 179
 
 Busch Stadium
@@ -237,7 +237,7 @@ Los Angeles Dodgers
 56,000
 National
 Grass
-58
+47
 244
 
 Great America Ball Park
@@ -325,5 +325,5 @@ Chicago Cubs
 42,374
 National
 Grass
-408
+393
 156
