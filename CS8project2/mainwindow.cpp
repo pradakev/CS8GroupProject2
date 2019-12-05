@@ -272,21 +272,21 @@ void MainWindow::plannedTripTable()
 {
     ui->dijkstrasTable->setColumnCount(0);
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 4; i++)
     {
         ui->dijkstrasTable->insertColumn(i);
     }
 
-    ui->dijkstrasTable->setHorizontalHeaderItem(0, new QTableWidgetItem("#"));
-    ui->dijkstrasTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Source"));
-    ui->dijkstrasTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Destination"));
-    ui->dijkstrasTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Distance"));
-    ui->dijkstrasTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Chosen Stadium"));
+    ui->dijkstrasTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Source"));
+    ui->dijkstrasTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Destination"));
+    ui->dijkstrasTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Distance"));
+    ui->dijkstrasTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Chosen Stadium"));
 
-    int count;
-    count = 0;
+    int count = 0;
 
     int totalDistance = 0;
+
+    int count_for_chosen = 1;
 
     ui->dijkstrasTable->setRowCount(0);
     node<stadiumNode> *start = client.plannedTrips.Begin();
@@ -297,8 +297,6 @@ void MainWindow::plannedTripTable()
         ui->dijkstrasTable->insertRow(ui->dijkstrasTable->rowCount());
 
         //Only put count if it's in dreamlist
-        string strCount = to_string(count);
-        QTableWidgetItem * qCount = new QTableWidgetItem(QString::fromStdString(strCount));
         QTableWidgetItem * qSrc = new QTableWidgetItem(QString::fromStdString(start->_item._src));
         QTableWidgetItem * qDest = new QTableWidgetItem(QString::fromStdString(start->_item._des));
 
@@ -307,26 +305,48 @@ void MainWindow::plannedTripTable()
         totalDistance += srcDist;
         string distance = to_string(srcDist);
         QTableWidgetItem * qDistance = new QTableWidgetItem(QString::fromStdString(distance));
-        QTableWidgetItem * chosenDest = new QTableWidgetItem("Chosen!");
+
+        if (start->_item._des == client.plannedTrips.Begin()->_item._des){
+            QTableWidgetItem * chosenDest = new QTableWidgetItem("Origin");
+            chosenDest->setTextAlignment(Qt::AlignCenter);
+            ui->dijkstrasTable->setItem(count, 3, chosenDest);
+        }
+        else if (alreadyInDreamList(start->_item._des)){
+            for (int i = 0; i < count; i++){
+                if (ui->dijkstrasTable->item(i,1)->text() == QString::fromStdString(start->_item._des)){
+                    QTableWidgetItem * chosenDest = new QTableWidgetItem("");
+                    chosenDest->setTextAlignment(Qt::AlignCenter);
+                    ui->dijkstrasTable->setItem(count, 3, chosenDest);
+                    break;
+                }
+                if (i+1 == count){
+                    QTableWidgetItem * chosenDest = new QTableWidgetItem(QString::fromStdString("Destination: " + (to_string(count_for_chosen))));
+                    chosenDest->setTextAlignment(Qt::AlignCenter);
+                    ui->dijkstrasTable->setItem(count, 3, chosenDest);
+                    count_for_chosen++;
+                    break;
+                }
+            }
+        }else{
+            QTableWidgetItem * chosenDest = new QTableWidgetItem("");
+            chosenDest->setTextAlignment(Qt::AlignCenter);
+            ui->dijkstrasTable->setItem(count, 3, chosenDest);
+        }
 
 
-        qCount->setTextAlignment(Qt::AlignCenter);
         qSrc->setTextAlignment(Qt::AlignCenter);
         qDest->setTextAlignment(Qt::AlignCenter);
         qDistance->setTextAlignment(Qt::AlignCenter);
-        chosenDest->setTextAlignment(Qt::AlignCenter);
 
-        ui->dijkstrasTable->setItem(count, 0, qCount);
-        ui->dijkstrasTable->setItem(count, 1, qSrc);
-        ui->dijkstrasTable->setItem(count, 2, qDest);
-        ui->dijkstrasTable->setItem(count, 3, qDistance);
-        ui->dijkstrasTable->setItem(count, 4, chosenDest);
+        ui->dijkstrasTable->setItem(count, 0, qSrc);
+        ui->dijkstrasTable->setItem(count, 1, qDest);
+        ui->dijkstrasTable->setItem(count, 2, qDistance);
 
         start = start->next;
     }
 
     //TOTAL STADIUMS VISITED
-    int visited = count + 1;
+    int visited = ui->dijkstrasTable->rowCount();
     string strVis = to_string(visited);
     QString tS = "Total # of Stadiums Visited: ";
     tS += QString::fromStdString(strVis);
@@ -335,14 +355,13 @@ void MainWindow::plannedTripTable()
     string strTD = to_string(totalDistance);
     QString tD = "Total Distance Traveled: ";
     tD += QString::fromStdString(strTD);
+    tD += QString::fromStdString(" miles");
     ui->totalDistanceBrowser->setText(tD);
 
     ui->dijkstrasTable->horizontalHeader()->
             setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->dijkstrasTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-    ui->dijkstrasTable->setSortingEnabled(true);
 
 }
 
@@ -669,7 +688,7 @@ void MainWindow::planTeamButtons(string stadiumName)
             return;
         }
         //First check if stadium not already in list
-        if(alreadyInList(stadiumName) == true)
+        if(alreadyInDreamList(stadiumName) == true)
         {
             //If origin wants to be deleted, user must clear list
             if(stadiumName == dreamList[0])
@@ -815,7 +834,7 @@ void MainWindow::clearDreamList()
 
 }
 
-bool MainWindow::alreadyInList(string stadiumName)
+bool MainWindow::alreadyInDreamList(string stadiumName)
 {
     //if list empty.
     if(dreamList.size() == 0)

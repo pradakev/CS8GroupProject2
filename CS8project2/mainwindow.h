@@ -180,7 +180,7 @@ private:
     vector<string> dreamList;
     void clearDreamList();
     //Checks if stadium is already in string array
-    bool alreadyInList(string stadiumName);
+    bool alreadyInDreamList(string stadiumName);
     void deleteDreamStadium(string stadiumName);
 
     //GRAPH
