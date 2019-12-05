@@ -27,7 +27,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>11</number>
     </property>
     <widget class="QWidget" name="mainMenu">
      <widget class="QLabel" name="mainMenuLabel">
@@ -852,6 +852,19 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
+     <widget class="QPushButton" name="showMapButtonMainPage">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>150</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Map</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="stadiumInfoPage">
      <widget class="QTextBrowser" name="stadiumInfoTextBrowser">
@@ -943,9 +956,9 @@ p, li { white-space: pre-wrap; }
      <widget class="QLabel" name="souvenirsLogo">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>10</y>
-        <width>301</width>
+        <x>260</x>
+        <y>30</y>
+        <width>271</width>
         <height>141</height>
        </rect>
       </property>
@@ -969,56 +982,38 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="pushButton_5">
       <property name="geometry">
        <rect>
+        <x>290</x>
+        <y>490</y>
+        <width>201</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Modify Souvenir Purchases</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="currentTotal">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>460</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Current Total:</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="textBrowser_trackS">
+      <property name="geometry">
+       <rect>
         <x>230</x>
-        <y>480</y>
-        <width>150</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add Souvenirs</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_6">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>510</y>
-        <width>150</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Modify Souvenirs</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_7">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>480</y>
-        <width>150</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Delete Souvenirs</string>
-      </property>
-     </widget>
-     <widget class="QTableWidget" name="tableWidget">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
         <y>180</y>
-        <width>641</width>
+        <width>331</width>
         <height>271</height>
        </rect>
       </property>
-      <row>
-       <property name="text">
-        <string>Souvenir</string>
-       </property>
-      </row>
      </widget>
     </widget>
     <widget class="QWidget" name="adminWelcomePg">
@@ -1153,7 +1148,7 @@ p, li { white-space: pre-wrap; }
        <item>
         <widget class="QPushButton" name="pushButton_31">
          <property name="text">
-          <string>Back</string>
+          <string>Done</string>
          </property>
         </widget>
        </item>
@@ -1381,6 +1376,72 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="text">
        <string>To remove an item: Clear off the name of the item.</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="TrackSouvenirAdd">
+     <widget class="QTableWidget" name="souvenirListForAdd">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>451</width>
+        <height>251</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>360</y>
+        <width>331</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QPushButton" name="CancelButtonTrackSouvenir">
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="AddbuttonTrackSouvenir">
+         <property name="text">
+          <string>Save Changes</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="GeneralMap">
+     <widget class="QLabel" name="map2">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>40</y>
+        <width>631</width>
+        <height>441</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/logos/mlbMap.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="DoneButton2">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>500</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Done</string>
       </property>
      </widget>
     </widget>

@@ -57,4 +57,25 @@ void souvenirs::removeSouvenir(int index){
     this->_size--;
 }
 
+int souvenirs::getItemCount(string itemName){
+    int count = 0;
+    for (int i = 0; i < this->_size; i++){
+        if (_s[i].getName() == itemName){
+            count++;
+        }
+    }
+    return count;
+}
 
+bool souvenirs::operator == (const souvenirs& other){
+
+    if (this->_size != other._size){
+        return false;
+    }
+    for (int i = 0; i < this->_size; i++){
+        if (this->_s[i].getName() != other._s[i].getName()){
+            return false;
+        }
+    }
+    return true;
+}

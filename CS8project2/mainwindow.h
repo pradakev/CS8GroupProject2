@@ -165,9 +165,19 @@ private slots:
 
     void plannedTripTable();
 
-    void modify_newStadiumAddedByUser(List<stadium>& list);
+    List<stadium> modify_newStadiumAddedByUser(List<stadium> list);
 
     bool isNewStadium(stadium);
+
+    void on_pushButton_5_clicked();
+
+    void on_CancelButtonTrackSouvenir_clicked();
+
+    void on_AddbuttonTrackSouvenir_clicked();
+
+    void on_showMapButtonMainPage_clicked();
+
+    void on_DoneButton2_clicked();
 
 private:
     Ui::MainWindow *ui;
