@@ -1,9 +1,57 @@
+/***************************************
+ * AUTHOR                : Justin Kuhn, Anna Ma, Kevin Prada
+ * Project 2             : I Love Baseball
+ * CLASS                 : CS8
+ * SECTION               : MW 9:45-11:10AM TTH 9:45-11:50AM
+ * Due Date              : 12/5/19
+ * *************************************/
+
 #include "stadium.h"
 
+/***************************************
+ * stadium::stadium(){}
+ * --------------------------------------------------------------------
+ *  This is the default constructor
+ *
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *     None
+ * OUTPUT:
+ *      None
+ * *************************************/
 stadium::stadium(){}
-stadium::stadium(string name, string teamName, string address,
+/***************************************
+ * stadium::stadium(string name, string teamName, string address,
                  string phone, string openDate, string capacity, string type
-                 ,string surface, int x, int y){
+
+                 ,string surface){
+ * --------------------------------------------------------------------
+ *  This constructor initializes all values of a stadium object.
+ *
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      name -  stadium name
+ *      teamName -  name of team at stadium
+ *      address -   address of stadium
+ *      phone -     phone number of stadium
+ *      openDate -  open date of stadium
+ *      capacity -  capacity of stadium
+ *      type -      league of stadium
+ *      surface -   field surface type
+ * OUTPUT:
+ *      None
+ * *************************************/
+stadium::stadium(string name,       // IN - std name
+                 string teamName,   // IN - team at std
+                 string address,    // IN - std addres
+                 string phone,      // IN - assoc. phone
+                 string openDate,   // IN - day std opened
+                 string capacity,   // IN - cap of std
+                 string type,        // IN - std leage
+                 string surface,
+                 int x,
+                 int y){  // IN - std surface
+
     _sName = name;
     _teamName = teamName;
     _address = address;
@@ -16,42 +64,34 @@ stadium::stadium(string name, string teamName, string address,
     yPixel = y;
 }
 
-//bool stadium::operator == (const stadium& other){
+
+/***************************************
+ * bool stadium::operator == (const stadium& other){
+ * -----------------------------
+ *  This chekcs if the other stadium is equal to the calling stadium.
+ *
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      other - the stadium to check
+ * OUTPUT:
+ *      None
+ * *************************************/
+//bool stadium::operator == (const stadium& other){   // IN - to copy
 //    return this->_sName == other._sName;
 //}
 
 //GETTERS
-string stadium::getStadiumName(){
-    return _sName;
-}
-
-string stadium::getTeamName(){
-    return _teamName;
-}
-
-string stadium::getAddress(){
-    return _address;
-}
-
-string stadium::getPhone(){
-    return _phone;
-}
-
-string stadium::getOpenDate(){
-    return _openDate;
-}
-
-string stadium::getCapacity(){
-    return _capacity;
-}
-
-string stadium::getType(){
-    return _type;
-}
-
-string stadium::getFieldSurface(){
-    return _surface;
-}
+/***************************************
+ * string stadium::getAllInfo(){
+ * -----------------------------
+ *  This returns a string of all the relevent information for a stadium.
+ *
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      other - the stadium to check
+ * OUTPUT:
+ *      None
+ * *************************************/
 string stadium::getAllInfo(){
     stringstream ss;
     ss << getStadiumName() <<endl;
@@ -66,55 +106,5 @@ string stadium::getAllInfo(){
     return string(ss.str());
 }
 
-//SETTERS
-void stadium::setName(string name){
-    _sName = name;
-}
 
-void stadium::setTeamName(string tname){
-    _teamName = tname;
-}
 
-void stadium::setAddress(string address){
-    _address = address;
-}
-
-void stadium::setphone(string phone){
-    _phone = phone;
-}
-
-void stadium::setOpenDate(string openDate){
-    _openDate = openDate;
-}
-
-void stadium::setCapacity(string capacity){
-    _capacity = capacity;
-}
-
-void stadium::setType(string type){
-    _type = type;
-}
-
-void stadium::setFieldSurface(string surface){
-    _surface = surface;
-}
-
-void stadium::setXCoor(int xpos)
-{
-    xPixel = xpos;
-}
-
-void stadium::setYCoor(int ypos)
-{
-    yPixel = ypos;
-}
-
-int stadium::getXCoor()
-{
-    return xPixel;
-}
-
-int stadium::getYCoor()
-{
-    return yPixel;
-}

@@ -1,3 +1,11 @@
+/***************************************
+ * AUTHOR                : Justin Kuhn, Anna Ma, Kevin Prada
+ * Project 2             : I Love Baseball
+ * CLASS                 : CS8
+ * SECTION               : MW 9:45-11:10AM TTH 9:45-11:50AM
+ * Due Date              : 12/5/19
+ * *************************************/
+
 #include "graph.h"
 #include <vector>
 
@@ -5,6 +13,17 @@ graph::graph(){}
 
 graph::~graph(){}
 
+/***************************************
+ * stadium graph::getStadiumInfo(string stadiumName){
+ * --------------------------------------------------------------------
+ *  This function returns a stadium object given a sstadium name.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      stadiumName - name fo stadiums
+ * OUTPUT:
+ *     returns the correct stadium object
+ *
+ * *************************************/
 stadium graph::getStadiumInfo(string stadiumName){
 
     node<stadium>* w = this->stadiums.Begin();
@@ -18,6 +37,18 @@ stadium graph::getStadiumInfo(string stadiumName){
     return stadium();
 }
 
+/***************************************
+ * stadiumNode graph::getedge(string stadiumSrc, string stadiumDes){
+ * --------------------------------------------------------------------
+ *  This function returns the edge between a source and destination stadium.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      stadiumSrc - source stadium
+ *      stadiumDes - the destination stadium
+ * OUTPUT:
+ *     returns a node containing the edge length as distance to src
+ *
+ * *************************************/
 stadiumNode graph::getedge(string stadiumSrc, string stadiumDes){
 
     node<List<stadiumNode>>* w = this->adjList.Begin();
@@ -36,7 +67,19 @@ stadiumNode graph::getedge(string stadiumSrc, string stadiumDes){
     }
     return stadiumNode();
 }
-
+/***************************************
+ * List<stadiumNode> graph::getedges(string stadiumSrc){
+ * --------------------------------------------------------------------
+ *  This function returns all of the edges connected to a source in the form
+ *      of a list of stadiumNodes
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      stadiumSrc - source stadium
+ *      stadiumDes - the destination stadium
+ * OUTPUT:
+ *     returns a node containing the edge length as distance to src
+ *
+ * *************************************/
 List<stadiumNode> graph::getedges(string stadiumSrc){
     List<stadiumNode> returnMe;
     node<List<stadiumNode>>* w = this->adjList.Begin();
@@ -50,6 +93,16 @@ List<stadiumNode> graph::getedges(string stadiumSrc){
     return returnMe;
 }
 
+/***************************************
+ * void graph::addStadium(stadium s){
+ * --------------------------------------------------------------------
+ *  This function adss a stadium to the stadiums list.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      s - stadium to add
+ * OUTPUT:
+ *     None
+ * *************************************/
 void graph::addStadium(stadium s){
     // inserts into stadium list
     this->stadiums.InsertAfter(s,this->stadiums.End());
@@ -62,6 +115,19 @@ void graph::addStadium(stadium s){
     this->adjList.InsertAfter(newList, this->adjList.End());
 }
 
+/***************************************
+ * void graph::addEdge(string src, string des, int distance){
+ * --------------------------------------------------------------------
+ *  This function ads an edge to the adjacency list. The node contains
+ *      the source, destination, and distance.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      src - source stadium
+ *      des - destination stadium
+ *      distance - distance from destination to source stadium
+ * OUTPUT:
+ *     None
+ * *************************************/
 void graph::addEdge(string src, string des, int distance){
     node<List<stadiumNode>>* w = this->adjList.Begin();
     stadiumNode edge =stadiumNode(src, des, distance);
@@ -76,10 +142,31 @@ void graph::addEdge(string src, string des, int distance){
 
 }
 
+/***************************************
+ * int graph::getSize(){
+ * --------------------------------------------------------------------
+ *  This function returns the number of stadiums associated with this graph.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      None
+ * OUTPUT:
+ *      None
+ * *************************************/
 int graph::getSize(){
     return _size;
 }
 
+/***************************************
+ * List<stadium> graph::getStadiumWithGrassField(){
+ * --------------------------------------------------------------------
+ *  This function returns a list of all of the associated stadiums with a grass
+ *      field
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      None
+ * OUTPUT:
+ *     returns a list of all stadiums with a grass field
+ * *************************************/
 List<stadium> graph::getStadiumWithGrassField(){
     List<stadium> returnMe;
     node<stadium>* walker = this->stadiums.Begin();
@@ -92,10 +179,33 @@ List<stadium> graph::getStadiumWithGrassField(){
     return returnMe;
 }
 
+
+/***************************************
+ * List<stadium> graph::getStadumList(){
+ * --------------------------------------------------------------------
+ *  This function returns a list of all the stadiums.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      None
+ * OUTPUT:
+ *     returns a list of af all associated stadiums
+ * *************************************/
+
 List<stadium> graph::getStadiumListForDijkstras(){
+
     return List<stadium>(this->stadiums);
 }
 
+/***************************************
+ * List<stadium> graph::getAmericanLeagueStadiums(){
+ * --------------------------------------------------------------------
+ *  This function returns a list of all the american League stadiums
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      None
+ * OUTPUT:
+ *     returns a list of af all associated american league stadiums
+ * *************************************/
 List<stadium> graph::getAmericanLeagueStadiums(){
     List<stadium> returnMe;
     node<stadium>* walker = this->stadiums.Begin();
@@ -107,6 +217,16 @@ List<stadium> graph::getAmericanLeagueStadiums(){
     }
     return returnMe;
 }
+/***************************************
+ * List<stadium> graph::getNationalLeagueStadiums(){
+ * --------------------------------------------------------------------
+ *  This function returns a list of all the national League stadiums
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      None
+ * OUTPUT:
+ *     returns a list of af all associated national league stadiums
+ * *************************************/
 List<stadium> graph::getNationalLeagueStadiums(){
     List<stadium> returnMe;
     node<stadium>* walker = this->stadiums.Begin();
@@ -118,214 +238,16 @@ List<stadium> graph::getNationalLeagueStadiums(){
     }
     return returnMe;
 }
-
-string graph::Dijkstras (stadium start)
-{
-
-    int C[this->getSize()];
-    int P[this->getSize()];
-    bool S[this->getSize()];
-
-    initArr(C,INT_MAX);
-    initArr(P,-1);
-    initArr(S, 0);
-
-
-    C[indexConversion(start.getStadiumName())] = 0;
-
-
-    for (int count = 0; count < this->getSize() - 1; count++) {
-
-        int k = smallestIndex(C, S);
-
-        S[k] = true;
-
-        for (int i = 0; i <  getLength(adjList[i]); i++)
-
-        {
-            int true_index = indexConversion(adjList[k][i]._des);
-            if (!S[true_index]
-                    && adjList[k][i]._distancetoSrc != 0
-                    && C[k] != INT_MAX
-                    && C[k] + adjList[k][i]._distancetoSrc
-                    < C[true_index])
-            {
-                C[true_index]
-                        = C[k] + adjList[k][i]._distancetoSrc;
-                P[true_index] = k;
-            }
-        }
-
-    }
-    return DisplayPath(P,C);
-}
-
-string graph::MST (stadium start)
-{
-    int C[this->getSize()];
-    int P[this->getSize()];
-    bool S[this->getSize()];
-
-    initArr(C,INT_MAX);
-    initArr(P,-1);
-    initArr(S, 0);
-
-
-
-    C[indexConversion(start.getStadiumName())] = 0;
-
-    for (int count = 0; count < this->getSize() - 1; count++) {
-
-        int k = smallestIndex(C, S);
-
-        S[k] = true;
-
-        for (int i = 0; i <  getLength(adjList[i]); i++)
-
-        {
-            int true_index = indexConversion(adjList[k][i]._des);
-            if (!S[true_index]
-                    && adjList[k][i]._distancetoSrc != 0
-                    && C[k] != INT_MAX
-                    && adjList[k][i]._distancetoSrc
-                    < C[true_index])
-            {
-                C[true_index]
-                        = adjList[k][i]._distancetoSrc;
-                P[true_index] = k;
-            }
-        }
-
-    }
-    return DisplayMST(P,C);
-
-}
-
-
-void graph::initArr(int arr[], int val)
-{
-    for(int i = 0; i < this->getSize(); i++)
-
-    {
-        arr[i] = val;
-    }
-}
-void graph::initArr(bool arr[], bool val)
-{
-    for(int i = 0; i < this->getSize(); i++)
-
-    {
-        arr[i] = val;
-    }
-}
-
-int graph::smallestIndex(int C[],   // IN - array to find smallest
-                         bool S[])  // IN - check uniqueness
-{
-
-    int smallest = INT_MAX;
-    int smallest_index = 0;
-
-    for (int i = 0; i < this->getSize(); i++)
-
-    {
-        if (C[i] < smallest && !S[i])
-        {
-            smallest_index = i;
-            smallest = C[i];
-        }
-    }
-    return smallest_index;
-}
-int graph::indexConversion(string val)
-{
-    for(int i = 0; i < this->getSize(); i++)
-
-    {
-        if(adjList[i].Begin()->_item._src == val)
-        {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
-
-string graph::DisplayMST(int P[], // IN - link to previous
-                         int C[]) // IN - node distances
-{
-    int total;  // IN - the total distance travelled;
-    string final = "";
-    total = 0;
-
-    for (int i = 1; i < this->getSize(); i++)
-
-    {
-
-        final +=  to_string(i) + ". " + "( " + stadiumName(i)
-                 + " " + stadiumName(P[i]) + " ) ";
-
-        final += " " + to_string(C[i]) + "\n";
-        total += C[i];
-
-    }
-    final += "\n";
-    final += "Total: " + to_string(total) + "\n";
-    return final;
-}
-
-
-string graph::DisplayPath(int P[],   // IN - links to previous
-                        int C[])   // IN - node distances
-{
-    string final = "";
-    for (int i = 0; i < this->getSize(); i++)
-
-    {
-        final += stadiumName(i) + ":" + to_string(C[i]);
-
-        final += displayLinks(P,i) + "\n";
-    }
-    return final;
-
-}
-
-
-string graph::displayLinks(int previous[],  // IN - links to previous
-                         int stadium)        // IN - starting index
-{
-    vector<string> temp;
-
-    string final = "";
-
-    while (stadium != -1)
-    {
-        temp.push_back(stadiumName(stadium));
-        if (stadium != 0)
-        {
-            stadium = previous[stadium];
-        }
-        else stadium = -1;
-    }
-    final += "{ ";
-
-    for(vector<string>::iterator it = temp.end()-1;
-
-        it >= temp.begin(); it--)
-    {
-        final += *it + "  ";
-    }
-
-    return (final += "}");
-
-}
-
-string graph::stadiumName(int num)  // IN - number to convert
-{
-    return adjList[num].Begin()->_item._src;
-}
-
+/***************************************
+ * int graph::getLength(List<stadiumNode> l)
+ * --------------------------------------------------------------------
+ *  This function returns the length of the list of stadium nodes passed.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      l - find length of this list
+ * OUTPUT:
+ *     returnMe - element counter for list l
+ * *************************************/
 int graph::getLength(List<stadiumNode> l){
     int returnMe =0;
     node<stadiumNode>* w = l.Begin();
@@ -339,7 +261,22 @@ int graph::getLength(List<stadiumNode> l){
 //////////////////////////////////////////////////////////
 // new updates::
 /////////////////////////////////////////////////////////
-List<stadiumNode> graph::shortestPath(const List<stadium>& stadiumList, string src){
+
+/***************************************
+ * List<stadiumNode> graph::shortestPath(const List<stadium>& stadiumList,
+ *                                  string src){
+ * --------------------------------------------------------------------
+ *  This function returns the shortest path to visit all nodes in the list
+ *      starting at the source.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      stadiumList - find path between all of these stadiums
+ *      src - start at this stadium
+ * OUTPUT:
+ *     a list of stadium nodes representing the visited stadiums.
+ * *************************************/
+List<stadiumNode> graph::shortestPath(const List<stadium>& stadiumList,
+                                      string src){
     List<stadiumNode> result_dijkstras;
     List<stadiumNode> returnMe;
 
@@ -354,14 +291,16 @@ List<stadiumNode> graph::shortestPath(const List<stadium>& stadiumList, string s
         initForShortestPath(this->stadiums,result_dijkstras,src);
         dijkstras(result_dijkstras, getedges(src));
 
-        shortest = shortestTotalDistance(result_dijkstras, stadiumList, returnMe);
+        shortest = shortestTotalDistance
+                (result_dijkstras, stadiumList, returnMe);
 
         path = shortestPath(src, shortest._des);
 
         walker_for_shortestpath = path.Begin();
 
         while (walker_for_shortestpath){
-            returnMe.InsertAfter(walker_for_shortestpath->_item, returnMe.End());
+            returnMe.InsertAfter(walker_for_shortestpath->_item,
+                                 returnMe.End());
             walker_for_shortestpath = walker_for_shortestpath->next;
         }
         src = shortest._des;
@@ -371,7 +310,22 @@ List<stadiumNode> graph::shortestPath(const List<stadium>& stadiumList, string s
 }
 
 
-List<stadiumNode> graph::shortestPath(string src, string des, const List<stadium>& s){
+/***************************************
+ * List<stadiumNode> graph::shortestPath(string src, string des,
+ *                                  const List<stadium>& s){
+ * --------------------------------------------------------------------
+ *  This function returns the shortest path to visit all nodes in the list
+ *      starting at the source and ending at the destination.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      src - start at this stadium
+ *      des - end at this stadium
+ * OUTPUT:
+ *     a list of stadium nodes representing the visited stadiums.
+ * *************************************/
+List<stadiumNode> graph::shortestPath(string src,
+                                      string des,
+                                      const List<stadium>& s){
     //initializing the result list
     List<stadiumNode> result_dijkstras;
     node<stadiumNode>* walker_result =nullptr;
@@ -410,22 +364,52 @@ List<stadiumNode> graph::shortestPath(string src, string des, const List<stadium
     return returnMe;
 }
 
-void graph::initForShortestPath(const List<stadium>& list, List<stadiumNode>& result_dijkstras, string src){
+/***************************************
+ * void graph::initForShortestPath(const List<stadium>& list,
+ *                          List<stadiumNode>& result_dijkstras, string src){
+ * --------------------------------------------------------------------
+ *  This function initalizes the result_dijkstras list with the values
+ *      in list properly formatted for use with dijkstras algo.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      list - original list of stadiums
+ *      result_dijkstras - formatted list for dijkstras
+ *      str - special case for start stadium
+ * OUTPUT:
+ *     NOne
+ * *************************************/
+void graph::initForShortestPath(const List<stadium>& list,
+                                List<stadiumNode>& result_dijkstras,
+                                string src){
     result_dijkstras = List<stadiumNode>();
     node<stadium>* stadiumList_w = list.Begin();
 
     while (stadiumList_w){
         if (stadiumList_w->_item.getStadiumName() == src){
-            result_dijkstras.InsertAfter(stadiumNode(src,src, 0, false), result_dijkstras.End());
+            result_dijkstras.InsertAfter(stadiumNode(src,src, 0, false),
+                                         result_dijkstras.End());
         }else{
-            result_dijkstras.InsertAfter(stadiumNode("", stadiumList_w->_item.getStadiumName(),
-                              10000, false), result_dijkstras.End());
+            result_dijkstras.InsertAfter(stadiumNode("",
+                                        stadiumList_w->_item.getStadiumName(),
+                                        10000, false), result_dijkstras.End());
         }
         stadiumList_w = stadiumList_w->next;
     }
 
 }
 
+/***************************************
+ * void graph::checkSingleVertex(List<stadiumNode>& returnMe, string src){
+ * --------------------------------------------------------------------
+ *  This function checks if there is a single vertex in the stadiumNode
+ *      list
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      returnMe - original list of stadiums
+ *      src - the source stadium to check
+ * OUTPUT:
+ *     None
+ * *************************************/
 void graph::checkSingleVertex(List<stadiumNode>& returnMe, string src){
 
     node<stadiumNode>* walker_returnMe = returnMe.Begin();
@@ -444,11 +428,15 @@ void graph::checkSingleVertex(List<stadiumNode>& returnMe, string src){
         while (walker_returnMe){
             if (walker_returnMe->_item._des == walker_adjlist_list->_item._des){
                 if (walker_adjlist_list->_item._distancetoSrc +
-                        getDistance(walker_adjlist_list->_item._src, returnMe)._distancetoSrc
+                        getDistance(walker_adjlist_list->_item._src,
+                                    returnMe)._distancetoSrc
                         < walker_returnMe->_item._distancetoSrc){
-                        walker_returnMe->_item._distancetoSrc = walker_adjlist_list->_item._distancetoSrc
-                                +getDistance(walker_adjlist_list->_item._src, returnMe)._distancetoSrc;
-                        walker_returnMe->_item._src = walker_adjlist_list->_item._src;
+                        walker_returnMe->_item._distancetoSrc
+                                = walker_adjlist_list->_item._distancetoSrc
+                                +getDistance(walker_adjlist_list->_item._src,
+                                             returnMe)._distancetoSrc;
+                        walker_returnMe->_item._src
+                                = walker_adjlist_list->_item._src;
                 }else{
                     break;
                 }
@@ -470,6 +458,16 @@ void graph::checkSingleVertex(List<stadiumNode>& returnMe, string src){
 
 }
 
+/***************************************
+ * bool graph::allVisited(const List<stadiumNode>& me){
+ * --------------------------------------------------------------------
+ *  This function checks if all of the stadiums have been visited.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      me - list of nodes that can be checked
+ * OUTPUT:
+ *     true or false
+ * *************************************/
 bool graph::allVisited(const List<stadiumNode>& me){
     node<stadiumNode>* w = me.Begin();
     while (w){
@@ -481,7 +479,21 @@ bool graph::allVisited(const List<stadiumNode>& me){
     return true;
 }
 
-bool graph::allVisited(const List<stadiumNode>& toCheck, const List<stadium>& stadiumList){
+/***************************************
+ * bool graph::allVisited(const List<stadiumNode>& toCheck,
+ *                          const List<stadium>& stadiumList){
+ * --------------------------------------------------------------------
+ *  This function checks if all of the stadiums in the stadium list
+ *      have been visited against the toCheck list.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      toCheck - check against this list
+ *      stadiumList - check this list
+ * OUTPUT:
+ *     true or false
+ * *************************************/
+bool graph::allVisited(const List<stadiumNode>& toCheck,
+                       const List<stadium>& stadiumList){
     node<stadium>* walker_stadiumList = stadiumList.Begin();
 
     while(walker_stadiumList){
@@ -493,6 +505,18 @@ bool graph::allVisited(const List<stadiumNode>& toCheck, const List<stadium>& st
     return true;
 }
 
+/***************************************
+ * bool graph::checkVisited(const List<stadiumNode>& me, string des){
+ * --------------------------------------------------------------------
+ *  This function checks if the des stadium name has been visited in the
+ *      passed list.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      me - check stadium from this list
+ *      des - stadium name to check
+ * OUTPUT:
+ *     true or false
+ * *************************************/
 bool graph::checkVisited(const List<stadiumNode>& me, string des){
     node<stadiumNode>* w = me.Begin();
     while (w){
@@ -502,6 +526,18 @@ bool graph::checkVisited(const List<stadiumNode>& me, string des){
     }
     return false;
 }
+/***************************************
+ * stadiumNode graph::getDistance(string des, const List<stadiumNode>& l){
+ * --------------------------------------------------------------------
+ *  This function returns a node with the the a provided destination
+ *      from a list of nodes
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      des - name of destination
+ *      l - list to check
+ * OUTPUT:
+ *     returns a stadium node with matcing destination
+ * *************************************/
 stadiumNode graph::getDistance(string des, const List<stadiumNode>& l){
     node<stadiumNode>* temp = l.Begin();
 
@@ -514,6 +550,19 @@ stadiumNode graph::getDistance(string des, const List<stadiumNode>& l){
     return stadiumNode("","",10000);
 }
 
+/***************************************
+ * void graph::dijkstras(List<stadiumNode>& getsReturned,
+ *                               List<stadiumNode> edges){
+ * --------------------------------------------------------------------
+ *  This function performs dijkstras on a list of edges and returns
+ *      a list of stadiums nodes by ref.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      getsReturned - name of stadium node list
+ *      edges - the edges to be used in the algorithhm
+ * OUTPUT:
+ *      Nkne
+ * *************************************/
 void graph::dijkstras(List<stadiumNode>& getsReturned, List<stadiumNode> edges){
 
     if (checkVisited(getsReturned, edges.Begin()->_item._src)){
@@ -529,12 +578,27 @@ void graph::dijkstras(List<stadiumNode>& getsReturned, List<stadiumNode> edges){
     }
 }
 
-stadiumNode graph::shortestTotalDistance(const List<stadiumNode>& result_dijkstras){
+/***************************************
+ * stadiumNode graph::shortestTotalDistance
+ *                              (const List<stadiumNode>& result_dijkstras){
+ * --------------------------------------------------------------------
+ *  This function finds the shortest total distance between all of the
+ *      nodes in dijkstras.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      getsReturned - name of stadium node list
+ *      edges - the edges to be used in the algorithhm
+ * OUTPUT:
+ *      Nkne
+ * *************************************/
+stadiumNode graph::shortestTotalDistance
+                                    (const List<stadiumNode>& result_dijkstras){
     node<stadiumNode>* walker_result = result_dijkstras.Begin();
     int shortest = 10000;
     stadiumNode returnMe;
     while (walker_result){
-        if (walker_result->_item._distancetoSrc < shortest && walker_result->_item._src != walker_result->_item._des){
+        if (walker_result->_item._distancetoSrc < shortest &&
+                walker_result->_item._src != walker_result->_item._des){
             shortest = walker_result->_item._distancetoSrc;
             returnMe = walker_result->_item;
         }
@@ -543,6 +607,21 @@ stadiumNode graph::shortestTotalDistance(const List<stadiumNode>& result_dijkstr
     return returnMe;
 }
 
+/***************************************
+ * stadiumNode graph::shortestTotalDistance(const List<stadiumNode>& result_dijkstras,
+                                         const List<stadium>& toVisit,
+                                         const List<stadiumNode>& visited){
+ * --------------------------------------------------------------------
+ *  This function finds the shortest total distance between all of the
+ *      nodes in the toVisit list and only visits them once.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      result_dijkstras - the result of previous dijkstras call
+ *      toVisit - the stadium that still need to be visited
+ *      visited - the stadiums visited
+ * OUTPUT:
+ *      returns a node represeting shortest total distance
+ * *************************************/
 stadiumNode graph::shortestTotalDistance(const List<stadiumNode>& result_dijkstras,
                                          const List<stadium>& toVisit,
                                          const List<stadiumNode>& visited){
@@ -557,7 +636,8 @@ stadiumNode graph::shortestTotalDistance(const List<stadiumNode>& result_dijkstr
     node<stadium>* walker_for_toVisit = toVisit.Begin();
     while (walker_for_toVisit){
         if (!checkExist(visited, walker_for_toVisit->_item.getStadiumName())){
-            toVisitFinal.InsertAfter(stadiumNode("", walker_for_toVisit->_item.getStadiumName(), 0),
+            toVisitFinal.InsertAfter(stadiumNode("",
+                                walker_for_toVisit->_item.getStadiumName(), 0),
                                             toVisitFinal.End());
 
         }
@@ -579,6 +659,17 @@ stadiumNode graph::shortestTotalDistance(const List<stadiumNode>& result_dijkstr
     return returnMe;
 }
 
+/***************************************
+ * bool graph::checkExist(const List<stadiumNode>& list, string toCheck){
+ * --------------------------------------------------------------------
+ *  This function checks if the stadium name exists in the passed list.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      list - the list of stadium nodes
+ *      toCheck - the name of the stadium to check
+ * OUTPUT:
+ *      true or false
+ * *************************************/
 bool graph::checkExist(const List<stadiumNode>& list, string toCheck){
     node<stadiumNode>* w = list.Begin();
     while (w){
@@ -590,17 +681,17 @@ bool graph::checkExist(const List<stadiumNode>& list, string toCheck){
     return false;
 }
 
-bool graph::checkExist(const List<stadium>& list, string toCheck){
-    node<stadium>* w = list.Begin();
-    while (w){
-        if (w->_item.getStadiumName() == toCheck){
-            return true;
-        }
-        w = w->next;
-    }
-    return false;
-}
-
+/***************************************
+ * void graph::removeStadium(List<stadiumNode>& list, string toRemove){
+ * --------------------------------------------------------------------
+ *  This function removes the stadium with the passed name from the passed list.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      list - the list of stadium nodes
+ *      toRemove - the name of the stadium to remove
+ * OUTPUT:
+ *      None
+ * *************************************/
 
 void graph::removeStadium(List<stadiumNode>& list, string toRemove){
     node<stadiumNode>* w = list.Begin();
@@ -613,6 +704,19 @@ void graph::removeStadium(List<stadiumNode>& list, string toRemove){
     }
 }
 
+
+/***************************************
+ * void graph::removeStadium(List<stadium>& list, string toRemove){
+ * --------------------------------------------------------------------
+ *  This function removes the stadium with the passed name from the passed list
+ *      of stadiums.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      list - the list of stadiums
+ *      toRemove - the name of the stadium to remove
+ * OUTPUT:
+ *      None
+ * *************************************/
 void graph::removeStadium(List<stadium>& list, string toRemove){
     node<stadium>* w =list.Begin();
     while (w){
