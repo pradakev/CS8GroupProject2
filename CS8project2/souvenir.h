@@ -42,10 +42,13 @@ public:
     ~souvenirs();
     souvenirs(const souvenirs& other);
     souvenirs& operator = (const souvenirs& other);
+    bool operator == (const souvenirs& other);
     souvenir& operator [](int index);
+
 
     //GETTERS
     int getSize();
+    int getItemCount(string itemName);
 
     //FUNCTIONS
     void addSouvenir(souvenir);
