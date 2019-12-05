@@ -92,7 +92,7 @@ List<stadium> graph::getStadiumWithGrassField(){
     return returnMe;
 }
 
-List<stadium> graph::getStadumList(){
+List<stadium> graph::getStadiumListForDijkstras(){
     return List<stadium>(this->stadiums);
 }
 
@@ -589,6 +589,18 @@ bool graph::checkExist(const List<stadiumNode>& list, string toCheck){
     }
     return false;
 }
+
+bool graph::checkExist(const List<stadium>& list, string toCheck){
+    node<stadium>* w = list.Begin();
+    while (w){
+        if (w->_item.getStadiumName() == toCheck){
+            return true;
+        }
+        w = w->next;
+    }
+    return false;
+}
+
 
 void graph::removeStadium(List<stadiumNode>& list, string toRemove){
     node<stadiumNode>* w = list.Begin();

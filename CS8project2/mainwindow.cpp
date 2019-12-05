@@ -10,10 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    readStadiums(g, "../CS8Project2/textFiles/stadiumInfo.txt");
+    readStadiums(g, this->newStadiumaAddedbyUser, "../CS8Project2/textFiles/stadiumInfo.txt");
     readEdges(g, "../CS8Project2/textFiles/stadiumDistances.txt");
     readSouvenirs(s, "../CS8Project2/textFiles/SouvenirList.txt");
-
 
     //Setup Push buttons
     ui->dodgerButton->setFixedSize(80, 55);
@@ -113,7 +112,7 @@ void MainWindow::on_stadiumInfoDoneButton_clicked()
 
 void MainWindow::on_exitMainButton_clicked()
 {
-//    saveStadiums(g, "../CS8Project2/textFiles/stadiumInfo.txt");
+    saveStadiums(g, this->newStadiumaAddedbyUser, "../CS8Project2/textFiles/stadiumInfo.txt");
     saveSouvenirs(s, "../CS8Project2/textFiles/SouvenirList.txt");
     exit(-1);
 }
@@ -149,16 +148,35 @@ void MainWindow::on_stadiumTableInfo_clicked()
 {
     gotoPage(7);
 
-    List <stadium> printThis = g.getStadumList();
+    List <stadium> printThis = this->getStadiumListALL();
+    node<stadium>* newStadiums = this->newStadiumaAddedbyUser.Begin();
 
     if (ui->GrassSurface->currentIndex() == 1){
         printThis = g.getStadiumWithGrassField();
+        while (newStadiums){
+            if (newStadiums->_item.getFieldSurface() == "Grass"){
+                printThis.InsertAfter(newStadiums->_item, printThis.End());
+            }
+            newStadiums = newStadiums->next;
+        }
     }
     if (ui->GrassSurface->currentIndex() == 2){
         printThis = g.getNationalLeagueStadiums();
+        while (newStadiums){
+            if (newStadiums->_item.getType() == "National"){
+                printThis.InsertAfter(newStadiums->_item, printThis.End());
+            }
+            newStadiums = newStadiums->next;
+        }
     }
     if (ui->GrassSurface->currentIndex() == 3){
         printThis = g.getAmericanLeagueStadiums();
+        while (newStadiums){
+            if (newStadiums->_item.getType() == "American"){
+                printThis.InsertAfter(newStadiums->_item, printThis.End());
+            }
+            newStadiums = newStadiums->next;
+        }
     }
     node<stadium>* w = printThis.Begin();
 
@@ -384,7 +402,7 @@ void MainWindow::on_allStadiumsButton_clicked()
     dreamList.push_back(src);
 
 
-    List<stadium> all(g.getStadumList());
+    List<stadium> all(g.getStadiumListForDijkstras());
     node<stadium> *traverse;
 
     //First ADD AL Stadiums
@@ -417,7 +435,7 @@ void MainWindow::on_pushButton_clicked()
 {
     gotoPage(8);
 
-    List <stadium> printThis = g.getStadumList();
+    List <stadium> printThis = this->getStadiumListALL();
 
     node<stadium>* w = printThis.Begin();
 
@@ -527,7 +545,7 @@ void MainWindow::on_modDoneButton_clicked()
     message.setIcon(QMessageBox::Icon::Question);
 
     if(message.exec() == QMessageBox::Yes){
-        this->g.stadiums = newList;
+        modify_newStadiumAddedByUser(newList);
         ui->textBrowser_2->append(QString("Stadium list modified"));
         message.close();
         gotoPage(5);
@@ -706,14 +724,9 @@ void MainWindow::planTeamButtons(string stadiumName)
                 ui->plannedTripStadiumBrowser->setText(stadiumPathText);
                 return;
             }
-//            ui->plannedTripStadiumBrowser->setText(stadiumPathText +
-//                                                   "\nStadium already in list! "
-//                                                   "Please choose a different stadium.");
-//            return;
         }
         //Else, add stadium name to array of stadiums for later
         dreamList.push_back(stadiumName);
-//        dreamList->size()++;
 
         //Set Text Browser
         stadiumPathText = getDreamStrArray();
@@ -892,7 +905,6 @@ void MainWindow::on_allNLStadiumsButton_clicked()
     dreamList.push_back(src);
     //Set dreamList to all nodes, starting at Dodger Stadium
     //Add to size of dreamList
-//    dreamList->size()++;
 
     //Get All stadiums in lists
     List<stadium> NL = g.getNationalLeagueStadiums();
@@ -912,19 +924,6 @@ void MainWindow::on_allNLStadiumsButton_clicked()
 
     stadiumPathText = getDreamStrArray();
     ui->plannedTripStadiumBrowser->setText(stadiumPathText);
-
-
-//    node<stadium> *allStadiums = g.getNationalLeagueStadiums().Begin();
-//    sizeDreamList = 0;
-
-//    while(allStadiums)
-//    {
-//        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
-//        sizeDreamList++;
-//        allStadiums = allStadiums->next;
-//    }
-//    stadiumPathText = getDreamStrArray();
-//    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 }
 
 void MainWindow::on_allALStadiumsButton_clicked()
@@ -940,7 +939,6 @@ void MainWindow::on_allALStadiumsButton_clicked()
     dreamList.push_back(src);
     //Set dreamList to all nodes, starting at Dodger Stadium
     //Add to size of dreamList
-//    dreamList->size()++;
 
     //Get All stadiums in lists
     List<stadium> AL = g.getAmericanLeagueStadiums();
@@ -961,21 +959,6 @@ void MainWindow::on_allALStadiumsButton_clicked()
     stadiumPathText = getDreamStrArray();
     ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 
-
-    //Need to convert string array to stadium List!
-
-
-//    node<stadium> *allStadiums = g.getAmericanLeagueStadiums().Begin();
-//    sizeDreamList = 0;
-
-//    while(allStadiums)
-//    {
-//        dreamList[sizeDreamList] = allStadiums->_item.getStadiumName();
-//        sizeDreamList++;
-//        allStadiums = allStadiums->next;
-//    }
-//    stadiumPathText = getDreamStrArray();
-//    ui->plannedTripStadiumBrowser->setText(stadiumPathText);
 }
 
 
@@ -1020,4 +1003,53 @@ void MainWindow::on_showMapButton_clicked()
     }
     gotoPage(3);
 
+}
+
+// this function will put the new stadiums added into a different list
+void MainWindow::modify_newStadiumAddedByUser(List<stadium>& list){
+    node<stadium>* modified = list.Begin();
+
+
+    while (modified){
+        if(isNewStadium(modified->_item)){
+            modified->_item.setXCoor(0);
+            modified->_item.setYCoor(0);
+            this->newStadiumaAddedbyUser.InsertAfter(modified->_item, newStadiumaAddedbyUser.End());
+        }
+        modified = modified->next;
+    }
+    //    cout << "H" <<endl;
+//    cout << this->newStadiumaAddedbyUser <<endl;
+}
+
+List<stadium> MainWindow::getStadiumListALL(){
+    List<stadium> returnMe = g.getStadiumListForDijkstras();
+
+    node<stadium>* w = this->newStadiumaAddedbyUser.Begin();
+
+    while (w){
+        returnMe.InsertAfter(w->_item, returnMe.End());
+        w = w->next;
+    }
+    return returnMe;
+}
+
+bool MainWindow::isNewStadium(stadium toCheck){
+    node<stadium>* alreadyInNew = this->newStadiumaAddedbyUser.Begin();
+    node<stadium>* original = g.stadiums.Begin();
+
+    while (alreadyInNew){
+        if (alreadyInNew->_item.getAddress() == toCheck.getAddress()){
+            return false;
+        }
+        alreadyInNew = alreadyInNew->next;
+    }
+    while (original){
+        if (original->_item.getAddress() == toCheck.getAddress()){
+            return false;
+        }
+        original = original->next;
+    }
+
+    return true;
 }

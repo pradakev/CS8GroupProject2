@@ -25,7 +25,6 @@ struct stadiumNode{
         return out;
     }
 
-
 };
 
 
@@ -50,7 +49,7 @@ public:
     List<stadium> getAmericanLeagueStadiums();
     List<stadium> getNationalLeagueStadiums();
     List<stadium> getStadiumWithGrassField();
-    List<stadium> getStadumList();
+    List<stadium> getStadiumListForDijkstras();
 
 
 
@@ -78,6 +77,7 @@ public:
                                       const List<stadiumNode>& visited);
     void initForShortestPath(const List<stadium>&, List<stadiumNode>&, string src);
     bool checkExist(const List<stadiumNode>&, string toCheck);
+    bool checkExist(const List<stadium>&, string toCheck);
     void removeStadium(List<stadiumNode>&, string toRemove);
     void removeStadium(List<stadium>&, string toRemove);
 

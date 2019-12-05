@@ -165,6 +165,10 @@ private slots:
 
     void plannedTripTable();
 
+    void modify_newStadiumAddedByUser(List<stadium>& list);
+
+    bool isNewStadium(stadium);
+
 private:
     Ui::MainWindow *ui;
 
@@ -188,6 +192,10 @@ private:
 
     //SOUVENIR
     souvenirs s;
+
+    //NEW STADIUMS ADDED
+    List<stadium> newStadiumaAddedbyUser;
+    List<stadium> getStadiumListALL();
 
     userInfo client;
 
