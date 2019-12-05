@@ -17,8 +17,8 @@ void readStadiums(graph &g, List<stadium>& list, string fileName){
     }
 
 
-    int count = 1;
-    while (infile){
+    int count = 0;
+    do{
         getline(infile, line);
         toAdd.setName(line);
 
@@ -51,12 +51,19 @@ void readStadiums(graph &g, List<stadium>& list, string fileName){
 
         getline(infile, line);
 
-        if (count <= 30){
+        if (count < 30){
+            cout << "add to user add" <<endl;
             g.addStadium(toAdd);
-        }else{
-            list.InsertAfter(toAdd, list.End());
+
+            count++;
         }
-    }
+        else {
+            cout << "add to default" <<endl;
+            list.InsertAfter(toAdd, list.End());
+
+        }
+
+    }while(infile);
     infile.close();
 }
 
@@ -156,7 +163,7 @@ void saveStadiums(graph &g, List<stadium>& newS, string fileName){
     if (w2 != nullptr){
         ss << endl <<endl;
     }
-    while (w2){
+    while(w2){
         ss << w2->_item.getStadiumName() <<endl;
         ss << w2->_item.getTeamName() <<endl;
         ss << w2->_item.getAddress() <<endl;

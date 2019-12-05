@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    readStadiums(g, this->newStadiumaAddedbyUser, "../CS8Project2/textFiles/stadiumInfo.txt");
+    readStadiums(g, newStadiumaAddedbyUser, "../CS8Project2/textFiles/stadiumInfo.txt");
     readEdges(g, "../CS8Project2/textFiles/stadiumDistances.txt");
     readSouvenirs(s, "../CS8Project2/textFiles/SouvenirList.txt");
 
@@ -1012,16 +1012,6 @@ void MainWindow::on_showMapButton_clicked()
         {
             node<stadiumNode> *startNode = client.plannedTrips.Begin();
 
-            //DEBUG
-            cout << "DRAWING LINE FROM SOURCE: " << g.getStadiumInfo(myNode->_item._src)
-                 << g.getStadiumInfo(myNode->_item._src).getXCoor()
-                 << ", " << g.getStadiumInfo(myNode->_item._src).getYCoor() << endl;
-
-            cout << "TO STADIUM DEST: " << g.getStadiumInfo(myNode->_item._des)
-                 << g.getStadiumInfo(myNode->_item._des).getXCoor()
-                 << ", " << g.getStadiumInfo(myNode->_item._des).getYCoor() << endl;
-            cout << endl;
-
             int srcX = g.getStadiumInfo(myNode->_item._src).getXCoor();
             int srcY = g.getStadiumInfo(myNode->_item._src).getYCoor();
             x1 = srcX;
@@ -1044,7 +1034,6 @@ void MainWindow::on_showMapButton_clicked()
                         startNode->_item._src == myNode->_item._des)
                 {
                     duplicate = true;
-                    cout << "DUPLICATED FOUND" << endl;
                 }
                 startNode = startNode->next;
             }
@@ -1278,13 +1267,16 @@ void MainWindow::on_AddbuttonTrackSouvenir_clicked()
 
 void MainWindow::on_showMapButtonMainPage_clicked()
 {
-    if(newStadiumaAddedbyUser.Begin() == nullptr)
+    node<stadium> *w = newStadiumaAddedbyUser.Begin();
+
+    if(w == nullptr)
     {
+        return;
         //Nothing to paint
     }
     else
     {
-        int x1, y1, x2, y2;
+        int x1, y1;
         QPixmap pixmap(":/logos/mlbMap.png");
         QPainter painter(&pixmap);
         QFont font = painter.font();
@@ -1293,66 +1285,22 @@ void MainWindow::on_showMapButtonMainPage_clicked()
 //        painter.setPen(QPen(Qt::blue));
         painter.setPen(QPen(Qt::blue, 2, Qt::DashDotLine, Qt::RoundCap));
 //        //List of Processed Dijkstra's Stadiums
-        node<stadium> *w = newStadiumaAddedbyUser.Begin();
 
-//        //Check for lines. If Line already drawn there, return true
-//        bool duplicate = false;
-//        //counter for lines
-//        int count = 1;
         while(w)
         {
-//            node<stadiumNode> *startNode = client.plannedTrips.Begin();
-
-//            //DEBUG
-//            cout << "DRAWING LINE FROM SOURCE: " << g.getStadiumInfo(myNode->_item._src)
-//                 << g.getStadiumInfo(myNode->_item._src).getXCoor()
-//                 << ", " << g.getStadiumInfo(myNode->_item._src).getYCoor() << endl;
-
-//            cout << "TO STADIUM DEST: " << g.getStadiumInfo(myNode->_item._des)
-//                 << g.getStadiumInfo(myNode->_item._des).getXCoor()
-//                 << ", " << g.getStadiumInfo(myNode->_item._des).getYCoor() << endl;
-//            cout << endl;
 
             int srcX = w->_item.getXCoor();
             int srcY = w->_item.getYCoor();
             x1 = srcX;
             y1 = srcY;
-            int desX = w->_item.getXCoor();
-            int desY = w->_item.getYCoor();
-            x2 = desX;
-            y2 = desY;
-            painter.drawLine(x1, y1, x2, y2);
+            string name = w->_item.getStadiumName();
+            QString n = QString::fromStdString(name);
+            painter.drawText(x1, y1, n);
 
-//            //Trying to draw a number
-//            string counter = to_string(count);
-//            QString qCount = QString::fromStdString(counter);
-
-//            //Check if not already placed a number there. If so,
-//            //have the new number be placed other place.
-//            while(startNode != myNode)
-//            {
-//                if(startNode->_item._des == myNode->_item._des ||
-//                        startNode->_item._src == myNode->_item._des)
-//                {
-//                    duplicate = true;
-//                    cout << "DUPLICATED FOUND" << endl;
-//                }
-//                startNode = startNode->next;
-//            }
-//            if(duplicate)
-//                painter.drawText(x2, y2 - 30, qCount);
-
-//            else
-            string name;
-            for (unsigned int i =0; i < w->_item.getStadiumName().length(); i++){
-
-//                painter.drawText(x2, y2 - 10, QString::fromStdString(w->_item.getStadiumName()[i]));
-            }
-//            count++;
-//            duplicate = false;
             w = w->next;
         }
-        ui->dreamMap->setPixmap(pixmap);
+        ui->map2->setPixmap(pixmap);
+
     }
     gotoPage(11);
 }
