@@ -9,7 +9,7 @@ class stadium
 {
 public:
     stadium();
-    stadium(string, string, string, string, string, string, string, string);
+    stadium(string, string, string, string, string, string, string, string, int x = 0, int y = 0);
 
     bool operator == (const stadium& other);
 

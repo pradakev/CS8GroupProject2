@@ -3,7 +3,7 @@
 stadium::stadium(){}
 stadium::stadium(string name, string teamName, string address,
                  string phone, string openDate, string capacity, string type
-                 ,string surface){
+                 ,string surface, int x, int y){
     _sName = name;
     _teamName = teamName;
     _address = address;
@@ -12,11 +12,13 @@ stadium::stadium(string name, string teamName, string address,
     _capacity = capacity;
     _type = type;
     _surface = surface;
+    xPixel = x;
+    yPixel = y;
 }
 
-bool stadium::operator == (const stadium& other){
-    return this->_sName == other._sName;
-}
+//bool stadium::operator == (const stadium& other){
+//    return this->_sName == other._sName;
+//}
 
 //GETTERS
 string stadium::getStadiumName(){
