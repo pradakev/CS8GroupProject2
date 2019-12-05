@@ -1,3 +1,10 @@
+/***************************************
+ * AUTHOR                : Justin Kuhn, Anna Ma, Kevin Prada
+ * Project 2             : I Love Baseball
+ * CLASS                 : CS8
+ * SECTION               : MW 9:45-11:10AM TTH 9:45-11:50AM
+ * Due Date              : 12/5/19
+ * *************************************/
 #ifndef FILES_H
 #define FILES_H
 #include <fstream>
@@ -5,12 +12,25 @@
 #include "graph.h"
 #include "souvenir.h"
 
-void readStadiums(graph &g, string fileName){
-    ifstream infile;
+/***************************************
+ *  void readStadiums(graph &g, string fileName){
+ *
+ * --------------------------------------------------------------------
+ *  This function read the stadium from the input file
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      g - graph object
+ *      fileName - name of stadium file
+ * OUTPUT:
+ *      None
+ * *************************************/
+void readStadiums(graph &g,             // IN - graph object
+                  string fileName){     // IN - name of stadium file
+    ifstream infile;        // IN -- input strem
     infile.open(fileName);
 
-    string line;
-    stadium toAdd;
+    string line;            // IN - each line
+    stadium toAdd;          // IN - stadium being aded
 
     if (!infile){
         cout << "file not found. " <<endl;
@@ -54,14 +74,27 @@ void readStadiums(graph &g, string fileName){
     infile.close();
 }
 
-void readEdges(graph &g, string fileName){
-    ifstream infile;
+/***************************************
+ *  void readEdges(graph &g, string fileName){
+ *
+ * --------------------------------------------------------------------
+ *  This function reads the edges connecting all the stadiums from a file.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      g - graph object
+ *      fileName - name of stadium file
+ * OUTPUT:
+ *      None
+ * *************************************/
+void readEdges(graph &g,                        // IN - graph object
+               string fileName){                // IN - name of stadium file
+    ifstream infile;        // IN - name of file
     infile.open(fileName);
 
-    string line;
-    string s1;
-    string s2;
-    int distance;
+    string line;            // IN - each read line
+    string s1;              // IN - temp subtring
+    string s2;              // IN - temp substring
+    int distance;           // IN - distance of edge
 
     if (!infile){
         cout << "file not found. " <<endl;
@@ -79,12 +112,26 @@ void readEdges(graph &g, string fileName){
     infile.close();
 }
 
-void readSouvenirs(souvenirs& s, string fileName){
-    ifstream infile;
+/***************************************
+ *  void readSouvenirs(souvenirs& s, string fileName){
+ *
+ * --------------------------------------------------------------------
+ *  This function reads all the sounvenir objects from a file and places them
+ *  in a passed object.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      s - souvenir object
+ *      fileName - name of file
+ * OUTPUT:
+ *      None
+ * *************************************/
+void readSouvenirs(souvenirs& s,            // IN & OUT - souvenir object
+                   string fileName){        // IN - name of file
+    ifstream infile;            // IN - input stream
     infile.open(fileName);
 
-    string line;
-    souvenir toAdd;
+    string line;                // IN - line to read
+    souvenir toAdd;             // IN - souvenir being added
 
     if (!infile){
         cout << "file not found. " <<endl;
@@ -99,16 +146,28 @@ void readSouvenirs(souvenirs& s, string fileName){
         s.addSouvenir(toAdd);
     }
 }
+/***************************************
+ *  void saveStadiums(graph &g, string fileName){
+ *
+ * --------------------------------------------------------------------
+ *  This function saves the current list of all stadiums
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      g - graph object containing stadium list
+ *      fileName - name of file
+ * OUTPUT:
+ *      None
+ * *************************************/
+void saveStadiums(graph &g,         // IN - graph object containing stadium list
+                  string fileName){ // IN - name of output file
 
-void saveStadiums(graph &g, string fileName){
+    List<stadium> list = g.getStadumList();     // IN - list of stadiums
+    node<stadium>* w = list.Begin();            // IN - pointer to beginning
 
-    List<stadium> list = g.getStadumList();
-    node<stadium>* w = list.Begin();
-
-    ofstream outfile;
+    ofstream outfile;                           // OUT - output stram
     outfile.open(fileName);
 
-    stringstream ss;
+    stringstream ss;                            // OUT - stream of strings
 
     string tostr;
     do{
@@ -136,9 +195,22 @@ void saveStadiums(graph &g, string fileName){
 
 }
 
-void saveSouvenirs(souvenirs& s, string fileName){
+/***************************************
+ *  void saveSouvenirs(souvenirs& s, string fileName){
+ *
+ * --------------------------------------------------------------------
+ *  This function saves the current list of souvenirs.
+ * --------------------------------------------------------------------
+ *  INPUT:
+ *      s - the souvenirs object with souv's to be saved
+ *      fileName - name of file
+ * OUTPUT:
+ *      None
+ * *************************************/
+void saveSouvenirs(souvenirs& s,        // IN - the souvenirs object to read
+                   string fileName){    // IN - name of file
 
-    ofstream outfile;
+    ofstream outfile;                   // OUT - output stream
     outfile.open(fileName);
 
     for (int i = 0; i < s.getSize(); i++){
