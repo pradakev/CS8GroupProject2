@@ -998,12 +998,26 @@ void MainWindow::on_showMapButton_clicked()
         QFont font = painter.font();
         font.setBold(true);
         painter.setFont(font);
-        painter.setPen(QPen(Qt::blue));
-
+//        painter.setPen(QPen(Qt::blue));
+        painter.setPen(QPen(Qt::blue, 2, Qt::DashDotLine, Qt::RoundCap));
         //List of Processed Dijkstra's Stadiums
         node<stadiumNode> *myNode = client.plannedTrips.Begin();
+
+        //counter for lines
+        int count = 1;
         while(myNode)
         {
+
+            //DEBUG
+            cout << "DRAWING LINE FROM SOURCE: " << g.getStadiumInfo(myNode->_item._src)
+                 << g.getStadiumInfo(myNode->_item._src).getXCoor()
+                 << ", " << g.getStadiumInfo(myNode->_item._src).getYCoor() << endl;
+
+            cout << "TO STADIUM DEST: " << g.getStadiumInfo(myNode->_item._des)
+                 << g.getStadiumInfo(myNode->_item._des).getXCoor()
+                 << ", " << g.getStadiumInfo(myNode->_item._des).getYCoor() << endl;
+            cout << endl;
+
             int srcX = g.getStadiumInfo(myNode->_item._src).getXCoor();
             int srcY = g.getStadiumInfo(myNode->_item._src).getYCoor();
             x1 = srcX;
@@ -1013,6 +1027,14 @@ void MainWindow::on_showMapButton_clicked()
             x2 = desX;
             y2 = desY;
             painter.drawLine(x1, y1, x2, y2);
+
+            //Trying to draw a number
+            string counter = to_string(count);
+            QString qCount = QString::fromStdString(counter);
+            //Check if not already placed a number there. If so,
+            //have the new number be placed other place.
+            painter.drawText(x2, y2 - 10, qCount);
+            count++;
 
             myNode = myNode->next;
         }
