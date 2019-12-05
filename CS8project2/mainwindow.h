@@ -31,6 +31,12 @@ struct userInfo
     souvenirs souvenirList;             //ATT - assoc. souvenirs
 };
 
+/*******************************************************************
+ *  MainWindow Class
+ *     This class represents a the graphical aspect of the user interface
+ *       Mananges graph, souvenir, UserInfo, dreamList, and *ui attributes
+ *
+ * *****************************************************************/
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -45,7 +51,7 @@ public:
      *  void gotoPage(int pg);
      *     This goes to the passed page
      * *****************************************************************/
-    void gotoPage(int pg);
+    void gotoPage(int pg);      //IN - page to switch to
 
 private slots:
     /*******************************************************************
@@ -101,7 +107,7 @@ private slots:
      *  void setStadiumTextBrowser(string stadiumTemp);
      *     set the text in the text browser
      * *****************************************************************/
-    void setStadiumTextBrowser(string stadiumTemp);
+    void setStadiumTextBrowser(string stadiumTemp); //IN - stadium to add
 
 
     /*******************************************************************
@@ -218,7 +224,7 @@ private slots:
      *  void on_stadiumInfoCheckBox_stateChanged(int arg1);
      *     check box to display stadium info
      * *****************************************************************/
-    void on_stadiumInfoCheckBox_stateChanged(int arg1);
+    void on_stadiumInfoCheckBox_stateChanged(int arg1); //IN - *placehold*
 
     /*******************************************************************
      *  void on_sanDiegoButton_clicked();
@@ -347,12 +353,12 @@ private:
      *  bool alreadyInDreamList(string stadiumName);
      *     check if stadium is already in the list
      * *****************************************************************/
-    bool alreadyInDreamList(string stadiumName);
+    bool alreadyInDreamList(string stadiumName);    //IN - stadium name to chck
     /*******************************************************************
      *  void deleteDreamStadium(string stadiumName);
      *     delete stadium from dream list
      * *****************************************************************/
-    void deleteDreamStadium(string stadiumName);
+    void deleteDreamStadium(string stadiumName);    //IN - stadium to del
 
     //GRAPH
     graph g;        // ATT- graph object to handle display

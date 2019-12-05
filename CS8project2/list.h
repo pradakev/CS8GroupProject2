@@ -10,6 +10,11 @@
 #define LIST_H
 #include "linked_list_functions.h"
 
+/*******************************************************************
+ *  List class
+ *     This class represents a templated linked list with typical linked
+ *      list operations
+ * *****************************************************************/
 template <class T>
 class List
 {
@@ -30,12 +35,12 @@ public:
      *  List(const List<T> &copyThis);
      *     This is a copy constructor
      * *****************************************************************/
-    List(const List<T> &copyThis);
+    List(const List<T> &copyThis); //IN - list to copy
     /*******************************************************************
      *  List& operator =(const List& RHS){
      *     This assignment operator copies the RHS list to this list.
      * *****************************************************************/
-    List& operator =(const List& RHS){
+    List& operator =(const List& RHS){  //IN - list to copy
         head = _CopyList(RHS.head);
         return *this;
     }
@@ -43,9 +48,9 @@ public:
      *  bool operator ==(const List& rhs){
      *     This checks of the RHS list is the same as the calling list.
      * *****************************************************************/
-    bool operator ==(const List& rhs){
-        node<T>* w = this->head;
-        node<T>* w2 = rhs.head;
+    bool operator ==(const List& rhs){  //IN - list to compare
+        node<T>* w = this->head;        // CALC - to traverse
+        node<T>* w2 = rhs.head;         // CALC - to traverse rhs
 
         while(w || w2){
             if (!(w->_item == w2->_item)){
@@ -68,7 +73,7 @@ public:
      *     This inserts the value at the head of the list
      *      and returns a pointer to it..
      * *****************************************************************/
-    node<T>* InsertHead(T i);
+    node<T>* InsertHead(T i);       //IN - value to insert
 
     /*******************************************************************
      *  node<T>* InsertAfter(T i,
@@ -76,8 +81,8 @@ public:
      *     This inserts the value after the marker in the list
      *        and returns a pointer to it..
      * *****************************************************************/
-    node<T>* InsertAfter(T i,           //insert i after iMarker
-                                 node<T>* iMarker);
+    node<T>* InsertAfter(T i,       //IN - value to insert
+                 node<T>* iMarker); //IN - insert aftert this marker
 
     /*******************************************************************
      *  node<T>* InsertBefore(T i,
@@ -85,49 +90,49 @@ public:
      *     This inserts the value before the marker in the list
      *      and returns a pointer to it..
      * *****************************************************************/
-    node<T>* InsertBefore(T i,          //insert i before iMarker
-                                  node<T>* iMarker);
+    node<T>* InsertBefore(T i,          //IN - value to insert
+                node<T>* iMarker);      //IN - insert before this marker
 
     /*******************************************************************
      *  node<T>* InsertSorted(T i);
      *     This inserts the value into an assumed sorted list  and
      *          returns a pointer to it.
      * *****************************************************************/
-    node<T>* InsertSorted(T i);         //insert i. Assume sorted list
+    node<T>* InsertSorted(T i);         // IN - insert i. Assume sorted list
 
 
     /*******************************************************************
      *  T Delete(node<T>* iMarker);
      *     This deletes the node at the marker from the list.
      * *****************************************************************/
-    T Delete(node<T>* iMarker);         //delete node pointed to by iMarker
+    T Delete(node<T>* iMarker);         // IN - delete node pointed by iMarker
 
 
     /*******************************************************************
      *  void Print() const;
      *     This prints the contents of the list.
      * *****************************************************************/
-    void Print() const;                                 //print the list
+    void Print() const;
 
     /*******************************************************************
      *  node<T>* Search(const T &key);
      *     This searches the list for the key and returns a pointer to it.
      * *****************************************************************/
-    node<T>* Search(const T &key);      //return pointer to node containing
-                                                        //  key. NULL if not there
+    node<T>* Search(const T &key);      //IN - search for this value
+
 
     /*******************************************************************
      *  node<T>* Prev(node<T>* iMarker);
      *     This returns a pointer to a node previous to the marker.
      * *****************************************************************/
-    node<T>* Prev(node<T>* iMarker);    //get the previous node to iMarker
+    node<T>* Prev(node<T>* iMarker);    //IN - find node previous to this
 
 
     /*******************************************************************
      *  T& operator[](int index);
      *     This returns an item in the list by ref at the passed index.
      * *****************************************************************/
-    T& operator[](int index);                   //return the item at index
+    T& operator[](int index);           //IN - index to access
 
     /*******************************************************************
      *  node<T>* Begin() const;
@@ -157,9 +162,9 @@ public:
      *
      * *************************************/
     template <class U>
-    friend ostream& operator <<(ostream& outs,          //insertion operator for list
-                                const List<U>& l){
-        node<U>* w = l.Begin();
+    friend ostream& operator <<(ostream& outs,      //IN - output stream
+                         const List<U>& l){         //IN - list to output
+        node<U>* w = l.Begin();                     //IN - to traverse
         while (w){
             outs << w->_item <<endl;
             w = w->next;
@@ -235,7 +240,7 @@ List<T>::~List(){
  *
  * *************************************/
 template<class T>
-List<T>::List(const List<T> &copyThis){
+List<T>::List(const List<T> &copyThis){     //IN - list to copy
     this->head= _CopyList(copyThis.head);
 }
 
@@ -267,7 +272,7 @@ void List<T>::Print() const{
  *
  * *************************************/
 template<class T>
-node<T>* List<T>::InsertHead(T i){
+node<T>* List<T>::InsertHead(T i){  //IN - value to insert
     return _InsertHead(head, i);
 }
 
@@ -285,7 +290,8 @@ node<T>* List<T>::InsertHead(T i){
  *
  * *************************************/
 template<class T>
-node<T>* List<T>::InsertAfter(T i, node<T>* iMarker){
+node<T>* List<T>::InsertAfter(T i,      //IN - value to insert
+             node<T>* iMarker){         //IN - insert after this
     if (head == NULL){
         return InsertHead(i);
     }
@@ -306,7 +312,7 @@ node<T>* List<T>::InsertAfter(T i, node<T>* iMarker){
  *
  * *************************************/
 template<class T>
-node<T>* List<T>::InsertBefore(T i, node<T>* iMarker){
+node<T>* List<T>::InsertBefore(T i, node<T>* iMarker){  // IN - before ptr
     if (head == NULL){
         return InsertHead(i);
     }
@@ -326,7 +332,7 @@ node<T>* List<T>::InsertBefore(T i, node<T>* iMarker){
  *
  * *************************************/
 template<class T>
-node<T>* List<T>::InsertSorted(T i){
+node<T>* List<T>::InsertSorted(T i){        // IN - insert this
     return _InsertSorted(head, i, true);
 }
 
@@ -342,7 +348,7 @@ node<T>* List<T>::InsertSorted(T i){
  *
  * *************************************/
 template<class T>
-T List<T>::Delete(node<T>* iMarker){
+T List<T>::Delete(node<T>* iMarker){        //IN - delete this
     return _DeleteNode(head, iMarker);
 }
 
@@ -358,7 +364,7 @@ T List<T>::Delete(node<T>* iMarker){
  *
  * *************************************/
 template<class T>
-node<T>* List<T>::Search(const T &key){
+node<T>* List<T>::Search(const T &key){     //IN - search for this
     return SearchList(head, key);
 }
 
@@ -374,7 +380,7 @@ node<T>* List<T>::Search(const T &key){
  *
  * *************************************/
 template<class T>
-node<T>* List<T>::Prev(node<T>* iMarker){
+node<T>* List<T>::Prev(node<T>* iMarker){   //IN - ptr prev to this
     return _PreviousNode(head, iMarker);
 }
 
@@ -390,7 +396,7 @@ node<T>* List<T>::Prev(node<T>* iMarker){
  *
  * *************************************/
 template<class T>
-T& List<T>::operator[](int index){
+T& List<T>::operator[](int index){  //IN - position of element
     return At(head, index);
 }
 

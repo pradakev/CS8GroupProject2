@@ -13,6 +13,12 @@
 
 using namespace std;
 
+/*******************************************************************
+ *  stadium class
+ *      This class represnts all the information associatied with a stadium.
+ *          It mananges stadiumName, teamName, Address, Phone, Type, and
+ *          field surface.
+ * *****************************************************************/
 class stadium
 {
 public:

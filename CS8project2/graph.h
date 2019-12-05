@@ -52,6 +52,12 @@ struct stadiumNode{
 };
 
 
+/*******************************************************************
+ *  graph class
+ *     This class represents the entire trip and graphical operations
+ *      that must be performed to display the trip
+ * *****************************************************************/
+
 class graph
 {
 public:

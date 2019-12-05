@@ -12,6 +12,10 @@
 #include <cassert>
 using namespace std;
 
+/*******************************************************************
+ *  souvenir struct
+ *      represents a single souvenir with a price and name
+ * *****************************************************************/
 struct souvenir{
 
     /*******************************************************************
@@ -68,6 +72,10 @@ private:
 };
 
 
+/*******************************************************************
+ *  souvenirs class
+ *      represents an array of souvenir objects
+ * *****************************************************************/
 class souvenirs
 {
 public:
