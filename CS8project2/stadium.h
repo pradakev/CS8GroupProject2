@@ -27,6 +27,7 @@ public:
      *     This uses the default constructor.
      * *****************************************************************/
     stadium();
+
     /*******************************************************************
      *  stadium(string, string, string, string, string, string, string, string);
      *     This constructor initializes all of the attributes of a stadium.
@@ -38,7 +39,10 @@ public:
             string, // IN -  open date to set
             string, // IN -  capacity to set
             string, // IN -  league to set
-            string);// IN -  field surface to set
+            string, // IN -  field surface to set
+            int x = 0,
+            int y = 0);
+
 
     /*******************************************************************
      *  bool operator == (const stadium& other);

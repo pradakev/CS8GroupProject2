@@ -12,6 +12,7 @@
 #include "graph.h"
 #include "souvenir.h"
 
+
 /***************************************
  *  void readStadiums(graph &g, string fileName){
  *
@@ -24,9 +25,9 @@
  * OUTPUT:
  *      None
  * *************************************/
-void readStadiums(graph &g,             // IN - graph object
-                  string fileName){     // IN - name of stadium file
-    ifstream infile;        // IN -- input strem
+void readStadiums(graph &g, List<stadium>& list, string fileName){
+    ifstream infile;
+
     infile.open(fileName);
 
     string line;            // IN - each line
@@ -36,7 +37,9 @@ void readStadiums(graph &g,             // IN - graph object
         cout << "file not found. " <<endl;
     }
 
-    while (infile){
+
+    int count = 0;
+    do{
         getline(infile, line);
         toAdd.setName(line);
 
@@ -69,8 +72,19 @@ void readStadiums(graph &g,             // IN - graph object
 
         getline(infile, line);
 
-        g.addStadium(toAdd);
-    }
+        if (count < 30){
+            cout << "add to user add" <<endl;
+            g.addStadium(toAdd);
+
+            count++;
+        }
+        else {
+            cout << "add to default" <<endl;
+            list.InsertAfter(toAdd, list.End());
+
+        }
+
+    }while(infile);
     infile.close();
 }
 
@@ -146,6 +160,7 @@ void readSouvenirs(souvenirs& s,            // IN & OUT - souvenir object
         s.addSouvenir(toAdd);
     }
 }
+
 /***************************************
  *  void saveStadiums(graph &g, string fileName){
  *
@@ -158,18 +173,23 @@ void readSouvenirs(souvenirs& s,            // IN & OUT - souvenir object
  * OUTPUT:
  *      None
  * *************************************/
-void saveStadiums(graph &g,         // IN - graph object containing stadium list
-                  string fileName){ // IN - name of output file
 
-    List<stadium> list = g.getStadumList();     // IN - list of stadiums
-    node<stadium>* w = list.Begin();            // IN - pointer to beginning
+void saveStadiums(graph &g, List<stadium>& newS, string fileName){
 
-    ofstream outfile;                           // OUT - output stram
+    List<stadium> list = g.getStadiumListForDijkstras();
+    node<stadium>* w = list.Begin();
+    node<stadium>* w2 = newS.Begin();
+
+    ofstream outfile;
+
     outfile.open(fileName);
 
     stringstream ss;                            // OUT - stream of strings
 
     string tostr;
+
+    int coordinate;
+
     do{
         ss << w->_item.getStadiumName() <<endl;
         ss << w->_item.getTeamName() <<endl;
@@ -178,19 +198,59 @@ void saveStadiums(graph &g,         // IN - graph object containing stadium list
         ss << w->_item.getOpenDate() <<endl;
         ss << w->_item.getCapacity() <<endl;
         ss << w->_item.getType() <<endl;
-        ss << w->_item.getFieldSurface();
+        ss << w->_item.getFieldSurface() <<endl;
+        coordinate = w->_item.getXCoor();
+        ss << to_string(coordinate) <<endl;
+        coordinate = w->_item.getYCoor();
+        ss << to_string(coordinate);
 
-        tostr = ss.str();
-        cout << tostr <<endl;
-
-        outfile << tostr;
-        ss.clear();
         if (w->next != nullptr){
-            outfile <<endl;
+            ss << endl <<endl;
         }
 
+        tostr = ss.str();
+        outfile << tostr;
+
+        ss.str( string());
+        ss.clear();
+
+
         w = w->next;
-    }while(w->next);
+
+    }while(w);
+
+    ss.str( string());
+    ss.clear();
+
+    if (w2 != nullptr){
+        ss << endl <<endl;
+    }
+    while(w2){
+        ss << w2->_item.getStadiumName() <<endl;
+        ss << w2->_item.getTeamName() <<endl;
+        ss << w2->_item.getAddress() <<endl;
+        ss << w2->_item.getPhone() <<endl;
+        ss << w2->_item.getOpenDate() <<endl;
+        ss << w2->_item.getCapacity() <<endl;
+        ss << w2->_item.getType() <<endl;
+        ss << w2->_item.getFieldSurface() <<endl;
+        coordinate = w2->_item.getXCoor();
+        ss << to_string(coordinate) <<endl;
+        coordinate = w2->_item.getYCoor();
+        ss << to_string(coordinate);
+
+        if (w2->next != nullptr){
+            ss << endl <<endl;
+        }
+        tostr = ss.str();
+        outfile << tostr;
+
+        ss.str( string());
+        ss.clear();
+
+        w2 = w2->next;
+    }
+
     outfile.close();
 
 }

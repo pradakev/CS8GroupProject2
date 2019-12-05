@@ -48,7 +48,6 @@ struct stadiumNode{
         return out;
     }
 
-
 };
 
 
@@ -122,11 +121,14 @@ public:
      *      a grass field.
      * *****************************************************************/
     List<stadium> getStadiumWithGrassField();
+
     /*******************************************************************
      *  List<stadium> getStadiumWithGrassField();
      *     This function returns a list of all of the stadiums.
      * *****************************************************************/
-    List<stadium> getStadumList();
+
+    List<stadium> getStadiumListForDijkstras();
+
 
 
     /*******************************************************************
@@ -137,6 +139,7 @@ public:
 
 
     ////////////////////// new updates::
+
 
 
     /*******************************************************************
@@ -157,6 +160,8 @@ public:
      * *****************************************************************/
     List<stadiumNode> shortestPath(const List<stadium>&,// IN -  list to visit
                                    string src);         // IN -  stadium to strt
+
+
 
     /*******************************************************************
      *  stadiumNode getDistance(string des, const List<stadiumNode>&);

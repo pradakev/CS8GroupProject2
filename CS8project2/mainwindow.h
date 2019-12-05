@@ -331,6 +331,20 @@ private slots:
      * *****************************************************************/
     void plannedTripTable();
 
+    List<stadium> modify_newStadiumAddedByUser(List<stadium> list);
+
+    bool isNewStadium(stadium);
+
+    void on_pushButton_5_clicked();
+
+    void on_CancelButtonTrackSouvenir_clicked();
+
+    void on_AddbuttonTrackSouvenir_clicked();
+
+    void on_showMapButtonMainPage_clicked();
+
+    void on_DoneButton2_clicked();
+
 private:
     Ui::MainWindow *ui;     // ATT - main ui window
 
@@ -366,7 +380,15 @@ private:
     //SOUVENIR
     souvenirs s;    // ATT- souvenir object
 
+
     userInfo client;// ATT- info for the client
+
+    //NEW STADIUMS ADDED
+    List<stadium> newStadiumaAddedbyUser;
+    List<stadium> getStadiumListALL();
+
+
+
 
 
 };

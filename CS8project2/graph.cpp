@@ -190,7 +190,9 @@ List<stadium> graph::getStadiumWithGrassField(){
  * OUTPUT:
  *     returns a list of af all associated stadiums
  * *************************************/
-List<stadium> graph::getStadumList(){
+
+List<stadium> graph::getStadiumListForDijkstras(){
+
     return List<stadium>(this->stadiums);
 }
 
@@ -690,6 +692,7 @@ bool graph::checkExist(const List<stadiumNode>& list, string toCheck){
  * OUTPUT:
  *      None
  * *************************************/
+
 void graph::removeStadium(List<stadiumNode>& list, string toRemove){
     node<stadiumNode>* w = list.Begin();
     while (w){

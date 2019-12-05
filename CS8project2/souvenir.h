@@ -89,6 +89,7 @@ public:
      *     This delete an array of souvenirs
      * *****************************************************************/
     ~souvenirs();
+
     /*******************************************************************
      *  souvenirs(const souvenirs& other);
      *     This copies the passed souvenirs to the new object
@@ -105,12 +106,17 @@ public:
      * *****************************************************************/
     souvenir& operator [](int index);               // IN -  index to access
 
+    bool operator == (const souvenirs& other);
+    
+
+
     //GETTERS
     /*******************************************************************
      *  int getSize();
      *     This returns the size of the souvenir array
      * *****************************************************************/
     int getSize();
+    int getItemCount(string itemName);
 
     //FUNCTIONS
     /*******************************************************************

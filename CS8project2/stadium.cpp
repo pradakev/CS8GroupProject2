@@ -23,6 +23,7 @@ stadium::stadium(){}
 /***************************************
  * stadium::stadium(string name, string teamName, string address,
                  string phone, string openDate, string capacity, string type
+
                  ,string surface){
  * --------------------------------------------------------------------
  *  This constructor initializes all values of a stadium object.
@@ -46,8 +47,11 @@ stadium::stadium(string name,       // IN - std name
                  string phone,      // IN - assoc. phone
                  string openDate,   // IN - day std opened
                  string capacity,   // IN - cap of std
-                 string type        // IN - std leage
-                 ,string surface){  // IN - std surface
+                 string type,        // IN - std leage
+                 string surface,
+                 int x,
+                 int y){  // IN - std surface
+
     _sName = name;
     _teamName = teamName;
     _address = address;
@@ -56,7 +60,10 @@ stadium::stadium(string name,       // IN - std name
     _capacity = capacity;
     _type = type;
     _surface = surface;
+    xPixel = x;
+    yPixel = y;
 }
+
 
 /***************************************
  * bool stadium::operator == (const stadium& other){
@@ -69,9 +76,9 @@ stadium::stadium(string name,       // IN - std name
  * OUTPUT:
  *      None
  * *************************************/
-bool stadium::operator == (const stadium& other){   // IN - to copy
-    return this->_sName == other._sName;
-}
+//bool stadium::operator == (const stadium& other){   // IN - to copy
+//    return this->_sName == other._sName;
+//}
 
 //GETTERS
 /***************************************
